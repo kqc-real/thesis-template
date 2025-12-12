@@ -5,6 +5,7 @@
 % \date{<Datum einfügen>}
 % \maketitle
 
+\newgeometry{left=3cm,right=3cm,top=3cm,bottom=3cm}
 \begin{titlepage}
 
 \begin{center}
@@ -31,8 +32,7 @@
 
 \begin{center}
 \ifthenelse{\equal{\lang}{ngerman}}
-{eingereicht im Fachbereich Mathematik, Naturwissenschaften und Informatik an der Technischen Hochschule Mittelhessen}
-{submitted to the Department of Mathematics, Natural Sciences, and Computer Science at the Technische Hochschule Mittelhessen (University of Applied Sciences)}
+{im dualen Studiengang Informatik an der IU Internationale Hochschule}
 
 {\large \vspace{0.5cm}
 }
@@ -45,6 +45,8 @@
 
 \begin{center}
 \theAuthor
+\\ Matrikelnummer: 1234567
+\\ Musterstraße 1, 12345 Musterstadt
 \end{center}
 
 \begin{center}
@@ -57,13 +59,14 @@
 \ifthenelse{\equal{\lang}{ngerman}}
 {Referent}
 {Referee}: \theFirstReferee
-\par\vspace{0.5em}
+\\[0.5em]
 \ifthenelse{\equal{\lang}{ngerman}}
 {Korreferent}
 {Co-Referee}: \theSecondReferee
 \end{center}
 
 \end{titlepage}
+\restoregeometry
 
 
 \thispagestyle{empty}
