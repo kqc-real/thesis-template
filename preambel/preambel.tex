@@ -37,7 +37,14 @@
 \onehalfspacing
 
 %%% Mikrotypografie (Optischer Randausgleich etc.)
-\usepackage[expansion=true, protrusion=true]{microtype}
+\usepackage[
+   expansion=true,
+   protrusion=true,
+   tracking=true,
+   kerning=true
+]{microtype}
+% Deaktiviere Protrusion für deutsche Anführungszeichen
+\microtypesetup{activate={true,nocompatibility},final,tracking=true,kerning=true}
 
 %%% Besserer Flattersatz (Linksbündig)
 \usepackage{ragged2e}

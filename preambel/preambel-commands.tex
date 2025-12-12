@@ -138,22 +138,29 @@ For reasons of better readability, the generic masculine is used in this work. F
 }
 
 \newcommand*\printDeclarationOfIndependence{%
+\clearpage
 \ifthenelse{\equal{\lang}{ngerman}}%
 {%
 \section*{Erklärung der Selbstständigkeit}
 \thispagestyle{empty}
 Hiermit versichere ich, die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt sowie die Zitate deutlich kenntlich gemacht zu haben.
-\vspace{4\baselineskip}\\
-Gießen, den \today \hfill \theAuthor
-\vspace{4\baselineskip}\\
+
+\vspace{4\baselineskip}
+
+\noindent Gießen, den \today \hfill \theAuthor
+
+\vspace{4\baselineskip}
 }
 {%
 \section*{Declaration of Independence}
 \thispagestyle{empty}
 I hereby declare that I have composed the present work independently and have not used any sources or aids other than those cited, and that all quotations have been clearly indicated.
-\vspace{4\baselineskip}\\
-Gießen, on \today \hfill \theAuthor
-\vspace{4\baselineskip}\\
+
+\vspace{4\baselineskip}
+
+\noindent Gießen, on \today \hfill \theAuthor
+
+\vspace{4\baselineskip}
 }
 }
 
