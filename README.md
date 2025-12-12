@@ -2,6 +2,132 @@
 
 Professionelle LaTeX-Vorlage für Bachelor- und Masterarbeiten im deutschsprachigen Raum. Optimiert für Qualität, Lesbarkeit und Einhaltung akademischer Konventionen.
 
+## Für LaTeX-Anfänger:innen
+
+### Was ist LaTeX?
+
+LaTeX ist ein **Textsatzsystem** für hochwertige Dokumente, besonders geeignet für wissenschaftliche Arbeiten. Anders als bei Word schreiben Sie Text mit **Markup-Befehlen** (wie `\section{Titel}`), und LaTeX kümmert sich automatisch um:
+
+- **Professionelles Layout** (Abstände, Schriftgrößen, Seitenumbrüche)
+- **Nummerierung** (Kapitel, Abbildungen, Formeln, Referenzen)
+- **Literaturverzeichnis** (automatisch sortiert und formatiert)
+- **Mathematische Formeln** (z.B. $E = mc^2$)
+- **Konsistente Formatierung** im gesamten Dokument
+
+**Vorteil:** Sie konzentrieren sich auf den Inhalt, LaTeX kümmert sich um die Form.
+
+### Wozu eine TeX-Distribution?
+
+Eine **TeX-Distribution** (wie TeX Live oder MikTeX) ist die Software, die LaTeX-Code in PDFs umwandelt. Sie enthält:
+
+- **LaTeX-Compiler** (pdflatex, xelatex, lualatex)
+- **Tausende Pakete** (für Tabellen, Bilder, Formeln, Bibliographien, etc.)
+- **Werkzeuge** wie `biber` (für Literaturverzeichnisse) und `latexmk` (für automatisches Kompilieren)
+
+**Empfehlung:** TeX Live 2024+ (aktuell: TeX Live 2025) — vollständig, aktuell, kostenlos.
+
+### LaTeX in VS Code einrichten
+
+VS Code ist ein moderner, kostenloser Code-Editor mit exzellenter LaTeX-Unterstützung.
+
+#### Schritt 1: TeX-Distribution installieren
+
+**macOS:**
+
+```bash
+brew install --cask mactex
+# oder MikTeX: brew install --cask miktex
+```
+
+**Linux (Ubuntu/Debian):**
+
+```bash
+sudo apt-get update
+sudo apt-get install texlive-full
+```
+
+**Windows:**
+
+- Download [TeX Live](https://www.tug.org/texlive/) oder [MikTeX](https://miktex.org/)
+
+#### Schritt 2: VS Code Erweiterungen installieren
+
+Installieren Sie diese Extensions in VS Code:
+
+1. **LaTeX Workshop** (james-yu.latex-workshop) — *Essentiell*
+   - Automatische Kompilierung beim Speichern
+   - PDF-Vorschau im Editor
+   - Syntax-Highlighting und IntelliSense
+   - Fehleranzeige und -navigation
+
+2. **LaTeX Utilities** (tecosaur.latex-utilities) — *Empfohlen*
+   - Erweiterte Snippets
+   - Zeilennummerierung für Tabellen
+   - Live Paste von Bildern
+
+3. **LaTeX language support** (mathematic.vscode-latex) — *Optional*
+   - Zusätzliche Syntax-Hervorhebung
+
+#### Schritt 3: LaTeX Workshop konfigurieren
+
+LaTeX Workshop funktioniert sofort. Für diese Vorlage sind die Standardeinstellungen optimal:
+
+- **Automatisches Kompilieren:** Beim Speichern (`.tex`-Datei)
+- **PDF-Vorschau:** Automatisch rechts neben dem Editor
+- **Build-Tool:** `latexmk` (empfohlen) oder `pdflatex` + `biber`
+
+**VS Code Settings (Optional):**
+
+```json
+{
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.latex.recipe.default": "latexmk (pdflatex)"
+}
+```
+
+### latexmk vs. pdflatex
+
+#### pdflatex (manuell)
+
+Wenn Sie manuell kompilieren möchten (z.B. im Terminal):
+
+```bash
+pdflatex Bachelor-Thesis.tex    # 1. Durchlauf: Dokument erstellen
+biber Bachelor-Thesis           # Bibliographie verarbeiten
+pdflatex Bachelor-Thesis.tex    # 2. Durchlauf: Referenzen aktualisieren
+pdflatex Bachelor-Thesis.tex    # 3. Durchlauf: Alles finalisieren
+```
+
+**Problem:** Sie müssen mehrfach kompilieren, bis alle Referenzen korrekt sind.
+
+#### latexmk (automatisch) — **Empfohlen**
+
+`latexmk` kompiliert automatisch **so oft wie nötig**:
+
+```bash
+latexmk -pdf Bachelor-Thesis.tex
+```
+
+Das erkennt automatisch:
+
+- Wenn Bibliographie neu gebaut werden muss (→ ruft `biber` auf)
+- Wenn Referenzen aktualisiert werden müssen (→ zusätzliche Durchläufe)
+- Wenn nichts geändert wurde (→ keine Kompilierung)
+
+**LaTeX Workshop nutzt standardmäßig latexmk** — Sie müssen nichts tun!
+
+### Workflow in VS Code
+
+1. **Projekt öffnen:** `Datei` → `Ordner öffnen` → `thesis-template`
+2. **Hauptdatei öffnen:** `Bachelor-Thesis.tex`
+3. **Bearbeiten:** Ändern Sie Metadaten und Content-Dateien
+4. **Speichern:** `Cmd+S` (Mac) / `Ctrl+S` (Windows/Linux)
+5. **LaTeX Workshop kompiliert automatisch** im Hintergrund
+6. **PDF ansehen:** Klicken Sie auf das PDF-Symbol rechts oben, oder nutzen Sie `Cmd+Alt+V`
+
+**Tipp:** Bei Fehlern zeigt LaTeX Workshop diese im "Problems"-Panel (unten) an. Klicken Sie darauf, um zur fehlerhaften Zeile zu springen.
+
 ## Features
 
 ✓ **Professionelle Typografie**
@@ -36,26 +162,38 @@ Professionelle LaTeX-Vorlage für Bachelor- und Masterarbeiten im deutschsprachi
 
 ## Anforderungen
 
-### LaTeX-Distribution
+**Hinweis:** Wenn Sie LaTeX noch nicht installiert haben, lesen Sie zuerst den Abschnitt "Für LaTeX-Anfänger:innen" oben.
 
-- **TeX Live 2024+** oder **MikTeX 23.1+** (mit updatemap-cfg)
-- **pdfLaTeX** oder **XeLaTeX**
+### TeX-Distribution (erforderlich)
 
-### Build-Tools
+- **TeX Live 2024+** (empfohlen) — Vollständig, aktuell, gut getestet
+- **MikTeX 23.1+** — Alternative für Windows
+- Enthält: pdfLaTeX, XeLaTeX, LuaLaTeX, Biber, latexmk
 
-- **Biber 2.19+** - Für Bibliographie-Verarbeitung
-- **latexmk** oder **Make** - Für automatisiertes Kompilieren
+### Editor (empfohlen)
 
-### Bash-Installation (macOS/Linux)
+- **VS Code** mit Extension "LaTeX Workshop"
+- Alternativen: TeXstudio, Overleaf (online), TeXmaker
+
+### Build-Tools (in Distribution enthalten)
+
+- **latexmk** — Automatisches Kompilieren (empfohlen)
+- **Biber 2.19+** — Bibliographie-Verarbeitung
+- **pdflatex** — PDF-Generierung
+
+### Installation (nur macOS/Linux Terminal)
+
+Wenn Sie TeX Live noch nicht haben (siehe Abschnitt "Für LaTeX-Anfänger:innen"):
 
 ```bash
-# TeX Live installieren
+# macOS: TeX Live installieren
 brew install --cask mactex
-# oder via apt:
+
+# Linux: TeX Live installieren  
 sudo apt-get install texlive-full
 
-# Alternativ: MikTeX
-brew install --cask miktex
+# VS Code Extension installieren
+code --install-extension james-yu.latex-workshop
 ```
 
 ## Schnelleinstieg
@@ -63,7 +201,7 @@ brew install --cask miktex
 ### 1. Repository klonen
 
 ```bash
-git clone https://github.com/thm-mni-ii/thesis-template.git
+git clone https://github.com/kqc-real/thesis-template.git
 cd thesis-template
 ```
 
@@ -110,15 +248,24 @@ Bearbeiten Sie `bib/BibtexDatabase.bib`:
 
 ### 5. Kompilieren
 
+**In VS Code (empfohlen):**
+
+- Öffnen Sie `Bachelor-Thesis.tex`
+- Speichern Sie die Datei (`Cmd+S` / `Ctrl+S`)
+- LaTeX Workshop kompiliert automatisch
+- PDF-Vorschau: Klick auf PDF-Symbol (rechts oben) oder `Cmd+Alt+V`
+
+**Im Terminal (manuell):**
+
 ```bash
-# Einmalig:
+# Mit latexmk (automatisch, empfohlen):
+latexmk -pdf Bachelor-Thesis.tex
+
+# Oder manuell mit pdflatex:
 pdflatex Bachelor-Thesis.tex
 biber Bachelor-Thesis
 pdflatex Bachelor-Thesis.tex
 pdflatex Bachelor-Thesis.tex
-
-# Oder mit latexmk (empfohlen):
-latexmk -pdf -bibtex Bachelor-Thesis.tex
 ```
 
 ## Verzeichnisstruktur
