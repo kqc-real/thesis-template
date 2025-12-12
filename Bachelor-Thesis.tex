@@ -14,16 +14,7 @@
 
 
 % Encoding der Dateien (sonst funktionieren Umlaute nicht)
-% Fuer Linux -> utf8
-% Fuer Windows, alte Linux Distributionen -> latin1
-
-% Empfohlen latin1, da einige Pakete mit utf8 Zeichen nicht
-% funktionieren, z.B: listings, soul.
-%\usepackage[latin1]{inputenc}
-%\usepackage[ansinew]{inputenc}
 \usepackage[utf8]{inputenc}
-%\usepackage{ucs}
-%\usepackage[utf8x]{inputenc}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %    SET LANGUAGE       %
@@ -58,9 +49,6 @@
 % Deckblatt
 \input{content/00_Titel}
 
-% Nicht vergessen zu Entfernen wenn alles Fertig:
-%\listoftodos
-
 % Abstract - Kurzfassung der Arbeit ohne Wertung
 \input{content/00_Abstract}
 \cleardoublepage
@@ -83,8 +71,6 @@
 \printbibliography
 \clearpage
 % Symbolverzeichnis (Begriffserklärung)
-% Damit die Begriffe hinzugefügt werden muss in Texmaker unter Optionen - Konfiguren 
-% Der Makeindex Befehl folgendermaßen geändert werden: "/usr/texbin/makeindex" %.nlo -s nomencl.ist -o %.nls
 \IfDefined{printindex}{\printindex}
 \IfDefined{printnomenclature}{\printnomenclature}
 % 'Symbolverzeichnis' ins Inhaltsverzeichnis
@@ -95,9 +81,6 @@
 \lstlistoflistings.
 % Anhang
 \appendix
-% 'Anhang' ins Inhaltsverzeichnis
-%\phantomsection
-%\addcontentsline{toc}{part}{Anhang}
 
 \input{content/Z-Anhang}
 
