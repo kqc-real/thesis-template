@@ -4,10 +4,11 @@
 # Jetbrains
 .idea
 
-# Generated tex files
+# Generated LaTeX files
 *.aux
 *.bbl
 *.blg
+*.bcf
 *.idx
 *.lof
 *.log

@@ -1,26 +1,51 @@
 % !TEX root = ../Bachelor-Thesis.tex
-\chapter{Konzept}
 
-% Beispiel: Bild + Infobox nebeneinander
-\begin{figure}[htbp] % [H] verwenden, wenn es wirklich fix stehen soll
-\begin{tcbraster}[raster columns=2, raster height=13.5cm, raster column skip=5mm]
-\begin{tcolorbox}[colback=white, colframe=white, boxrule=0pt]
-\centering
-\fbox{\includegraphics[width=\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax, height=6cm, keepaspectratio]{images/800_iu-logo-en-black-rgb-horizontal.png}}
-\\[0.2cm]
-\textit{Bildunterschrift}
-\end{tcolorbox}
-\begin{tcolorbox}[colback=white, arc=3mm, boxrule=1.5pt]
-\textbf{Bild + Infobox}
-\par\medskip
-Diese Art der Darstellung eignet sich besonders gut, um kurze Inhalte übersichtlich und visuell begleitet zu präsentieren.
-\begin{itemize}[leftmargin=*, itemsep=4pt]
-\item Visualisierung
-\item Erläuterung
-\item Auflistung
-\item Begleittext
+\chapter{Konzept und Methodik}
+\label{ch:konzept}
+
+\section{Übersicht des Lösungsansatzes}
+
+Auf Basis der Analyse in Kapitel \ref{ch:hintergrund} wird in diesem Kapitel ein neuer Lösungsansatz entwickelt. Der Ansatz adressiert die identifizierten Forschungslücken und nutzt die Stärken bestehender Methoden.
+
+\section{Architektur und Design}
+
+Das Konzept basiert auf folgenden Designprinzipien:
+
+\begin{itemize}
+  \item Modularität: Komponenten sind unabhängig und austauschbar
+  \item Skalierbarkeit: Das System wächst mit den Anforderungen
+  \item Wartbarkeit: Code ist verständlich und dokumentiert
+  \item Robustheit: Fehlertoleranz und Zuverlässigkeit
 \end{itemize}
-\end{tcolorbox}
-\end{tcbraster}
-\caption{Konzeptdarstellung}
-\end{figure}
+
+\section{Mathematische Grundlagen}
+
+Falls erforderlich, können mathematische Modelle dargestellt werden:
+
+\[
+  f(x) = \sum_{i=1}^{n} x_i \cdot w_i
+\]
+
+wobei $x_i$ die Eingabewerte und $w_i$ die Gewichtungen darstellen.
+
+\section{Methodik}
+
+Die Realisierung folgt einem systematischen Vorgehen:
+
+\begin{enumerate}
+  \item Anforderungsanalyse: Präzise Definition der Ziele
+  \item Designphase: Architektur und Schnittstellen festlegen
+  \item Implementierungsphase: Umsetzung des Designs
+  \item Testphase: Validierung und Verifikation
+  \item Optimierungsphase: Performance und Qualität verbessern
+\end{enumerate}
+
+\section{Abgrenzung zu alternativen Ansätzen}
+
+Dieser Ansatz unterscheidet sich von den in Kapitel \ref{ch:hintergrund} beschriebenen Methoden durch:
+
+\begin{itemize}
+  \item Verbesserte Effizienz durch optimierte Algorithmen
+  \item Bessere Skalierungseigenschaften
+  \item Praktischere Anwendbarkeit
+\end{itemize}

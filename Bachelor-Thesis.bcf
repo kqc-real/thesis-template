@@ -2375,9 +2375,7 @@
     <bcf:citekey order="1" intorder="1">smith2020example</bcf:citekey>
     <bcf:citekey order="2" intorder="1">doe2019research</bcf:citekey>
     <bcf:citekey order="3" intorder="1">lee2018conference</bcf:citekey>
-    <bcf:citekey order="4" intorder="1">miller2017chapter</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">website2021example</bcf:citekey>
-    <bcf:citekey order="6" intorder="1" nocite="1">*</bcf:citekey>
+    <bcf:citekey order="4" intorder="1" nocite="1">*</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="anyt">
