@@ -16,9 +16,9 @@
 %% Options: ngerman (Deutsch, neue Rechtschreibung), english (Englisch)
 \def\lang{ngerman}
 
-%% KI-Tools Declaration (optional) ==========================================
-%% Bitte ausfüllen, wenn KI-Tools bei der Erstellung verwendet wurden
-%% \def\declareUseOfGenerativeAITool{ChatGPT~4}
+%% KI-Tools Declaration (erforderlich bei KI-Nutzung) =======================
+%% Dokumentieren Sie verwendete KI-Tools hier und im Anhang "Verzeichnis der KI-Nutzung"
+\def\declareUseOfGenerativeAITool{GitHub Copilot, ChatGPT~4}
 
 %% Preambel laden ===========================================================
 \input{preambel/settings}
@@ -32,8 +32,8 @@
 \thesis{Bachelor-Thesis}
 \title{Titel der Abschlussarbeit}
 \academicTitle{Bachelor of Science}
-\firstReferee{Prof. Dr. Klaus Quibeldey-Cirkel}
-\secondReferee{Prof. Dr. Philipp Diebold}
+\firstReferee{Prof.~Dr.~Klaus Quibeldey-Cirkel}
+\secondReferee{Prof.~Dr.~Philipp Diebold}
 
 %% Makros und benutzerdefinierte Befehle ====================================
 \input{macros/newcommands}
@@ -45,21 +45,28 @@
 %% Dokument Beginn %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
+% Temporär pageanchor deaktivieren für Titelseite und Abstract (verhindert duplicate identifier)
+\hypersetup{pageanchor=false}
+
 % Deckblatt
 \input{content/00_Titel}
 
 % Abstract - Kurzfassung der Arbeit ohne Wertung
 \input{content/00_Abstract}
-\cleardoublepage
-\frontmatter
-\cleardoublepage
+\cleardoublepage{}
+
+% Ab hier pageanchor aktivieren für korrekte PDF-Links
+\hypersetup{pageanchor=true}
+
+\frontmatter{}
+\cleardoublepage{}
 % Inhaltsverzeichnis in den PDF-Links eintragen
 \pdfbookmark[1]{Inhaltsverzeichnis}{toc}
 \tableofcontents
 \cleardoublepage
 
 % Hauptteil
-\mainmatter
+\mainmatter{}
 \input{content/01_Einfuehrung}
 \input{content/02_Hintergrund}
 \input{content/03_Konzept}
@@ -72,8 +79,8 @@
 \printbibliography[heading=bibintoc, title=Literaturverzeichnis]
 
 % Symbolverzeichnis (Begriffserklärung)
-\IfDefined{printindex}{\printindex}
-\IfDefined{printnomenclature}{\printnomenclature}
+\IfDefined{printindex}{\printindex{}}
+\IfDefined{printnomenclature}{\printnomenclature{}}
 % 'Symbolverzeichnis' ins Inhaltsverzeichnis
 \addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
 % Abbildungs- und Tabellenverzeichnis

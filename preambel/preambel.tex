@@ -18,6 +18,9 @@
 %%% Bilder einbinden
 \usepackage{graphicx}
 
+%%% Querformat für einzelne Seiten
+\usepackage{pdflscape}
+
 %%% Rechnen mit LaTeX (wird oft intern benötigt)
 \usepackage{calc}
 
@@ -214,6 +217,8 @@
    bookmarks=true,          % Lesezeichen im PDF
    bookmarksopen=true,
    bookmarksnumbered=true,
+   plainpages=false,        % Verhindert "duplicate page identifiers"
+   pdfpagelabels=true,      % Korrekte Seitennummerierung (römisch/arabisch)
    pdftitle={},
    pdfauthor={},
 ]{hyperref}
