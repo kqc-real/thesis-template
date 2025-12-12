@@ -4,15 +4,15 @@
 \begin{titlepage}
 
 \begin{center}
-\includegraphics[width=1\textwidth]{images/800_iu-logo-en-black-rgb-horizontal.png}
-\par\end{center}
+\includegraphics[width=0.8\textwidth]{images/800_iu-logo-en-black-rgb-horizontal.png}
+\end{center}
 
 \begin{center}
-\textsf{\textbf{\huge \theThesis}}\textsf{}\\
-\textsf{}\\
+\textsf{\textbf{\huge \theThesis}}\\
 \textsf{\Large \theTitle}
 \end{center}
-{\Large \par}
+
+\vspace{0.3cm}
 
 \begin{center}
 \ifthenelse{\equal{\lang}{ngerman}}
@@ -28,9 +28,7 @@
 \begin{center}
 \ifthenelse{\equal{\lang}{ngerman}}
 {im dualen Studiengang Informatik an der IU Internationale Hochschule}
-
-{\large \vspace{0.5cm}
-}
+{in the dual program Computer Science at IU International University}
 \end{center}{\large \par}
 
 \begin{center}
@@ -40,8 +38,8 @@
 
 \begin{center}
 \theAuthor
-\\ Matrikelnummer: 1234567
-\\ Musterstraße 1, 12345 Musterstadt
+\\ Matrikelnummer: \theStudentID
+\\ \theStudentAddress
 \end{center}
 
 \begin{center}
@@ -54,7 +52,7 @@
 \ifthenelse{\equal{\lang}{ngerman}}
 {Referent}
 {Referee}: \theFirstReferee
-\\[0.5em]
+\par\vspace{0.5em}
 \ifthenelse{\equal{\lang}{ngerman}}
 {Korreferent}
 {Co-Referee}: \theSecondReferee
@@ -72,7 +70,6 @@
 
 \printGenderDisclaimer
 
-\printDeclarationOfIndependence
+\vspace{0.5cm}
 
-\clearpage
-\mbox{}\thispagestyle{empty}
+\printDeclarationOfIndependence

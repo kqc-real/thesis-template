@@ -29,6 +29,8 @@
 \input{preambel/preambel}
 
 \author{Maria Musterfrau}
+\studentID{1234567}
+\studentAddress{Musterstraße 1, 12345 Musterstadt}
 \thesis{Bachelor-Thesis}
 \title{Titel der Abschlussarbeit}
 \academicTitle{Bachelor of Science}
@@ -68,8 +70,11 @@
 \input{content/05_Abschluss}
 
 % Anhang (Bibliographie darf im deutschen nicht in den Anhang!)
-\printbibliography
-\clearpage
+\newpage
+\chapter{Literaturverzeichnis}
+\nocite{*}
+\printbibliography[title=]
+
 % Symbolverzeichnis (Begriffserklärung)
 \IfDefined{printindex}{\printindex}
 \IfDefined{printnomenclature}{\printnomenclature}
@@ -78,7 +83,7 @@
 % Abbildungs- und Tabellenverzeichnis
 \listoffigures
 \listoftables
-\lstlistoflistings.
+\lstlistoflistings
 % Anhang
 \appendix
 
