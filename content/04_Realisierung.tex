@@ -5,7 +5,7 @@
 
 \section{Implementierungsdetails}
 
-In diesem Kapitel werden die praktischen Aspekte der Umsetzung dokumentiert.
+In diesem Kapitel werden die praktischen Aspekte der Umsetzung dokumentiert. Listing \ref{lst:agent-loop} zeigt einen minimalen agentischen Loop mit Planung, Tool-Ausführung und Reflexion.
 
 \subsection{Technologiestack}
 
@@ -20,7 +20,107 @@ Folgende Technologien wurden für die Implementierung eingesetzt:
 
 \subsection{Architektur der Lösung}
 
-Die Implementierung folgt dem in Kapitel \ref{ch:konzept} beschriebenen Design.
+Die Implementierung folgt dem in Kapitel \ref{ch:konzept} beschriebenen Design (vgl. Abbildung \ref{fig:agent-architektur}).
+
+\begin{lstlisting}[style=Python, caption={Minimaler agentischer Loop für SE-Aufgaben (Beispiel-Listing)}, label={lst:agent-loop}]
+from typing import Dict, Any
+
+class Toolset:
+  def run_tests(self) -> str:
+    return "tests: 103 passed, 2 failed"
+
+  def format_code(self, diff: str) -> str:
+    return "formatted diff applied"
+
+class Agent:
+  def __init__(self, tools: Toolset):
+    self.tools = tools
+    self.memory = []  # episodic traces
+
+  def plan(self, goal: str) -> str:
+    return f"Plan: run tests -> fix failures -> re-run -> format -> commit ({goal})"
+
+  def act(self, step: str) -> str:
+    if "run tests" in step:
+      return self.tools.run_tests()
+    if "format" in step:
+      return self.tools.format_code(diff="...")
+    return "noop"
+
+  def reflect(self, observation: str) -> str:
+    if "failed" in observation:
+      return "Next: inspect failing tests and patch code"
+    return "Next: finalize and commit"
+
+  def run(self, goal: str) -> Dict[str, Any]:
+    plan = self.plan(goal)
+    self.memory.append({"plan": plan})
+    obs = self.act("run tests")
+    self.memory.append({"obs": obs})
+    next_step = self.reflect(obs)
+    self.memory.append({"reflect": next_step})
+    obs2 = self.act("format")
+    self.memory.append({"obs": obs2})
+    return {"status": "done", "trace": self.memory}
+
+agent = Agent(Toolset())
+result = agent.run(goal="increase reliability of module X")
+print(result["status"])
+\end{lstlisting}
+
+% ------------------------------------------------------------
+% Zweites Listing: TypeScript Tool-Calling Stub
+\begin{lstlisting}[style=TypeScript, caption={Tool-Calling Stub in TypeScript mit einfachem Funktionsschema (Beispiel-Listing)}, label={lst:ts-tool-calling}]
+type ToolName = "run_tests" | "format_code" | "open_issue";
+
+interface ToolCall {
+  name: ToolName;
+  args: Record<string, unknown>;
+}
+
+interface ToolResult {
+  name: ToolName;
+  ok: boolean;
+  output: string;
+}
+
+const tools = {
+  run_tests: async (): Promise<ToolResult> => ({ name: "run_tests", ok: true, output: "103 passed, 2 failed" }),
+  format_code: async (_args: { diff: string }): Promise<ToolResult> => ({ name: "format_code", ok: true, output: "formatted" }),
+  open_issue: async (_args: { title: string; body: string }): Promise<ToolResult> => ({ name: "open_issue", ok: true, output: "#4321" })
+};
+
+async function dispatch(call: ToolCall): Promise<ToolResult> {
+  switch (call.name) {
+    case "run_tests":
+      return tools.run_tests();
+    case "format_code":
+      return tools.format_code(call.args as { diff: string });
+    case "open_issue":
+      return tools.open_issue(call.args as { title: string; body: string });
+  }
+}
+
+async function agent(goal: string) {
+  const plan = [`run_tests`, `analyze_failures`, `format_code`, `commit`];
+  const trace: Array<{ event: string; data: unknown }> = [{ event: "plan", data: plan }];
+
+  const res1 = await dispatch({ name: "run_tests", args: {} });
+  trace.push({ event: "tool_result", data: res1 });
+
+  if (res1.output.includes("failed")) {
+    // Simple reflection -> open an issue with details
+    const res2 = await dispatch({ name: "open_issue", args: { title: `Test failures for ${goal}`, body: res1.output } });
+    trace.push({ event: "tool_result", data: res2 });
+  }
+
+  const res3 = await dispatch({ name: "format_code", args: { diff: "..." } });
+  trace.push({ event: "tool_result", data: res3 });
+  return { status: "done", trace };
+}
+
+agent("increase reliability of module X").then(r => console.log(r.status));
+\end{lstlisting}
 
 \section{Experimentelles Setup}
 
@@ -63,4 +163,49 @@ Die entwickelte Lösung übertrifft bestehende Ansätze in folgenden Aspekten:
 \section{Validierung und Verifikation}
 
 Alle kritischen Funktionen wurden durch automatisierte Tests validiert. Die Testabdeckung beträgt 92\%.
+
+% Benchmark-Ergebnisse mit longtable
+\begin{table}[ht]
+\centering
+\caption{Mini-Benchmark: Agentische Läufe mit Evaluationsmetriken (Beispiel-Longtable)}
+\label{tab:benchmark-results}
+\begin{tabular}{|p{2.5cm}|p{1.8cm}|p{1.8cm}|p{1.8cm}|p{1.5cm}|p{2.2cm}|}
+\hline
+\textbf{Aufgabe} & \textbf{Success} & \textbf{Token} & \textbf{Zeit (s)} & \textbf{Tools} & \textbf{Kosten (¢)} \\
+\hline
+Format Code & OK & 342 & 2.1 & 2 & 3.2 \\
+\hline
+Run Tests & OK & 521 & 5.8 & 1 & 4.9 \\
+\hline
+Review Code & OK & 891 & 8.3 & 3 & 8.4 \\
+\hline
+Fix Lint Errors & OK & 612 & 3.5 & 2 & 5.8 \\
+\hline
+Generate Docs & FAIL & 445 & 4.2 & 2 & 4.2 \\
+\hline
+\end{tabular}
+\end{table}
+
+% Zusätzliche Beispiel-Tabelle für Evaluationsmetriken
+\begin{table}[ht]
+\centering
+\caption{Evaluationsmetriken für agentische SE-Workflows (Beispieltabelle)}
+\label{tab:eval-metrics}
+\begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+\hline
+\textbf{Kategorie} & \textbf{Metriken / Beschreibung} \\
+\hline
+Qualität & Task-Success-Rate, Patch-Korrektheit (Tests/Lint), Review-Akzeptanz, Regressionen (\#) \\
+\hline
+Kosten & Token-/API-Kosten (EUR), Tool-Aufrufkosten, Compute-Zeit \\
+\hline
+Latenz & End-to-End-Laufzeit (s), Tool-Roundtrips (\#), Wartezeit auf CI \\
+\hline
+Sicherheit & Policy-Verstöße (\#), Risk Flags, sand-boxed I/O, PII-Leaks (\#) \\
+\hline
+Nachvollziehbarkeit & Trace-Länge (\#Events), Artefakte (Patches, Logs), Reproduzierbarkeit (Seeds) \\
+\hline
+\end{tabular}
+\end{table}
+
 

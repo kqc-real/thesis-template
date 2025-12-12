@@ -5,40 +5,59 @@
 
 \section{Grundkonzepte}
 
-Dieses Kapitel vermittelt die notwendigen Grundlagen zum Verständnis der Arbeit. Die behandelten Konzepte bilden die theoretische Basis für die später entwickelten Lösungsansätze \cite{smith2020example}.
+Dieses Kapitel führt in Grundbegriffe agentischer Systeme ein und bildet die theoretische Basis für Konzept und Implementierung \cite{smith2020example}.
 
-\subsection{Konzept 1: Fundamentale Begriffe}
+\subsection{Agentic AI: Begriffe und Bausteine}
 
-Zunächst werden die zentralen Begriffe erläutert und definiert, die im Kontext dieser Arbeit verwendet werden.
+Kernbausteine agentischer Systeme sind (i) \emph{Zustand} (Kontext, Ziele, Erinnerungen), (ii) \emph{Policy} (Planung, Aktion, Selbstkritik), (iii) \emph{Werkzeuge} (Funktionen/\enquote{Tools} wie Code-Ausführung, Websuche, VCS) und (iv) \emph{Gedächtnis} (episodisch/semantisch). Orchestrierung umfasst Planung (z.\,B. ReAct), Tool-Auswahl, Fehlerbehandlung und Reflexion.
 
-\subsection{Konzept 2: Etablierte Methoden}
+\subsection{Etablierte Methoden und Frameworks}
 
-Etablierte Methoden und Techniken werden dargestellt, um den aktuellen Stand der Technik zu verdeutlichen \cite{doe2019research}.
+Relevante Muster sind \emph{Chain-of-Thought}, \emph{ReAct}, \emph{Tree-of-Thought}, \emph{Plan-and-Execute} sowie Graph-basierte Orchestrierung. Praxisnahe Frameworks bieten Funktionen für Tool-Anbindung, Speicherschichten und Kontrollfluss \cite{doe2019research}.
 
 \section{Verwandte Arbeiten}
 
-In diesem Abschnitt wird ein Überblick über relevante Forschungsarbeiten und Publikationen gegeben.
+Es existiert umfangreiche Literatur zu Tool-Nutzung, Langkontext, Agentenplanung und Auswertung. Benchmarks adressieren Code-Qualität, Erfolgsrate (\enquote{task success}), Kosten und Sicherheit.
 
-\subsection{Ansatz A}
+\subsection{Ansatz A: ReAct-ähnliche Planung}
 
-Der erste bekannte Lösungsansatz wird kritisch analysiert mit seinen Vorteilen und Limitierungen.
+ReAct verbindet reasoning und acting: Das Modell plant Teilschritte, ruft Tools auf und reflektiert. Vorteile: gute Transparenz, einfache Implementierung. Grenzen: längere Latenzen, potentielle Halluzinationen.
 
-\subsection{Ansatz B}
+\subsection{Ansatz B: Graph-/Workflow-basierte Orchestrierung}
 
-Ein alternativer Ansatz wird dargestellt und mit dem vorherigen verglichen \cite{lee2018conference}.
+Graphen erlauben robuste Kontrollflüsse (Retry, Branching, Parallelisierung), klare Zustandsübergänge und bessere Testbarkeit. Grenzen: initialer Modellierungsaufwand, Overhead \cite{lee2018conference}.
 
 \section{Vergleich und Bewertung}
 
-Die verschiedenen Ansätze werden systematisch verglichen und bewertet. Daraus ergibt sich die Notwendigkeit eines neuen oder verbesserten Ansatzes.
+Tabelle \ref{tab:agententypen} vergleicht typische Agententypen. Für Software-Engineering-Aufgaben erweisen sich werkzeugnutzende Agenten mit Reflexion als besonders geeignet. Daraus leitet sich die in Kapitel \ref{ch:konzept} entwickelte Architektur ab.
+
+\begin{table}[ht]
+\centering
+\caption{Agententypen und Fähigkeiten (Beispieltabelle)}
+\label{tab:agententypen}
+\begin{tabular}{|p{3.5cm}|p{9.5cm}|}
+\hline
+	extbf{Agententyp} & \textbf{Kurzbeschreibung} \\
+\hline
+Reaktiver Agent & Einzelne Schritte ohne längerfristige Planung; geeignet für klar definierte Aufgaben mit geringer Komplexität. \\
+\hline
+Planender Agent & Erstellt und aktualisiert Pläne; gut für mehrschrittige Aufgaben mit Abhängigkeiten. \\
+\hline
+Werkzeugnutzender Agent & Ruft externe Tools (z.\,B. Linter, Tests, VCS) auf; hohe praktische Nützlichkeit im Software Engineering. \\
+\hline
+Mehragentensystem & Rollenbasierte Zusammenarbeit (z.\,B. Reviewer, Coder, Tester); skaliert bei größeren Projekten. \\
+\hline
+\end{tabular}
+\end{table}
 
 \section{Forschungslücke}
 
-Basierend auf der Analyse können folgende Lücken identifiziert werden:
+Basierend auf der Analyse ergeben sich u.\,a. folgende Lücken:
 
 \begin{itemize}
-  \item Limitation 1: Bestehende Ansätze behandeln diesen Aspekt nicht
-  \item Limitation 2: Skalierungsprobleme in praktischen Anwendungen
-  \item Limitation 3: Mangelnde Validierung in Echtszenarien
+  \item Fehlende Referenzarchitekturen für agentische SE-Workflows mit robustem Tooling
+  \item Skalierungs- und Kostenfragen bei langem Kontext und vielen Tool-Aufrufen
+  \item Realistische Metriken und Evals für Qualität, Sicherheit und Nachvollziehbarkeit
 \end{itemize}
 
 Diese Arbeit trägt dazu bei, diese Lücken zu schließen.

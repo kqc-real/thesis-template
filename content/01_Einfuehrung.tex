@@ -4,32 +4,32 @@
 
 \section{Motivation und Relevanz}
 
-Die Bedeutung des Forschungsthemas ergibt sich aus aktuellen Entwicklungen in Wissenschaft und Industrie. Diese Arbeit behandelt einen Problembereich, der sowohl theoretische als auch praktische Relevanz besitzt.
+Software Engineering erlebt derzeit einen Paradigmenwechsel: \emph{agentic AI} \textendash{} also KI-Systeme, die Ziele verstehen, Pläne erstellen, Werkzeuge verwenden und Ergebnisse eigenständig verifizieren \textendash{} ergänzt klassische Automatisierung um adaptive, mehrschrittige Problemlösung. Für Informatikstudierende der Fachrichtung \enquote{Software Engineering mit agentic AI} eröffnet dies neue Architektur- und Methodikfragen: Wie entwirft man robuste Agenten-Workflows? Wie orchestriert man Tool-Nutzung, Gedächtnis und Langkontext? Und wie integriert man Sicherheit, Nachvollziehbarkeit und Tests in agentische Systeme?
 
 \section{Problemstellung}
 
-Bei der Bearbeitung dieses Themas stellen sich folgende zentrale Fragen:
+Vor diesem Hintergrund adressiert diese Arbeit exemplarisch die Entwicklung und Evaluation eines agentischen Systems für Softwareentwicklungsaufgaben (z.\,B. Refactoring, Code-Review, Generierung von Tests). Zentrale Fragen sind:
 
 \begin{itemize}
-  \item Wie können existierende Methoden verbessert werden?
-  \item Welche Hindernisse sind dabei zu überwinden?
-  \item Welche Lösungsansätze sind praktikabel?
+  \item Wie lassen sich Agenten-Policies (Planen, Tool-Aufrufe, Selbstkritik) systematisch modellieren?
+  \item Wie werden externe Werkzeuge (VCS, CI, linters, Issue-Tracker) sicher und nachvollziehbar eingebunden?
+  \item Welche Metriken messen Fortschritt, Qualität und Sicherheit realistisch?
 \end{itemize}
 
 \section{Zielsetzung}
 
-Die Ziele dieser Arbeit sind:
+Die Ziele dieser Arbeit sind auf die Spezialisierung \enquote{Software Engineering mit agentic AI} zugeschnitten:
 
 \begin{enumerate}
-  \item Analyse des aktuellen Stands der Forschung
-  \item Identifikation von Verbesserungsmöglichkeiten
-  \item Entwicklung und Validierung eines Lösungsansatzes
-  \item Evaluation und Dokumentation der Ergebnisse
+  \item Analyse des Forschungsstands zu agentischen Architekturen und Orchestrierungsframeworks
+  \item Entwurf einer referenzierbaren Agentenarchitektur für Software-Engineering-Aufgaben
+  \item Implementierung eines prototypischen Agenten mit Werkzeuganbindung und Gedächtnis
+  \item Evaluation anhand reproduzierbarer Benchmarks (Qualität, Kosten, Laufzeit, Sicherheit)
 \end{enumerate}
 
 \section{Abgrenzung des Themas}
 
-Um den Umfang zu begrenzen, konzentriert sich diese Arbeit auf spezifische Aspekte des Themas. Folgende Bereiche werden nicht behandelt:
+Die Arbeit fokussiert Agenten für Softwareentwicklungsaufgaben. Nicht im Fokus sind z.\,B. Reinforcement Learning from Human Feedback (RLHF) im Detail, Trainingsmethoden auf Rohdaten oder proprietäre Interna von Foundation Models. Ebenso werden Domänen außerhalb der Softwareentwicklung (z.\,B. Robotik) nicht betrachtet.
 
 \begin{itemize}
   \item Zu komplexe Spezialfälle, die für diese Arbeit nicht relevant sind
@@ -41,11 +41,10 @@ Um den Umfang zu begrenzen, konzentriert sich diese Arbeit auf spezifische Aspek
 
 Die restliche Arbeit gliedert sich wie folgt:
 
-\textbf{Kapitel \ref{ch:hintergrund}} behandelt den theoretischen Hintergrund und gibt einen Überblick über relevante Arbeiten in der Literatur.
-
-\textbf{Kapitel \ref{ch:konzept}} stellt das entwickelte Konzept vor und erläutert den gewählten Lösungsansatz.
-
-\textbf{Kapitel \ref{ch:realisierung}} dokumentiert die Implementierung und zeigt praktische Ergebnisse.
-
-\textbf{Kapitel \ref{ch:abschluss}} fasst die Erkenntnisse zusammen und gibt einen Ausblick auf zukünftige Arbeiten.
+\begin{itemize}
+  \item \textbf{Kapitel~\ref{ch:hintergrund}}: Grundlagen zu agentischen Systemen (Tool-Nutzung, Planung, Gedächtnis) und relevante Arbeiten.
+  \item \textbf{Kapitel~\ref{ch:konzept}}: Referenzierbare Agentenarchitektur (Zustandsmodell, Policies, Schnittstellen).
+  \item \textbf{Kapitel~\ref{ch:realisierung}}: Implementierung mit Beispiel-Listings und Ergebnisse.
+  \item \textbf{Kapitel~\ref{ch:abschluss}}: Zusammenfassung und Ausblick auf zukünftige Arbeiten.
+\end{itemize}
 
