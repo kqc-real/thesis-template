@@ -55,6 +55,9 @@
 \input{content/00_Abstract}
 \cleardoublepage{}
 
+% Danksagung
+\input{content/00_Danksagung}
+
 % Ab hier pageanchor aktivieren für korrekte PDF-Links
 \hypersetup{pageanchor=true}
 
@@ -63,6 +66,10 @@
 % Inhaltsverzeichnis in den PDF-Links eintragen
 \pdfbookmark[1]{Inhaltsverzeichnis}{toc}
 \tableofcontents
+\cleardoublepage
+
+% Abkürzungsverzeichnis
+\input{content/00_Abkuerzungen}
 \cleardoublepage
 
 % Hauptteil
@@ -79,7 +86,7 @@
 \printbibliography[heading=bibintoc, title=Literaturverzeichnis]
 
 % Symbolverzeichnis (Begriffserklärung)
-\IfDefined{printindex}{\printindex{}}
+\IfDefined{printindex}{\newpage\printindex{}}
 \IfDefined{printnomenclature}{\printnomenclature{}}
 % 'Symbolverzeichnis' ins Inhaltsverzeichnis
 \addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
