@@ -1,0 +1,18 @@
+graph TD
+    Start["Start: Ziel empfangen"] --> Sense
+    Sense["1. SENSE<br/>Kontext laden<br/>- Episodic Memory<br/>- Semantic Memory"] --> Plan
+    Plan["2. PLAN<br/>Strategie entwickeln<br/>- Welche Tools?<br/>- Reihenfolge?"] --> Action
+    Action["3. ACTION<br/>Tool ausführen<br/>- Validierung<br/>- Sandboxing"] --> Observation
+    Observation["4. OBSERVATION<br/>Output sammeln<br/>- Feedback<br/>- Fehler"] --> Reflect
+    Reflect["5. REFLECT<br/>Self-Critique<br/>- Ergebnis ok?<br/>- Hallucinations?"] --> Decision
+    Decision{Ziel erreicht?} -->|Nein: Retry| Action
+    Decision -->|Ja| End["✓ SUCCESS<br/>Ergebnis ausgeben"]
+    
+    style Start fill:#4CAF50,stroke:#000,stroke-width:2px,color:#fff
+    style Sense fill:#2196F3,stroke:#000,stroke-width:2px,color:#fff
+    style Plan fill:#2196F3,stroke:#000,stroke-width:2px,color:#fff
+    style Action fill:#FF9800,stroke:#000,stroke-width:2px,color:#fff
+    style Observation fill:#4CAF50,stroke:#000,stroke-width:2px,color:#fff
+    style Reflect fill:#2196F3,stroke:#000,stroke-width:2px,color:#fff
+    style Decision fill:#FFC107,stroke:#000,stroke-width:2px,color:#000
+    style End fill:#4CAF50,stroke:#000,stroke-width:2px,color:#fff
