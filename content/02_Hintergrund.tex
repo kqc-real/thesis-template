@@ -12,20 +12,20 @@ Dieses Kapitel führt in Grundbegriffe agentischer Systeme ein und bildet die th
 
 \subsection{Large Language Models: Grundlagen}
 
-Large Language Models (LLMs) sind neuronale Netze, die auf großen Textkorpora trainiert wurden und menschenähnliche Textgenerierung ermöglichen \cite{OpenAI2024GPT4,touvron2023llama}. Basierend auf der Transformer-Architektur \cite{vaswani2017attention} nutzen sie Selbstaufmerksamkeits-Mechanismen (self-attention), um kontextuelle Zusammenhänge über lange Sequenzen hinweg zu erfassen.
+Large Language Models (LLMs)\index{Large Language Models!Grundlagen} sind neuronale Netze, die auf großen Textkorpora\index{Textkorpora!Training} trainiert wurden und menschenähnliche Textgenerierung ermöglichen \cite{OpenAI2024GPT4,touvron2023llama}. Basierend auf der Transformer-Architektur\index{Transformer!Architektur} \cite{vaswani2017attention} nutzen sie Selbstaufmerksamkeits-Mechanismen\index{Self-Attention} (self-attention), um kontextuelle Zusammenhänge über lange Sequenzen hinweg zu erfassen.
 
-Moderne LLMs wie GPT-4, Claude oder Llama 2 verfügen über Milliarden von Parametern und können durch \emph{Few-Shot-Learning} und \emph{In-Context-Learning} Aufgaben lösen, ohne explizit darauf trainiert zu werden. Dies bildet die Grundlage für agentische Anwendungen.
+Moderne LLMs wie GPT-4, Claude oder Llama 2 verfügen über Milliarden von Parametern und können durch \emph{Few-Shot-Learning}\index{Few-Shot-Learning} und \emph{In-Context-Learning}\index{In-Context-Learning} Aufgaben lösen, ohne explizit darauf trainiert zu werden. Dies bildet die Grundlage für agentische Anwendungen\index{Agentische Anwendungen}.
 
 \subsection{Von LLMs zu Agenten: Der Paradigmenwechsel}
 
 Während klassische LLMs primär auf Textvervollständigung spezialisiert sind, zeichnen sich \emph{agentische Systeme} durch folgende erweiterte Fähigkeiten aus \cite{wang2023survey}:
 
 \begin{enumerate}
-  \item \textbf{Zielgerichtetes Handeln:} Der Agent versteht übergeordnete Ziele und plant Schritte zur Zielerreichung
-  \item \textbf{Werkzeugnutzung:} Integration externer Tools (APIs, Datenbanken, Code-Execution)
-  \item \textbf{Gedächtnis:} Persistierung von Kontextinformationen über mehrere Interaktionen hinweg
-  \item \textbf{Reflexion:} Selbstkritische Bewertung eigener Outputs und iterative Verbesserung
-  \item \textbf{Mehrschrittige Planung:} Dekomposition komplexer Aufgaben in Teilschritte
+  \item \textbf{Zielgerichtetes Handeln:} Der Agent\index{Agent!Zielgerichtetheit} versteht übergeordnete Ziele und plant Schritte zur Zielerreichung\index{Zielerreichung}
+  \item \textbf{Werkzeugnutzung:} Integration externer Tools\index{Externe Tools} (APIs, Datenbanken, Code-Execution)\index{Code-Execution}
+  \item \textbf{Gedächtnis:} Persistierung von Kontextinformationen\index{Kontextpersistierung} über mehrere Interaktionen hinweg
+  \item \textbf{Reflexion:} Selbstkritische Bewertung\index{Selbstbewertung} eigener Outputs und iterative Verbesserung
+  \item \textbf{Mehrschrittige Planung:} Dekomposition\index{Task-Dekomposition} komplexer Aufgaben in Teilschritte
 \end{enumerate}
 
 \subsection{Agentic AI: Begriffe und Bausteine}
@@ -33,16 +33,16 @@ Während klassische LLMs primär auf Textvervollständigung spezialisiert sind, 
 Kernbausteine agentischer Systeme sind \cite{smith2020example,yao2023react}:
 
 \begin{description}
-  \item[Zustand (State):] Umfasst aktuellen Kontext, Ziele, Erinnerungen und Tool-Status. Der Zustand wird dynamisch aktualisiert.
+  \item[Zustand (State):] Umfasst aktuellen Kontext\index{State Management}, Ziele, Erinnerungen und Tool-Status\index{Tool-Status}. Der Zustand wird dynamisch aktualisiert\index{State Updates}.
   
-  \item[Policy:] Steuert Entscheidungsprozesse (Planung, Aktion, Selbstkritik). Kann regelbasiert oder LLM-gesteuert sein.
+  \item[Policy:] Steuert Entscheidungsprozesse (Planung, Aktion, Selbstkritik)\index{Policy!Decision-Making}. Kann regelbasiert\index{Regelbasierte Policy} oder LLM-gesteuert\index{LLM-gesteuerte Policy} sein.
   
-  \item[Werkzeuge (Tools):] Externe Funktionen wie Code-Ausführung, Websuche, Dateizugriff, VCS-Operationen. Tools erweitern die Fähigkeiten des Agenten über reine Textgenerierung hinaus \cite{schick2023toolformer,qin2023tool}.
+  \item[Werkzeuge (Tools):] Externe Funktionen wie Code-Ausfürung, Websuche\index{Websuche}, Dateizugriff, VCS-Operationen\index{VCS-Operationen}. Tools erweitern die Fähigkeiten des Agenten über reine Textgenerierung hinaus \cite{schick2023toolformer,qin2023tool}.
   
   \item[Gedächtnis (Memory):] Speichert episodische (konkrete Ereignisse) und semantische (abstraktes Wissen) Informationen. Kann durch Vektor-Datenbanken oder strukturierte Speicher realisiert werden.
 \end{description}
 
-Orchestrierung koordiniert diese Komponenten durch Planung (z.\,B. ReAct-Pattern), Tool-Auswahl, Fehlerbehandlung und Reflexion \cite{yao2023react}.
+Orchestrierung koordiniert diese Komponenten durch Planung (z.\,B. ReAct-Pattern), Tool-Auswahl, Fehlerbehandlung und Reflexion \cite{yao2023react}. Typische Artefakte in SE-Workflows sind strukturierte Schnittstellen über \textbf{JSON} und \textbf{YAML}, Datenpersistenz mittels \textbf{SQL}-Datenbanken sowie sichere Remote-Operationen über \textbf{SSH}. Darüber hinaus basieren viele Komponenten auf \textbf{ML}-Methoden und \textbf{NLP} für Code- und Textverstehen; Wissensrepräsentation erfolgt in \textbf{KB} (Knowledge Bases) und \textbf{KG} (Knowledge Graphs). API-Interaktionen erfolgen üblicherweise über \textbf{HTTP} und \textbf{REST}, teils mit Fallbacks auf \textbf{XML}.
 
 \subsection{Chain-of-Thought und Reasoning-Patterns}
 

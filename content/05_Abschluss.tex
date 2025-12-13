@@ -5,35 +5,35 @@
 
 \section{Zusammenfassung der Ergebnisse}
 
-Diese Arbeit untersuchte die Entwicklung und Evaluation agentischer Architekturen für Software-Engineering-Workflows.\footnote{Vergleiche dazu \cite{lee2018conference} und \cite{website2021example} für aktuelle Forschungstrends.} Ausgehend von einer systematischen Analyse des Stands der Forschung (Kapitel \ref{ch:hintergrund}) wurde eine Referenzarchitektur entwickelt (Kapitel \ref{ch:konzept}), prototypisch implementiert und empirisch evaluiert (Kapitel \ref{ch:realisierung}).
+Diese Arbeit untersuchte die Entwicklung und Evaluation\index{Evaluation!Agenten} agentischer Architekturen\index{Referenzarchitektur} für Software-Engineering-Workflows\index{SE-Workflows}.\footnote{Vergleiche dazu \cite{lee2018conference} und \cite{website2021example} für aktuelle Forschungstrends.} Ausgehend von einer systematischen Analyse des Stands der Forschung (Kapitel \ref{ch:hintergrund}) wurde eine Referenzarchitektur entwickelt\index{Architekturdesign} (Kapitel \ref{ch:konzept}), prototypisch implementiert und empirisch evaluiert\index{Empirische Evaluation} (Kapitel \ref{ch:realisierung}).
 
 Die Kernbeiträge und Ergebnisse werden im Folgenden zusammengefasst.
 
 \subsection{Beantwortung der Forschungsfragen}
 
-\textbf{Forschungsfrage 1:} Wie lassen sich robuste Agenten-Policies für SE-Workflows systematisch modellieren?
+\textbf{Forschungsfrage 1:} Wie lassen sich robuste Agenten-Policies\index{Agenten-Policies!Robustheit} für SE-Workflows systematisch modellieren\index{Policy-Modellierung}?
 
-Durch Kombination von ReAct-Pattern (Reasoning + Acting) mit expliziten Reflexionsmechanismen konnten strukturierte Policies entwickelt werden, die Planung, Tool-Orchestrierung und Selbstkritik integrieren. Die Evaluation zeigte, dass diese Policies Erfolgsraten von \pct{73} bei Refactoring-Tasks erreichen \textendash{} signifikant über Baseline-Systemen (\pct{42}--\pct{58}).
+Durch Kombination von ReAct-Pattern\index{ReAct!Anwendung} (Reasoning + Acting) mit expliziten Reflexionsmechanismen\index{Reflexionsmechanismen} konnten strukturierte Policies\index{Strukturierte Policies} entwickelt werden, die Planung\index{Planung!in Policies}, Tool-Orchestrierung und Selbstkritik integrieren. Die Evaluation zeigte, dass diese Policies Erfolgsraten von \pct{73} bei Refactoring-Tasks\index{Refactoring-Tasks!Erfolgsquote} erreichen \textendash{} signifikant über Baseline-Systemen (\pct{42}--\pct{58}).
 
 Zentrale Design-Entscheidungen waren:
 \begin{itemize}
-  \item Explizite Thought-Action-Observation-Loops für Transparenz
-  \item Strukturierte Tool-Interfaces mit JSON-Schema-Validation
-  \item Episodisches Gedächtnis für Kontext-Persistierung über Iterationen
+  \item Explizite Thought-Action-Observation-Loops\index{Thought-Action-Observation} für Transparenz\index{Agent-Transparenz}
+  \item Strukturierte Tool-Interfaces\index{Tool-Interfaces!Strukturierung} mit JSON-Schema-Validation\index{Schema-Validation}
+  \item Episodisches Gedächtnis\index{Episodisches Gedächtnis!Design} für Kontext-Persistierung\index{Kontext-Persistierung} über Iterationen
 \end{itemize}
 
-\textbf{Forschungsfrage 2:} Welche Architekturprinzipien ermöglichen sichere und nachvollziehbare Tool-Integration?
+\textbf{Forschungsfrage 2:} Welche Architekturprinzipien ermöglichen sichere\index{Sicherheit!Architektur} und nachvollziehbare\index{Nachvollziehbarkeit} Tool-Integration\index{Tool-Integration!Sicherheit}?
 
-Die entwickelte Architektur implementiert Defense-in-Depth durch mehrschichtige Sicherheitsmechanismen:
+Die entwickelte Architektur implementiert Defense-in-Depth\index{Defense-in-Depth} durch mehrschichtige Sicherheitsmechanismen:
 \begin{enumerate}
-  \item Input-Validation aller LLM-generierten Tool-Calls
-  \item Sandbox-Execution in isolierten Docker-Containern
-  \item Permissions-System mit Least-Privilege-Prinzip
-  \item Audit-Logging aller kritischen Operationen
-  \item Human-in-the-Loop für Deployment-kritische Aktionen
+  \item Input-Validation\index{Input-Validation!Tool-Calls} aller LLM-generierten Tool-Calls
+  \item Sandbox-Execution\index{Sandbox!Docker} in isolierten Docker-Containern
+  \item Permissions-System\index{Permissions-System} mit Least-Privilege-Prinzip\index{Least-Privilege}
+  \item Audit-Logging\index{Audit-Logging!Tool-Calls} aller kritischen Operationen
+  \item Human-in-the-Loop\index{Human-in-the-Loop} für Deployment-kritische Aktionen
 \end{enumerate}
 
-Sicherheits-Audits zeigten \pct{100} Erfolgsrate bei der Abwehr von Prompt-Injection-Angriffen und unauthorized File-Access.
+Sicherheits-Audits\index{Sicherheits-Audits} zeigten \pct{100} Erfolgsrate bei der Abwehr von Prompt-Injection-Angriffen\index{Prompt-Injection} und unauthorized File-Access\index{File-Access-Kontrolle}.
 
 \textbf{Forschungsfrage 3:} Mit welchen Metriken kann die Leistungsfähigkeit agentischer Systeme realistisch bewertet werden?
 
@@ -58,6 +58,7 @@ Die prototypische Implementierung wurde anhand von 25 realistischen SE-Tasks eva
   \item \textbf{Lint-Resolution:} \pct{86} Erfolgsrate (Style + Type Errors)
   \item \textbf{Durchschn. Kosten:} \$0.08 pro erfolgreichem Task
   \item \textbf{Token-Effizienz:} \pct{40} Reduktion vs. naive Baseline durch Context-Optimierung
+  \item \textbf{Rechenumgebungen:} Evaluation sowohl ohne als auch mit \textbf{GPU}-Beschleunigung
 \end{itemize}
 
 Vergleiche mit Baseline-Systemen (Naive Prompting, Standard-ReAct) zeigten +31\% bzw. +15\% Erfolgsraten-Verbesserungen.

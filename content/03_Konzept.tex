@@ -8,9 +8,9 @@
 
 \section{Übersicht des Lösungsansatzes}
 
-Aus Kapitel \ref{ch:hintergrund} abgeleitet entwerfen wir eine referenzierbare Agentenarchitektur für Software Engineering. Sie kombiniert Planung (ReAct-basierte Policy), Werkzeugnutzung (Linter, Tests, VCS, File-Operations), episodisches Gedächtnis und mehrschichtige Sicherheitsmechanismen (Input-Filter, Sandboxing, Quoten).\footnote{\emph{Referenzierbar} bedeutet hier, dass die Architektur dokumentiert und in anderen Projekten anwendbar ist.}
+Aus Kapitel \ref{ch:hintergrund} abgeleitet entwerfen wir eine referenzierbare Agentenarchitektur für Software Engineering\index{Agentenarchitektur!Entwurf}. Sie kombiniert Planung (ReAct-basierte Policy)\index{Policy-Engine}, Werkzeugnutzung (Linter, Tests, VCS, File-Operations)\index{Tool-Integration}, episodisches Gedächtnis und mehrschichtige Sicherheitsmechanismen (Input-Filter, Sandboxing, Quoten).\footnote{\emph{Referenzierbar} bedeutet hier, dass die Architektur dokumentiert und in anderen Projekten anwendbar ist.}
 
-Der Kern der Architektur folgt dem \emph{Sense-Plan-Act-Reflect}-Zyklus:
+Der Kern der Architektur folgt dem \emph{Sense-Plan-Act-Reflect}-Zyklus\index{Sense-Plan-Act-Reflect}:
 
 \begin{enumerate}
   \item \textbf{Sense:} Erfassen des aktuellen Zustands (Codebase, Fehlermeldungen, Test-Outputs)
@@ -23,40 +23,40 @@ Diese Schleife wird iterativ wiederholt, bis das Ziel erreicht ist oder eine Abb
 
 \section{Architektur und Design}
 
-Die Architektur basiert auf folgenden Designprinzipien:\footnote{Diese Prinzipien orientieren sich an etablierten Softwareentwicklungs-Patterns und Best Practices aus \cite{sommerville2015software}.}
+Die Architektur basiert auf folgenden Designprinzipien:\footnote{Diese Prinzipien orientieren sich an etablierten Softwareentwicklungs-Patterns und Best Practices aus \cite{sommerville2015software}.}\index{Architekturprinzipien}\index{Best Practices}
 
 \textquote[\cite{miller2017chapter}]{Gute Architektur bedeutet, dass Komponenten modular, austauschbar und wartbar sind, um langfristig Wartungskosten zu minimieren.}
 
 \subsection{Designprinzipien}
 
 \begin{description}
-  \item[Modularität:] Klare Trennung zwischen Policy-Logic, Tool-Adaptern, Gedächtnis und Safety-Layer. Komponenten kommunizieren über wohldefinierte Interfaces.
+  \item[Modularität:] Klare Trennung zwischen Policy-Logic, Tool-Adaptern, Gedächtnis und Safety-Layer. Komponenten kommunizieren über wohldefinierte Interfaces.\index{Modularität}
   
-  \item[Skalierbarkeit:] Architektur unterstützt parallele Tool-Ausführung, asynchrone Operationen und Streaming für große Outputs.
+  \item[Skalierbarkeit:] Architektur unterstützt parallele Tool-Ausführung\index{Parallelisierung}, asynchrone Operationen\index{Asynchrone Verarbeitung} und Streaming für große Outputs.
   
-  \item[Wartbarkeit:] Strukturierte Logging, Tracing und Debugging-Tools. Deterministische Reproduzierbarkeit durch Seed-Control.
+  \item[Wartbarkeit:] Strukturierte Logging\index{Logging}, Tracing und Debugging-Tools. Deterministische Reproduzierbarkeit\index{Reproduzierbarkeit} durch Seed-Control.
   
-  \item[Robustheit:] Fehlertoleranz durch Retry-Mechanismen, Timeouts, Circuit-Breakers. Graceful Degradation bei Teil-Ausfällen.
+  \item[Robustheit:] Fehlertoleranz durch Retry-Mechanismen, Timeouts, Circuit-Breakers. Graceful Degradation bei Teil-Ausfällen.\index{Retry}\index{Circuit Breaker}\index{Timeout}
   
-  \item[Sicherheit:] Defense-in-depth: Input-Validation, Sandboxing, Least-Privilege, Audit-Logging.
+  \item[Sicherheit:] Defense-in-depth: Input-Validation, Sandboxing, Least-Privilege, Audit-Logging.\index{Sandboxing}\index{Least Privilege}\index{Audit-Logging}
 \end{description}
 
 \subsection{Architekturkomponenten}
 
-Abbildung \ref{fig:agent-architektur} zeigt die Kernkomponenten der Architektur:\footnote{Vgl. \cite{miller2017chapter} für detaillierte Architekturprinzipien.}
+Abbildung \ref{fig:agent-architektur} zeigt die Kernkomponenten der Architektur:\footnote{Vgl. \cite{miller2017chapter} für detaillierte Architekturprinzipien.}\index{Agentenarchitektur}
 
 \begin{description}
-  \item[Agent Controller:] Zentrale Steuerungseinheit. Implementiert die ReAct-Loop (Reasoning, Action, Observation). Nutzt LLM-API für Planung und Reflexion.
+  \item[Agent Controller:] Zentrale Steuerungseinheit. Implementiert die ReAct-Loop (Reasoning, Action, Observation). Nutzt LLM-API für Planung und Reflexion.\index{ReAct}\index{LLM}
   
-  \item[Tool Registry:] Verwaltung verfügbarer Tools mit Metadaten (Name, Beschreibung, Schema, Permissions). Ermöglicht Tool-Discovery und dynamisches Routing.
+  \item[Tool Registry:] Verwaltung verfügbarer Tools mit Metadaten (Name, Beschreibung, Schema, Permissions)\index{Tool-Metadaten}. Ermöglicht Tool-Discovery\index{Tool-Discovery} und dynamisches Routing.
   
-  \item[Tool Adapters:] Wrapper für externe Tools (Tests, Linter, VCS). Standardisieren Input/Output-Formate. Implementieren Retry-Logic und Error-Handling.
+  \item[Tool Adapters:] Wrapper für externe Tools (Tests, Linter, VCS)\index{Tool-Wrapper}. Standardisieren Input/Output-Formate\index{Standardisierung}. Implementieren Retry-Logic und Error-Handling\index{Error-Handling}.
   
-  \item[Memory Manager:] Verwaltet episodisches (konkrete Ereignisse) und semantisches (Wissen) Gedächtnis. Nutzt Vektor-DB für Retrieval-Augmented Generation (RAG).
+  \item[Memory Manager:] Verwaltet episodisches (konkrete Ereignisse) und semantisches (Wissen) Gedächtnis\index{Episodisches Gedächtnis}. Nutzt Vektor-DB\index{Vektor-Datenbank} für Retrieval-Augmented Generation (RAG)\index{RAG!Memory}.
   
   \item[Safety Layer:] Interceptor für alle Tool-Calls. Prüft Permissions, erzwingt Rate-Limits, loggt kritische Operationen. Kann malicious Calls blockieren.
   
-  \item[Context Manager:] Optimiert Token-Nutzung durch intelligentes Pruning, Summarization, Chunking. Kritisch für lange Codebases.
+  \item[Context Manager:] Optimiert Token-Nutzung\index{Token-Optimierung} durch intelligentes Pruning, Summarization\index{Summarization}, Chunking\index{Chunking}. Kritisch für lange Codebases.
 \end{description}
 
 \begin{figure}[ht]

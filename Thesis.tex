@@ -87,7 +87,14 @@
 \printbibliography[heading=bibintoc, title=Literaturverzeichnis]
 
 % Index (Sachregister) inhaltlich nach dem Literaturverzeichnis und im TOC aufführen
-\IfDefined{printindex}{\cleardoublepage\addcontentsline{toc}{chapter}{Index}\printindex{}}
+\cleardoublepage
+\begin{multicols}{2}
+\section*{Index}
+\addcontentsline{toc}{chapter}{Index}
+\IfDefined{printindex}{%
+  \printindex{}
+}
+\end{multicols}
 \IfDefined{printnomenclature}{\printnomenclature{}}
 % 'Symbolverzeichnis' ins Inhaltsverzeichnis
 \addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}

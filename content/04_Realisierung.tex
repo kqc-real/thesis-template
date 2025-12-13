@@ -8,19 +8,19 @@
 
 \section{Implementierungsdetails}
 
-In diesem Kapitel werden die praktischen Aspekte der Umsetzung dokumentiert.\footnote{Implementierungsdetails und Best Practices sind in \cite{doe2019research} dokumentiert.} Die Implementierung erfolgte iterativ über einen Zeitraum von 4 Monaten mit kontinuierlichem Testen und Refinement.
+In diesem Kapitel werden die praktischen Aspekte der Umsetzung dokumentiert\index{Implementierungspraxis}.\footnote{Implementierungsdetails und Best Practices sind in \cite{doe2019research} dokumentiert.} Die Implementierung erfolgte iterativ\index{Iterative Entwicklung} über einen Zeitraum von 4 Monaten mit kontinuierlichem Testen\index{Continuous Testing} und Refinement.
 
 \subsection{Technologiestack}
 
 Folgende Technologien wurden für die Implementierung eingesetzt:
 
 \begin{description}
-  \item[Programmiersprache:] Python 3.11+ (Type Hints, async/await Support)
-  \item[LLM-Integration:] OpenAI API (GPT-4), Anthropic API (Claude 3.5 Sonnet), mit Fallback-Mechanismus
-  \item[Orchestrierung:] LangChain 0.1.x für Basis-Komponenten, custom Extensions für SE-specific Tools
-  \item[Gedächtnis:] Chroma Vector-DB für semantisches Retrieval, SQLite für episodische Logs
-  \item[Tool-Runtime:] Docker 24.0+ für Sandboxing, pytest für Tests, ruff/black für Linting
-  \item[Monitoring:] Prometheus für Metriken, strukturierte Logs (JSON) mit Trace-IDs
+  \item[Programmiersprache:] Python 3.11+\index{Python} (Type Hints\index{Type Hints}, async/await\index{Async/Await} Support)
+  \item[LLM-Integration:] OpenAI API (GPT-4)\index{GPT-4}, Anthropic API (Claude 3.5 Sonnet)\index{Claude}, mit Fallback-Mechanismus\index{Fallback-Mechanismus}
+  \item[Orchestrierung:] LangChain 0.1.x für Basis-Komponenten\index{LangChain}, custom Extensions für SE-specific Tools; strukturierte Tool-Calls über \textbf{JSON}-Schemas und Konfigurationen per \textbf{YAML}.
+  \item[Gedächtnis:] Chroma\index{Chroma Vector-DB} Vector-DB für semantisches Retrieval, SQLite für episodische Logs\index{Event-Logging}
+  \item[Tool-Runtime:] Docker 24.0+\index{Docker!Sandboxing} für Sandboxing, pytest für Tests, ruff/black für Linting\index{Code Linting}
+  \item[Monitoring:] Prometheus für Metriken\index{Prometheus}, strukturierte Logs (JSON) mit Trace-IDs\index{Distributed Tracing}
 \end{description}
 
 \subsection{Projektstruktur}
@@ -49,9 +49,9 @@ agent_se/
     +-- metrics.py         # Success Rate, Costs, Latency
 \end{verbatim}
 
-\subsection{Kernimplementierung: Agent Controller}
+\subsection{Kernimplementierung: Agent Controller}\index{Agent Controller!Implementierung}
 
-Listing \ref{lst:agent-loop} zeigt einen minimalen agentischen Loop mit Planung, Tool-Ausführung und Reflexion. Die vollständige Implementierung umfasst zusätzlich Error-Handling, Timeouts, max-steps-Limits und strukturiertes Logging.
+Listing \ref{lst:agent-loop} zeigt einen minimalen agentischen Loop\index{Agent Loop} mit Planung\index{Planung!Implementierung}, Tool-Ausführung und Reflexion\index{Reflexion}. Die vollständige Implementierung umfasst zusätzlich Error-Handling\index{Error-Handling!Agent}, Timeouts, max-steps-Limits und strukturiertes Logging\index{Agent Logging}.
 
 \begin{lstlisting}[style=Python, caption={Minimaler agentischer Loop fuer SE-Aufgaben (Beispiel-Listing)}, label={lst:agent-loop}]
 from typing import Dict, Any
