@@ -20,6 +20,7 @@ Die Architektur basiert auf folgenden Designprinzipien:\footnote{Diese Prinzipie
 
 \subsection{Designprinzipien}
 
+\begin{sloppypar}
 \begin{description}
   \item[Modularität:] Klare Trennung zwischen Policy-Logic, Tool-Adaptern, Gedächtnis und Safety-Layer. Komponenten kommunizieren über wohldefinierte Interfaces.\index{Modularität}
   
@@ -31,11 +32,13 @@ Die Architektur basiert auf folgenden Designprinzipien:\footnote{Diese Prinzipie
   
   \item[Sicherheit:] Defense-in-depth: Input-Validation, Sandboxing, Least-Privilege, Audit-Logging.\index{Sandboxing}\index{Least Privilege}\index{Audit-Logging}
 \end{description}
+\end{sloppypar}
 
 \subsection{Architekturkomponenten}
 
 Abbildung \ref{fig:agent-architektur} zeigt die Kernkomponenten der Architektur:\footnote{Vgl. \cite{richards2020fundamentals} für detaillierte Architekturprinzipien.}\index{Agentenarchitektur}
 
+\begin{sloppypar}
 \begin{description}
   \item[Agent Controller:] Zentrale Steuerungseinheit. Implementiert die ReAct-Loop (Reasoning, Action, Observation). Nutzt LLM-API für Planung und Reflexion.\index{ReAct}\index{LLM}
   
@@ -49,6 +52,7 @@ Abbildung \ref{fig:agent-architektur} zeigt die Kernkomponenten der Architektur:
   
   \item[Context Manager:] Optimiert Token-Nutzung\index{Token-Optimierung} durch intelligentes Pruning, Summarization\index{Summarization}, Chunking\index{Chunking}. Kritisch für lange Codebases.
 \end{description}
+\end{sloppypar}
 
 \begin{figure}[ht]
 \centering
@@ -124,12 +128,14 @@ class ToolResult:
 \end{lstlisting}
 
 Diese Standardisierung ermöglicht:
+\begin{sloppypar}
 \begin{itemize}
   \item Automatische Tool-Discovery und -Registrierung
   \item Validation von Inputs durch JSON Schema
   \item Permission-Checking vor Ausführung
   \item Strukturierte Error-Handling
 \end{itemize}
+\end{sloppypar}
 
 \section{Methodik}
 
@@ -165,6 +171,7 @@ Abbildung \ref{fig:agent-workflow} illustriert den ReAct-Zyklus einer agentische
 
 Die Evaluation erfolgt anhand mehrerer Dimensionen:
 
+\begin{sloppypar}
 \begin{description}
   \item[Funktionale Korrektheit:] Erfolgsrate bei definierten SE-Tasks (Refactoring, Test-Fixing, Linting)
   
@@ -174,6 +181,7 @@ Die Evaluation erfolgt anhand mehrerer Dimensionen:
   
   \item[Sicherheit:] Resistenz gegen Prompt-Injection, unauthorized File-Access
 \end{description}
+\end{sloppypar}
 
 Konkrete Metriken werden in Kapitel \ref{ch:realisierung} definiert und gemessen.
 
@@ -183,25 +191,31 @@ Drei repräsentative Szenarien wurden definiert:
 
 \begin{enumerate}
   \item \textbf{Szenario A: Automated Refactoring}
+    \begin{sloppypar}
     \begin{itemize}
       \item Ziel: Extract-Function auf komplexe Methode anwenden
       \item Tools: AST-Parser, Linter, Tests
       \item Erfolg: Refactoring korrekt + Tests bestehen
     \end{itemize}
+    \end{sloppypar}
   
   \item \textbf{Szenario B: Test Failure Diagnosis}
+    \begin{sloppypar}
     \begin{itemize}
       \item Ziel: Failing tests debuggen und fixen
       \item Tools: Test-Runner, Debugger, Code-Editor
       \item Erfolg: Tests grün + keine Regressionen
     \end{itemize}
+    \end{sloppypar}
   
   \item \textbf{Szenario C: Code Review Automation}
+    \begin{sloppypar}
     \begin{itemize}
       \item Ziel: PR reviewen und Feedback geben
       \item Tools: Diff-Viewer, Static Analysis, Style-Checker
       \item Erfolg: Relevantes Feedback + keine False-Positives
     \end{itemize}
+    \end{sloppypar}
 \end{enumerate}
 
 Neben der formalen Beschreibung der Szenarien wird im Konzept auch großer Wert auf Reproduzierbarkeit und Praktikabilität gelegt: Für jedes Szenario werden Eingabedaten, erwartete Outputs und Akzeptanzkriterien exakt definiert, so dass Experimente automatisiert wiederholt und Ergebnisse vergleichbar werden. Ferner werden Metriken und Logging-Formate standardisiert, damit unterschiedliche Implementierungen derselben Architektur direkt verglichen werden können. Diese Operationalisierung erleichtert nicht nur Validierung, sondern auch Transfer in industrielle Pipelines.
@@ -277,6 +291,7 @@ def execute_critical_tool(tool_name, params):
 
 Dieser Ansatz unterscheidet sich von den in Kapitel \ref{ch:hintergrund} beschriebenen Methoden durch:
 
+\begin{sloppypar}
 \begin{itemize}
   \item \textbf{Explizite Sicherheitsmechanismen:} Während viele Forschungsprototypen Safety vernachlässigen, steht es hier im Zentrum
   
@@ -286,6 +301,7 @@ Dieser Ansatz unterscheidet sich von den in Kapitel \ref{ch:hintergrund} beschri
   
   \item \textbf{Tool-Interface-Standards:} Wiederverwendbare Tool-Adapter statt ad-hoc Integrationen
 \end{itemize}
+\end{sloppypar}
 
 Die Implementierung und empirische Validierung dieser Konzepte erfolgt in Kapitel \ref{ch:realisierung}.
 
