@@ -98,6 +98,60 @@ Wenn ja: **Herzlichen Glückwunsch!** Sie können jetzt LaTeX nutzen. 🎉
 
 Wenn nein: Siehe Abschnitt "Troubleshooting" unten.
 
+## ⚙️ WICHTIG: `build.sh` — Bedeutung & Nutzung
+
+Diese Vorlage enthält ein kleines, zuverlässiges Build-Skript namens `build.sh`, das alle notwendigen Schritte automatisch ausführt, um die PDF-Ausgabe vollständig und konsistent zu erzeugen.
+
+- **Wozu dient `build.sh`?**
+   - Es automatisiert die mehrstufige Kompilierung, die LaTeX für Kapitel-, Verzeichnis- und Literaturverweise benötigt.
+   - Konkret führt es nacheinander aus: `pdflatex`, `biber`, `pdflatex`, `pdflatex` — damit alle Referenzen, das Literaturverzeichnis und Inhaltsverzeichnisse korrekt erstellt werden.
+
+- **Vorteile**
+   - Ein Kommando statt mehrere komplexe Schritte.
+   - Vermeidet häufige Fehler (fehlende `.bcf`/`.bbl`, unvollständige Verzeichnisse).
+   - Reproduzierbarer, einfacher Workflow für Anfänger:innen und Reviewer.
+
+- **Voraussetzungen**
+   - Installiertes TeX-System (z. B. TeX Live oder MiKTeX)
+   - `biber` ist für die Literaturverarbeitung installiert (wird durch TeX Live üblicherweise mitgeliefert)
+   - `build.sh` ist ausführbar (falls nicht: `chmod +x build.sh`)
+
+- **Einfacher Gebrauch**
+   - Im Terminal im Projekt-Ordner ausführen:
+
+```bash
+./build.sh
+```
+
+   - Am Ende sehen Sie `✅ Build erfolgreich! Thesis.pdf wurde erstellt.` und die Datei `Thesis.pdf` im Projekt-Root.
+
+- **Wenn etwas schiefgeht (Troubleshooting)**
+   - Fehler: `ERROR - Cannot find 'Thesis.bcf'!` oder `Cannot find Thesis.bcf` —
+      - Ursache: Die `.bcf`-Datei, die `biber` benötigt, wurde nicht korrekt erzeugt. Lösung:
+         1. Stellen Sie sicher, dass `pdflatex Thesis.tex` zuvor ohne Abbruch gelaufen ist (erstellt `.bcf`).
+         2. Führen Sie manuell aus:
+
+```bash
+pdflatex Thesis.tex
+biber Thesis
+pdflatex Thesis.tex
+pdflatex Thesis.tex
+```
+
+      - Wenn das funktioniert, prüfen Sie, ob `build.sh` ausführbar ist und starten Sie es erneut.
+   - Andere Probleme: Prüfen Sie `Thesis.log` und die Ausgabe in Ihrem Terminal bzw. im VS Code "Problems"-Panel.
+
+- **Sauber machen (optional)**
+   - Zwischenstände und temporäre Dateien können Sie mit folgendem Befehl entfernen (vorsichtig verwenden):
+
+```bash
+rm -f *.aux *.bbl *.bcf *.blg *.toc *.lof *.lot *.idx *.ilg *.ind *.out
+```
+
+   - Danach `./build.sh` erneut ausführen.
+
+Hinweis: `build.sh` ist bewusst einfach gehalten und funktioniert in den meisten lokalen Setups; für CI/CD-Pipelines oder spezielle TeX-Umgebungen können Sie die Schritte aus dem Skript bei Bedarf anpassen.
+
 ### Wie benutze ich diese Vorlage jetzt?
 
 ### Workflow in VS Code
