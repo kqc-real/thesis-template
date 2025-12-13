@@ -8,7 +8,7 @@
 
 \section{Implementierungsdetails}
 
-In diesem Kapitel werden die praktischen Aspekte der Umsetzung dokumentiert. Listing \ref{lst:agent-loop} zeigt einen minimalen agentischen Loop mit Planung, Tool-Ausführung und Reflexion.
+In diesem Kapitel werden die praktischen Aspekte der Umsetzung dokumentiert.\footnote{Implementierungsdetails und Best Practices sind in \cite{doe2019research} dokumentiert.} Listing \ref{lst:agent-loop} zeigt einen minimalen agentischen Loop mit Planung, Tool-Ausführung und Reflexion.
 
 \subsection{Technologiestack}
 
@@ -24,6 +24,8 @@ Folgende Technologien wurden für die Implementierung eingesetzt:
 \subsection{Architektur der Lösung}
 
 Die Implementierung folgt dem in Kapitel \ref{ch:konzept} beschriebenen Design (vgl. Abbildung \ref{fig:agent-architektur}).
+
+\textquote[\cite{doe2019research}]{Die praktische Implementierung agentischer Systeme erfordert sorgfältige Planung und umfassende Tests, um Zuverlässigkeit in produktiven Umgebungen zu gewährleisten.}
 
 \begin{lstlisting}[style=Python, caption={Minimaler agentischer Loop für SE-Aufgaben (Beispiel-Listing)}, label={lst:agent-loop}]
 from typing import Dict, Any

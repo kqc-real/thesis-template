@@ -1,8 +1,8 @@
 % !TEX root = ../Thesis.tex
 
 \chapter{Konzept und Methodik}
-\index{Design|Architektur-Design}
-\index{Planung|Agent-Planung}
+\index{Design!Architektur-Design}
+\index{Planung!Agent-Planung}
 \index{Sicherheit}
 \label{ch:konzept}
 
@@ -14,6 +14,8 @@ Aus Kapitel \ref{ch:hintergrund} abgeleitet entwerfen wir eine referenzierbare A
 
 Das Konzept basiert auf folgenden Designprinzipien:\footnote{Diese Prinzipien orientieren sich an etablierten Softwareentwicklungs-Patterns und Best Practices.}
 
+\textquote[\cite{miller2017chapter}]{Gute Architektur bedeutet, dass Komponenten modular, austauschbar und wartbar sind, um langfristig Wartungskosten zu minimieren.}
+
 \begin{itemize}
   \item Modularität: Komponenten sind unabhängig und austauschbar
   \item Skalierbarkeit: Das System wächst mit den Anforderungen
@@ -21,7 +23,7 @@ Das Konzept basiert auf folgenden Designprinzipien:\footnote{Diese Prinzipien or
   \item Robustheit: Fehlertoleranz und Zuverlässigkeit
 \end{itemize}
 
-Abbildung \ref{fig:agent-architektur} zeigt eine schematische Architektur. Der \emph{Agent Controller} erhält ein Ziel, plant Schritte, ruft Tools auf (z.\,B. \enquote{Run Tests}, \enquote{Format Code}), schreibt relevante Informationen ins Gedächtnis und bewertet Zwischenergebnisse (Selbstkritik). Ein \emph{Safety Layer} erzwingt Richtlinien (z.\,B. Dateisystemzugriffe, Rate-Limits).
+Abbildung \ref{fig:agent-architektur} zeigt eine schematische Architektur. Der \emph{Agent Controller} erhält ein Ziel, plant Schritte, ruft Tools auf (z.\,B. \enquote{Run Tests}, \enquote{Format Code}), schreibt relevante Informationen ins Gedächtnis und bewertet Zwischenergebnisse (Selbstkritik).\footnote{Vgl. \cite{miller2017chapter} für detaillierte Architekturprinzipien.} Ein \emph{Safety Layer} erzwingt Richtlinien (z.\,B. Dateisystemzugriffe, Rate-Limits).
 
 \begin{figure}[ht]
 \centering
