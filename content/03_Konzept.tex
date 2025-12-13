@@ -10,16 +10,7 @@
 
 Aus Kapitel \ref{ch:hintergrund} abgeleitet entwerfen wir eine referenzierbare Agentenarchitektur für Software Engineering\index{Agentenarchitektur!Entwurf}. Sie kombiniert Planung (ReAct-basierte Policy)\index{Policy-Engine}, Werkzeugnutzung (Linter, Tests, VCS, File-Operations)\index{Tool-Integration}, episodisches Gedächtnis und mehrschichtige Sicherheitsmechanismen (Input-Filter, Sandboxing, Quoten).\footnote{\emph{Referenzierbar} bedeutet hier, dass die Architektur dokumentiert und in anderen Projekten anwendbar ist.}
 
-Der Kern der Architektur folgt dem \emph{Sense-Plan-Act-Reflect}-Zyklus\index{Sense-Plan-Act-Reflect}:
-
-\begin{enumerate}
-  \item \textbf{Sense:} Erfassen des aktuellen Zustands (Codebase, Fehlermeldungen, Test-Outputs)
-  \item \textbf{Plan:} Dekomposition des Ziels in ausführbare Teilschritte
-  \item \textbf{Act:} Ausführung von Tool-Aufrufen und Code-Operationen
-  \item \textbf{Reflect:} Selbstkritische Bewertung der Ergebnisse und Anpassung der Strategie
-\end{enumerate}
-
-Diese Schleife wird iterativ wiederholt, bis das Ziel erreicht ist oder eine Abbruchbedingung eintritt (max. Schritte, Timeout, Fehlerrate).
+Der Kern der Architektur folgt dem \emph{Sense-Plan-Act-Reflect}-Zyklus\index{Sense-Plan-Act-Reflect}: Zunächst wird in der \textbf{Sense}-Phase der aktuelle Zustand erfasst, einschließlich Codebase, Fehlermeldungen und Test-Outputs. Darauf aufbauend erfolgt die \textbf{Plan}-Phase mit der Dekomposition des Ziels in ausführbare Teilschritte. In der \textbf{Act}-Phase werden Tool-Aufrufe und Code-Operationen ausgeführt. Abschließend bewertet die \textbf{Reflect}-Phase selbstkritisch die Ergebnisse und passt die Strategie an. Diese Schleife wird iterativ wiederholt, bis das Ziel erreicht ist oder eine Abbruchbedingung eintritt (maximale Schritte, Timeout oder Fehlerrate).
 
 \section{Architektur und Design}
 

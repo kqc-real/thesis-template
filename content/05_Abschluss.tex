@@ -15,23 +15,11 @@ Die Kernbeiträge und Ergebnisse werden im Folgenden zusammengefasst.
 
 Durch Kombination von ReAct-Pattern\index{ReAct!Anwendung} (Reasoning + Acting) mit expliziten Reflexionsmechanismen\index{Reflexionsmechanismen} konnten strukturierte Policies\index{Strukturierte Policies} entwickelt werden, die Planung\index{Planung!in Policies}, Tool-Orchestrierung und Selbstkritik integrieren. Die Evaluation zeigte, dass diese Policies Erfolgsraten von \pct{73} bei Refactoring-Tasks\index{Refactoring-Tasks!Erfolgsquote} erreichen \textendash{} signifikant über Baseline-Systemen (\pct{42}--\pct{58}).
 
-Zentrale Design-Entscheidungen waren:
-\begin{itemize}
-  \item Explizite Thought-Action-Observation-Loops\index{Thought-Action-Observation} für Transparenz\index{Agent-Transparenz}
-  \item Strukturierte Tool-Interfaces\index{Tool-Interfaces!Strukturierung} mit JSON-Schema-Validation\index{Schema-Validation}
-  \item Episodisches Gedächtnis\index{Episodisches Gedächtnis!Design} für Kontext-Persistierung\index{Kontext-Persistierung} über Iterationen
-\end{itemize}
+Zentrale Design-Entscheidungen umfassten die Implementierung expliziter Thought-Action-Observation-Loops\index{Thought-Action-Observation}, die Transparenz\index{Agent-Transparenz} durch nachvollziehbare Zwischenschritte schaffen. Strukturierte Tool-Interfaces\index{Tool-Interfaces!Strukturierung} mit JSON-Schema-Validation\index{Schema-Validation} gewährleisten typsichere Kommunikation zwischen Komponenten. Das episodische Gedächtnis\index{Episodisches Gedächtnis!Design} ermöglicht Kontext-Persistierung\index{Kontext-Persistierung} über Iterationen hinweg und unterstützt damit langfristige, zustandsabhängige Workflows.
 
 \textbf{Forschungsfrage 2:} Welche Architekturprinzipien ermöglichen sichere\index{Sicherheit!Architektur} und nachvollziehbare\index{Nachvollziehbarkeit} Tool-Integration\index{Tool-Integration!Sicherheit}?
 
-Die entwickelte Architektur implementiert Defense-in-Depth\index{Defense-in-Depth} durch mehrschichtige Sicherheitsmechanismen:
-\begin{enumerate}
-  \item Input-Validation\index{Input-Validation!Tool-Calls} aller LLM-generierten Tool-Calls
-  \item Sandbox-Execution\index{Sandbox!Docker} in isolierten Docker-Containern
-  \item Permissions-System\index{Permissions-System} mit Least-Privilege-Prinzip\index{Least-Privilege}
-  \item Audit-Logging\index{Audit-Logging!Tool-Calls} aller kritischen Operationen
-  \item Human-in-the-Loop\index{Human-in-the-Loop} für Deployment-kritische Aktionen
-\end{enumerate}
+Die entwickelte Architektur implementiert Defense-in-Depth\index{Defense-in-Depth} durch mehrschichtige Sicherheitsmechanismen. Alle LLM-generierten Tool-Calls unterliegen einer Input-Validation\index{Input-Validation!Tool-Calls}, die Schadkörper-Aufrufe verhindert. Die Sandbox-Execution\index{Sandbox!Docker} in isolierten Docker-Containern stellt sicher, dass potenziell gefährlicher Code nicht das Host-System kompromittieren kann. Ein Permissions-System\index{Permissions-System} setzt das Least-Privilege-Prinzip\index{Least-Privilege} durch und beschränkt Zugriffe auf das erforderliche Minimum. Kritische Operationen werden durch Audit-Logging\index{Audit-Logging!Tool-Calls} lückenlos protokolliert. Bei Deployment-kritischen Aktionen greift ein Human-in-the-Loop\index{Human-in-the-Loop}-Mechanismus, der menschliche Bestätigung erfordert.
 
 Sicherheits-Audits\index{Sicherheits-Audits} zeigten \pct{100} Erfolgsrate bei der Abwehr von Prompt-Injection-Angriffen\index{Prompt-Injection} und unauthorized File-Access\index{File-Access-Kontrolle}.
 
