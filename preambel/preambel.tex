@@ -200,9 +200,8 @@
 	locale = DE,        % Deutsche Konventionen (Dezimal-Komma)
 	per-mode = symbol   % Prozent als Symbol mit korrekt gesetztem Abstand
 }
-
-%%% Einheiten und Zahlen formatieren (WICHTIG!)
-\usepackage[locale=DE]{siunitx}
+% Praktischer Prozent-Makro
+\newcommand{\pct}[1]{\SI{#1}{\percent}}
 
 %%% Zusätzliche Mathe-Symbole und Werkzeuge
 \usepackage{braket}    % Bra-Ket Schreibweise
@@ -288,7 +287,7 @@
 }
 
 % Lade vordefinierte Sprachen
-\lstloadlanguages{Python,Java,C,HTML,XML,JavaScript}
+\lstloadlanguages{Python,Java}
 
 % TypeScript als Basis-Definition (nicht auf JavaScript basierend)
 \lstdefinelanguage{TypeScript}{
