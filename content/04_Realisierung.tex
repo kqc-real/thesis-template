@@ -17,7 +17,7 @@ Folgende Technologien wurden für die Implementierung eingesetzt:
 
 \begin{sloppypar}
 \begin{description}
-  \item[Programmiersprache:] Python 3.11+\index{Python} (Typ-Hinweise\index{Type Hints}, Async/Await-Unterstützung\index{Async/Await})
+  \item[Programmiersprache:] Python 3.11+\index{Python} (Typ-Hinweise\index{Type Hints}, Async/Await-Un\-ter\-stüt\-zung\index{Async/Await})
   \item[LLM-Integration:] OpenAI API (GPT-4)\index{GPT-4}, Anthropic API (Claude 3.5 Sonnet)\index{Claude}, mit Fallback-Mechanismus\index{Fallback-Mechanismus}
   \item[Orchestrierung:] LangChain 0.1.x für Basis-Komponenten\index{LangChain}, benutzerdefinierte Erweiterungen für SE-spezifische Tools; strukturierte Tool-Calls über \textbf{JSON}-Schemas und Konfigurationen per \textbf{YAML}.
   \item[Gedächtnis:] Chroma\index{Chroma Vector-DB} Vektordatenbank für semantisches Retrieval, SQLite für episodische Logs\index{Event-Logging}
@@ -245,9 +245,9 @@ Die entwickelte Lösung erreicht folgende Performance-Charakteristika:
 \begin{description}
   \item[Token-Verbrauch:] Durchschnittlich 8.4\,k Tokens pro erfolgreichem Task (Range: 2\,k--25\,k). Kontextoptimierung reduzierte Verbrauch um \pct{40} gegenüber naivem Ansatz.
   
-  \item[Laufzeit:] Median 12.3 Sekunden pro Task (ohne Tool-Execution). Mit Test-Runs: 45\,s--180\,s je nach Testsuite-Größe.
+  \item[Laufzeit:] Median 12.3\,Sekunden pro Task (ohne Tool-Execution). Mit Test-Runs: 45\,s--180\,s je nach Testsuite-Größe.
   
-  \item[Tool-Calls:] Durchschnittlich 4.2 Werkzeugaufrufe pro Task. Reflexion reduzierte fehlerhafte Aufrufe um \pct{28}.
+  \item[Tool-Calls:] Durchschnittlich 4.2\,Werkzeugaufrufe pro Task. Reflexion reduzierte fehlerhafte Aufrufe um \pct{28}.
   
   \item[Kosten:] Geschätzt \$\,0.08 pro Task bei GPT-4-Pricing (Jan 2024). Claude war \pct{35} günstiger bei vergleichbarer Qualität.
 \end{description}
@@ -340,7 +340,7 @@ Praktische Erkenntnisse: Automatisierte Tests sollten sowohl synthetische als au
 \begin{itemize}
   \item Prompt-Injection-Tests: 15 Exploit-Versuche, alle blockiert
   \item Dateisystemisolierung: Sandbox-Ausbrüche verhindert
-  \item Rate-Limiting: Korrekte Durchsetzung bei 100 Requests/min Limit
+  \item Rate-Limiting: Korrekte Durchsetzung bei 100\,Requests/min Limit
 \end{itemize}
 
 % Benchmark-Ergebnisse mit longtable
@@ -370,7 +370,7 @@ Generate Docstrings & OK & 4.5\,k & 9.3 & 2 & \$\,0.04 \\
 \rowcolor{rowcolorgray}
 Fix Type Errors & OK & 11.2\,k & 28.4 & 5 & \$\,0.11 \\
 \bottomrule
-\multicolumn{6}{l}{\small \textit{Durchschnitt (erfolgreiche Tasks):} 7.1\,k tokens, 16.5\,s, 3.8 tools, \$\,0.07} \\
+\multicolumn{6}{l}{\small \textit{Durchschnitt (erfolgreiche Tasks):} 7.1\,k Tokens, 16.5\,s, 3.8\,Tools, \$\,0.07} \\
   \end{tabular}
 \endgroup
 \end{table}
