@@ -1,4 +1,4 @@
-# LaTeX Vorlage für wissenschaftliche Abschlussarbeiten
+# LaTeX-Vorlage für wissenschaftliche Abschlussarbeiten
 
 Professionelle LaTeX-Vorlage für Bachelor- und Masterarbeiten im deutschsprachigen Raum. Optimiert für Qualität, Lesbarkeit und Einhaltung akademischer Konventionen.
 
@@ -31,7 +31,7 @@ Ein wichtiger Punkt ist...
 - ✅ Fokus auf **Inhalt**, nicht auf Formatierung
 - ✅ Professionelles Aussehen **garantiert**
 - ✅ Wissenschaftliche Formeln, Tabellen, Zitate **kinderleicht**
-- ✅ Lange Arbeiten (80+ Seiten) **keine Problem**
+- ✅ Lange Arbeiten (80+ Seiten) **kein Problem**
 
 ### Was brauche ich zum Starten?
 
@@ -47,7 +47,7 @@ Das war's! Danach schreiben Sie in VS Code, speichern, und das PDF wird automati
 
 ### LaTeX in VS Code einrichten
 
-**Schritt-für-Schritt-Anleitung (auch für absolute Anfänger):**
+**Schritt-für-Schritt-Anleitung (auch für absolute Anfänger:innen):**
 
 #### 1️⃣ TeX Live installieren (5 Min)
 
@@ -157,8 +157,8 @@ Hinweis: `build.sh` ist bewusst einfach gehalten und funktioniert in den meisten
 ### Workflow in VS Code
 
 1. **Projekt öffnen:** `Datei` → `Ordner öffnen` → `thesis-template` wählen
-2. **Hauptdatei öffnen:** `Thesis.tex` (doppelklick)
-3. **Ihre Metadaten eintragen:** Zeilen 31-37 ausfüllen (Ihr Name, Titel, etc.)
+2. **Hauptdatei öffnen:** `Thesis.tex` (Doppelklick)
+3. **Ihre Metadaten eintragen:** Zeilen 31-37 ausfüllen (Ihr Name, Titel etc.)
 4. **Inhalt bearbeiten:** In den Dateien unter `content/` schreiben
 5. **Speichern:** `Cmd+S` (Mac) oder `Ctrl+S` (Windows/Linux)
    - ✅ LaTeX Workshop kompiliert **automatisch im Hintergrund**
@@ -195,8 +195,8 @@ Diese Vorlage ist **produktionsreif** für Bachelor- und Masterarbeiten:
 
 ✅ **Moderne Features**
 
-- Farbige Tabellenköpfe (matteres Blau)
-- Syntax-Highlighting für Code (Python, TypeScript, etc.)
+- Farbige Tabellenköpfe (mattes Blau)
+- Syntax-Highlighting für Code (Python, TypeScript etc.)
 - TikZ-Diagramme vorbereitet
 - Mathematische Formeln einfach einzufügen
 
@@ -223,7 +223,7 @@ Das war's. Keine weiteren Abhängigkeiten nötig!
 Option A: **Mit Git** (empfohlen):
 
 ```bash
-git clone https://github.com/thm-mni-ii/thesis-template.git
+git clone https://github.com/kqc-real/thesis-template.git
 cd thesis-template
 ```
 
@@ -239,7 +239,7 @@ Option B: **Ohne Git** (manuell):
 1. Öffnen Sie VS Code
 2. `Datei` → `Ordner öffnen`
 3. Wählen Sie den Ordner `thesis-template`
-4. Öffnen Sie die Datei `Thesis.tex` (doppelklick)
+4. Öffnen Sie die Datei `Thesis.tex` (Doppelklick)
 
 ### 3. Metadaten eintragen
 
@@ -292,7 +292,7 @@ Die Kapitel sind in `content/` organisiert:
 
 - Öffnen Sie `bib/BibtexDatabase.bib`
 - Fügen Sie Quellen hinzu (siehe Beispiele in der Datei)
-- Im Text zitieren: `\cite{musterauthor2023}`
+- Im Text zitieren: `\cite{musterautor2025}`
 
 Das war's!
 
@@ -332,9 +332,9 @@ thesis-template/
 └── README.md                    # Diese Datei
 ```
 
-## Häufige Anpassungen (für Anfänger)
+## Häufige Anpassungen (für Anfänger:innen)
 
-### Ich will nur englische Arbeit schreiben
+### Ich will in Englisch die Arbeit schreiben
 
 Öffnen Sie `Thesis.tex`, Spracheinstellung:
 
@@ -342,7 +342,7 @@ thesis-template/
 \def\lang{english}
 ```
 
-Speichern → PDF wird automatisch auf Englisch neu erstellt (Abstände, Wörter, etc.)
+Speichern → PDF wird automatisch auf Englisch neu erstellt (Abstände, Wörter etc.)
 
 ### Andere Schriftart verwenden
 
@@ -461,7 +461,7 @@ pdflatex Thesis.tex
 
 **Faustregel:** Nach größeren Änderungen (neue Kapitel, Tabellen, Abbildungen) → 3× kompilieren
 
-## Troubleshooting (für Anfänger)
+## Troubleshooting (für Anfänger:innen)
 
 ### Problem: "Ich sehe kein PDF nach Speichern"
 
@@ -475,7 +475,7 @@ pdflatex Thesis.tex
 
 - Schauen Sie unten im "Problems"-Panel (rot/gelb Warnungen)
 - Klicken Sie auf eine Warnung → VS Code springt zur fehlerhaften Zeile
-- Fixer Sie das Problem (Tippfehler, `\` vergessen, etc.)
+- Fixer Sie das Problem (Tippfehler, `\` vergessen etc.)
 - Speichern Sie nochmal
 
 ### Problem: "Inhaltsverzeichnis / Tabellenverzeichnis ist leer"
@@ -542,7 +542,7 @@ brew install --cask mactex-no-gui
 
 ### Sie haben Ihre Thesis fertig geschrieben?
 
-1. **PDF exportieren:** Das PDF ist bereits erstellt (rechts im VS Code sichtbar)
+1. **PDF exportieren:** Das PDF ist bereits erstellt (im Root-Verzeichnis sichtbar)
 2. **Speichern:** `Cmd+S` ein letztes Mal
 3. **PDF speichern:** Machen Sie einen Rechtsklick auf das PDF → "Speichern unter" → auf Ihren Computer
 
@@ -560,7 +560,7 @@ brew install --cask mactex-no-gui
 
 **Deutsche Hochschul-Richtlinien:**
 
-- Fragen Sie Ihre Hochschule nach Thesis-Richtlinien (Formatierung, Seitenzahlen, etc.)
+- Fragen Sie Ihre Hochschule nach Thesis-Richtlinien (Formatierung, Seitenzahlen etc.)
 - Diese Vorlage ist allgemein gehalten und sollte passen
 
 ## Lizenz
