@@ -106,7 +106,7 @@ Dies entspricht dem in~\cite{yao2023react} beschriebenen Pattern, erweitert um e
 
 \subsection{Tool-Interface-Design}
 
-Jedes Tool implementiert ein standardisiertes Schema:
+Jedes Tool implementiert ein standardisiertes Schema (siehe Listing~\ref{lst:tool-schema}):
 
 \begin{lstlisting}[style=Python, caption={Tool-Interface-Schema (Pseudocode)}, label={lst:tool-schema}]
 class Tool(Protocol):
@@ -271,7 +271,7 @@ Alle kritischen Operationen werden geloggt:
 
 \subsection{Human-in-the-Loop}
 
-Für kritische Operationen (Deployment, Datenbank-Modifikationen) wird menschliche Bestätigung eingefordert:
+Für kritische Operationen (Deployment, Datenbank-Modifikationen) wird menschliche Bestätigung eingefordert (siehe Listing~\ref{lst:human-approval}):
 
 \begin{lstlisting}[style=Python, caption={Human-Approval-Mechanismus (Pseudocode)}, label={lst:human-approval}]
 class HumanApprovalRequired(Exception):

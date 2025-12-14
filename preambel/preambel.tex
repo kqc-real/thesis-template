@@ -39,6 +39,24 @@
 \usepackage{setspace}
 \onehalfspacing
 
+%%% Layout-Anpassung: Abstände verringern
+% Überschriften-Abstände kompakter gestalten
+\RedeclareSectionCommand[
+  beforeskip=-1\baselineskip,
+  afterskip=0.5\baselineskip
+]{chapter}
+\RedeclareSectionCommand[
+  beforeskip=-1\baselineskip,
+  afterskip=0.25\baselineskip
+]{section}
+\RedeclareSectionCommand[
+  beforeskip=-0.75\baselineskip,
+  afterskip=0.15\baselineskip
+]{subsection}
+
+% Absatzabstand manuell verringern (überschreibt KOMA-Script parskip=half Berechnung)
+\setlength{\parskip}{0.5em plus 1pt minus 1pt}
+
 %%% Mikrotypografie (Optischer Randausgleich etc.)
 \usepackage[
    protrusion=true
