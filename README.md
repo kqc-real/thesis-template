@@ -1,6 +1,30 @@
 # LaTeX-Vorlage für wissenschaftliche Abschlussarbeiten
+# Thesis Template
 
 Professionelle LaTeX-Vorlage für Bachelor- und Masterarbeiten im deutschsprachigen Raum. Optimiert für Qualität, Lesbarkeit und Einhaltung akademischer Konventionen.
+Eine LaTeX-Vorlage für akademische Abschlussarbeiten (Bachelor/Master), optimiert für Software Engineering Themen.
+
+## Inhaltsverzeichnis
+
+1. [Für LaTeX-Anfänger:innen](#-für-latex-anfängerinnen-die-ersten-5-minuten)
+2. [Projektstruktur](#projektstruktur)
+3. [Voraussetzungen](#voraussetzungen)
+4. [Kompilierung](#kompilierung)
+5. [Anpassung](#anpassung)
+6. [WICHTIG: build.sh](#️-wichtig-buildsh--bedeutung--nutzung)
+7. [Features & Highlights](#features--highlights)
+8. [Anforderungen](#anforderungen)
+9. [Schnelleinstieg](#schnelleinstieg-für-anfänger)
+10. [Verzeichnisstruktur](#verzeichnisstruktur)
+11. [Häufige Anpassungen](#häufige-anpassungen-für-anfängerinnen)
+12. [Best Practices](#best-practices)
+13. [Git-Workflow](#git-workflow-für-ihre-thesis)
+14. [Troubleshooting](#troubleshooting-für-anfängerinnen)
+15. [Nächste Schritte](#nächste-schritte)
+16. [KI-generierte Darstellungen](#-ki-generierte-darstellungen-der-thesis)
+17. [Lizenz](#lizenz)
+18. [Beiträge](#beiträge)
+19. [Danksagung](#danksagung)
 
 ## 🚀 Für LaTeX-Anfänger:innen: Die ersten 5 Minuten
 
@@ -18,24 +42,34 @@ Dies ist mein erstes Kapitel.
 \section{Motivation}
 Ein wichtiger Punkt ist...
 ```
+## Voraussetzungen
 
 ↓ (LaTeX verarbeitet das) ↓
+*   Aktuelle LaTeX-Distribution (z. B. TeX Live, MacTeX oder MiKTeX).
+*   **Biber** Backend für die Bibliographie-Verarbeitung (wird mit `biblatex` verwendet).
 
 **PDF mit:**
 - Automatisch nummerierten Kapiteln
 - Schönen Abständen und Schriftgrößen
 - Automatischem Inhaltsverzeichnis
 - Professionellem Aussehen (ohne dass Sie was daran drehen!)
+## Kompilierung
 
 **Warum ist das nützlich?**
 - ✅ Fokus auf **Inhalt**, nicht auf Formatierung
 - ✅ Professionelles Aussehen **garantiert**
 - ✅ Wissenschaftliche Formeln, Tabellen, Zitate **kinderleicht**
 - ✅ Lange Arbeiten (80+ Seiten) **kein Problem**
+Um das vollständige Dokument mit Literaturverzeichnis und Verweisen zu erstellen, führen Sie folgende Befehle aus:
 
 ### Was brauche ich zum Starten?
+1.  `pdflatex Thesis`
+2.  `biber Thesis`
+3.  `pdflatex Thesis`
+4.  `pdflatex Thesis`
 
 Drei Dinge:
+## Anpassung
 
 1. **TeX Live** (die LaTeX-Software) — Kostenlos
 2. **VS Code** (der Editor) — Kostenlos  
@@ -603,3 +637,6 @@ Verbesserungen sind willkommen! Bitte:
 
 - **KOMA-Script Team** - Exzellente Dokumentenklasse
 - **Markus Kohm** - KOMA-Script Dokumentation
+1.  Öffnen Sie `Thesis.tex`.
+2.  Tragen Sie Ihre Daten (Titel, Autor, Matrikelnummer) im Abschnitt `%% Metadaten der Arbeit` ein.
+3.  Erstellen oder bearbeiten Sie die Kapitel im Ordner `content/`.
