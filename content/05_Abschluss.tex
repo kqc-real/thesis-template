@@ -5,7 +5,7 @@
 
 \section{Zusammenfassung der Ergebnisse}
 
-Diese Arbeit untersuchte die Entwicklung und Evaluation\index{Evaluation!Agenten} agentischer Architekturen\index{Referenzarchitektur} für Software-Engineering-Workflows\index{SE-Workflows}.\footnote{Vergleiche dazu \cite{xi2023rise} und \cite{wang2023survey} für aktuelle Forschungstrends.}
+Die Arbeit untersuchte die Entwicklung und Evaluation\index{Evaluation!Agenten} agentischer Architekturen\index{Referenzarchitektur} für Software-Engineering-Workflows\index{SE-Workflows}.\footnote{Vergleiche dazu \cite{xi2023rise} und \cite{wang2023survey} für aktuelle Forschungstrends.}
 Ausgehend von einer systematischen Analyse des Stands der Forschung (Kapitel \ref{ch:hintergrund}) wurde eine Referenzarchitektur entwickelt\index{Architekturdesign} (Kapitel \ref{ch:konzept}), prototypisch implementiert und empirisch evaluiert\index{Empirische Evaluation} (Kapitel \ref{ch:realisierung}).
 
 Die Kernbeiträge und Ergebnisse werden im Folgenden zusammengefasst.
@@ -14,7 +14,7 @@ Die Kernbeiträge und Ergebnisse werden im Folgenden zusammengefasst.
 
 \textbf{Forschungsfrage 1:} Wie lassen sich robuste Agenten-Policies\index{Agenten-Policies!Robustheit} für SE-Workflows systematisch modellieren\index{Policy-Modellierung}?
 
-Durch Kombination von ReAct-Pattern\index{ReAct!Anwendung} (Reasoning + Acting) mit expliziten Reflexionsmechanismen\index{Reflexionsmechanismen} konnten strukturierte Strategien\index{Strukturierte Policies} entwickelt werden, die Planung\index{Planung!in Policies}, Werkzeugorchestrierung und Selbstkritik integrieren. Die Evaluation zeigte, dass diese Strategien Erfolgsraten von \pct{73} bei Refactoring-Aufgaben\index{Refactoring-Tasks!Erfolgsquote} erreichen \textendash{} signifikant über Baseline-Systemen (\pct{42}--\pct{58}).
+Durch Kombination von ReAct-Pattern\index{ReAct!Anwendung} (Reasoning + Acting) mit expliziten Reflexionsmechanismen\index{Reflexionsmechanismen} konnten strukturierte Strategien\index{Strukturierte Policies} entwickelt werden, die Planung\index{Planung!in Policies}, Werkzeugorchestrierung und Selbstkritik integrieren. Die Evaluation zeigte, dass die Strategien Erfolgsraten von \pct{73} bei Refactoring-Aufgaben\index{Refactoring-Tasks!Erfolgsquote} erreichen \textendash{} signifikant über Baseline-Systemen (\pct{42}--\pct{58}).
 
 Zentrale Design-Entscheidungen umfassten die Implementierung expliziter Denk-Handlungs-Beobachtungs-Schleifen\index{Thought-Action-Observation}, die Transparenz\index{Agent-Transparenz} durch nachvollziehbare Zwischenschritte schaffen. Strukturierte Werkzeugschnittstellen\index{Tool-Interfaces!Strukturierung} mit JSON-Schema-Validierung\index{Schema-Validation} gewährleisten typsichere Kommunikation zwischen Komponenten. Das episodische Gedächtnis\index{Episodisches Gedächtnis!Design} ermöglicht Kontextpersistierung\index{Kontext-Persistierung} über Iterationen hinweg und unterstützt damit langfristige, zustandsabhängige Workflows.
 
@@ -35,7 +35,7 @@ Ein mehrdimensionales Metriken-Framework wurde entwickelt und validiert:
   \item[Sicherheit:] Policy-Verstöße, Sandbox-Ausbrüche, Zugriffsverweigerungen
 \end{description}
 
-Diese Metriken ermöglichen reproduzierbare Vergleiche und identifizieren Trade-offs (z.\,B. Reflexion erhöht Erfolgsrate um \pct{15}, aber Kosten um \pct{12}).
+Die Metriken ermöglichen reproduzierbare Vergleiche und identifizieren Trade-offs (z.\,B. Reflexion erhöht Erfolgsrate um \pct{15}, aber Kosten um \pct{12}).
 
 \subsection{Empirische Validierung}
 
@@ -52,9 +52,9 @@ Die prototypische Implementierung wurde anhand von 25 realistischen SE-Tasks eva
 
 Vergleiche mit Baseline-Systemen (Naive Prompting, Standard-ReAct) zeigten +31\% bzw. +15\% Erfolgsraten-Verbesserungen.
 
-\section{Beiträge dieser Arbeit}
+\section{Beiträge der Arbeit}
 
-Diese Arbeit leistet folgende Beiträge zur Spezialisierung \enquote{Software Engineering mit agentic AI}:
+Die Arbeit leistet folgende Beiträge zur Spezialisierung \enquote{Software Engineering mit agentic AI}:
 
 \begin{enumerate}
   \item \textbf{Referenzarchitektur:} Dokumentierte, wiederverwendbare Architektur für agentische SE-Workflows mit klaren Komponenten (Controller, Werkzeugregister, Gedächtnismanager, Sicherheitsschicht) und deren Interaktionen. Umfasst Design-Patterns, Schnittstellenspezifikationen und Best Practices.
@@ -72,7 +72,7 @@ Diese Arbeit leistet folgende Beiträge zur Spezialisierung \enquote{Software En
 
 \subsection{Wissenschaftlicher Beitrag}
 
-Im Kontext der Forschungslandschaft (vgl. Kapitel \ref{ch:hintergrund}) schließt diese Arbeit folgende Lücken:
+Im Kontext der Forschungslandschaft (vgl. Kapitel \ref{ch:hintergrund}) schließt die Arbeit folgende Lücken:
 
 \begin{itemize}
   \item Systematisierung agentischer SE-Architekturen (bisher meist ad-hoc Prototypen)
@@ -207,4 +207,4 @@ Konkrete Empfehlungen für Praktiker:
   \item Planen Sie regelmäßige Sicherheits-Audits und erweitern Sie Test-Suites um adversariale Prompt-Tests.
 \end{itemize}
 
-Diese pragmatischen Schritte erleichtern den verantwortungsvollen Einsatz agentischer Systeme im Alltag und minimieren Risiken beim Übergang in produktive Umgebungen.
+Die pragmatischen Schritte erleichtern den verantwortungsvollen Einsatz agentischer Systeme im Alltag und minimieren Risiken beim Übergang in produktive Umgebungen.

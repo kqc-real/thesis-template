@@ -11,10 +11,11 @@
 Aus Kapitel \ref{ch:hintergrund} abgeleitet entwerfen wir eine referenzierbare Agentenarchitektur für Software Engineering\index{Agentenarchitektur!Entwurf}. Sie kombiniert Planung (ReAct-basierte Policy)\index{Policy-Engine}, Werkzeugnutzung (Linter, Tests, VCS, Dateioperationen)\index{Tool-Integration}, episodisches Gedächtnis und mehrschichtige Sicherheitsmechanismen (Eingabefilter, Sandboxing, Quoten).\footnote{\emph{Referenzierbar} bedeutet hier, dass die Architektur dokumentiert und in anderen Projekten anwendbar ist.}
 
 Der Kern der Architektur folgt dem \emph{Sense-Plan-Act-Reflect}-Zyklus\index{Sense-Plan-Act-Reflect}: Zunächst wird in der \textbf{Sense}-Phase der aktuelle Zustand erfasst, einschließlich Codebase, Fehlermeldungen und Test-Outputs. Darauf aufbauend erfolgt die \textbf{Plan}-Phase mit der Dekomposition des Ziels in ausführbare Teilschritte. In der \textbf{Act}-Phase werden Tool-Aufrufe und Code-Operationen ausgeführt. Abschließend bewertet die \textbf{Reflect}-Phase selbstkritisch die Ergebnisse und passt die Strategie an. Diese Schleife wird iterativ wiederholt, bis das Ziel erreicht ist oder eine Abbruchbedingung eintritt (maximale Schritte, Timeout oder Fehlerrate).
+Der Kern der Architektur folgt dem \emph{Sense-Plan-Act-Reflect}-Zyklus\index{Sense-Plan-Act-Reflect}: Zunächst wird in der \textbf{Sense}-Phase der aktuelle Zustand erfasst, einschließlich Codebase, Fehlermeldungen und Test-Outputs. Darauf aufbauend erfolgt die \textbf{Plan}-Phase mit der Dekomposition des Ziels in ausführbare Teilschritte. In der \textbf{Act}-Phase werden Tool-Aufrufe und Code-Operationen ausgeführt. Abschließend bewertet die \textbf{Reflect}-Phase selbstkritisch die Ergebnisse und passt die Strategie an. Die Schleife wird iterativ wiederholt, bis das Ziel erreicht ist oder eine Abbruchbedingung eintritt (maximale Schritte, Timeout oder Fehlerrate).
 
 \section{Architektur und Design}
 
-Die Architektur basiert auf folgenden Designprinzipien:\footnote{Diese Prinzipien orientieren sich an etablierten Softwareentwicklungs-Patterns und Best Practices aus \cite{sommerville2015software}.}\index{Architekturprinzipien}\index{Best Practices}
+Die Architektur basiert auf folgenden Designprinzipien:\footnote{Die Prinzipien orientieren sich an etablierten Softwareentwicklungs-Patterns und Best Practices aus \cite{sommerville2015software}.}\index{Architekturprinzipien}\index{Best Practices}
 
 \textquote[\cite{richards2020fundamentals}]{Gute Architektur bedeutet, dass Komponenten modular, austauschbar und wartbar sind, um langfristig Wartungskosten zu minimieren.}
 
@@ -127,7 +128,7 @@ class ToolResult:
     error: Optional[str]
 \end{lstlisting}
 
-Diese Standardisierung ermöglicht:
+Die Standardisierung ermöglicht:
 \begin{sloppypar}
 \begin{itemize}
   \item Automatische Werkzeugerkennung und -registrierung
@@ -289,7 +290,7 @@ def execute_critical_tool(tool_name, params):
 
 \section{Abgrenzung zu alternativen Ansätzen}
 
-Dieser Ansatz unterscheidet sich von den in Kapitel \ref{ch:hintergrund} beschriebenen Methoden durch:
+Der Ansatz unterscheidet sich von den in Kapitel \ref{ch:hintergrund} beschriebenen Methoden durch:
 
 \begin{sloppypar}
 \begin{itemize}

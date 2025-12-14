@@ -15,13 +15,13 @@
 
 Software Engineering erlebt derzeit einen Paradigmenwechsel: \emph{agentic AI} \textendash{} also KI-Systeme, die Ziele verstehen, Pläne erstellen, Werkzeuge verwenden und Ergebnisse eigenständig verifizieren \textendash{} ergänzt klassische Automatisierung um adaptive, mehrschrittige Problemlösung.\footnote{Der Begriff \emph{Agentic AI} wird derzeit von führenden Forschungsteams geprägt und bezieht sich auf Systeme, die über mehrere Schritte selbstständig komplexe Aufgaben bewältigen können.}
  
-Darüber hinaus verlangt die praktische Anwendung agentischer Systeme oft einen ausgewogenen Kompromiss zwischen Automatisierung und menschlicher Kontrolle. In vielen Entwicklungsprozessen sind Schritte, die bisher rein manuell durchgeführt wurden (Code-Reviews, Testgenerierung, Release-Checks), gute Kandidaten für assistierte Workflows. Agenten können Routinearbeit übernehmen, erlauben dadurch jedoch auch neue Prüfpfade: So müssen Validierungsstrategien entworfen werden, die automatisierte Entscheidungen nachvollziehbar machen und menschliche Reviewer bei Bedarf schnell eingreifen lassen. Diese Arbeit nimmt genau diesen Balanceakt in den Blick und liefert pragmatische Designprinzipien für den produktiven Einsatz.
+Darüber hinaus verlangt die praktische Anwendung agentischer Systeme oft einen ausgewogenen Kompromiss zwischen Automatisierung und menschlicher Kontrolle. In vielen Entwicklungsprozessen sind Schritte, die bisher rein manuell durchgeführt wurden (Code-Reviews, Testgenerierung, Release-Checks), gute Kandidaten für assistierte Workflows. Agenten können Routinearbeit übernehmen, erlauben dadurch jedoch auch neue Prüfpfade: So müssen Validierungsstrategien entworfen werden, die automatisierte Entscheidungen nachvollziehbar machen und menschliche Reviewer bei Bedarf schnell eingreifen lassen. Die Arbeit nimmt genau diesen Balanceakt in den Blick und liefert pragmatische Designprinzipien für den produktiven Einsatz.
 Wie Richards und Ford betonen, \textquote[\cite{richards2020fundamentals}]{müssen Architekturprinzipien auf Skalierbarkeit und Wartbarkeit ausgelegt sein}, um praktischen Anforderungen gerecht zu werden.
 Für Informatikstudierende der Fachrichtung \enquote{Software Engineering mit agentic AI} eröffnet dies neue Architektur- und Methodikfragen: Wie entwirft man robuste Agenten-Workflows? Wie orchestriert man Tool-Nutzung, Gedächtnis und Langkontext? Und wie integriert man Sicherheit, Nachvollziehbarkeit und Tests in agentische Systeme?\footnote{Praktische Orchestrierung bedeutet hier die Koordination von Planungsschritten, Werkzeugaufrufen und Gedächtniszugriffen in einer strukturierten Abfolge.}
 
 \section{Problemstellung}
 
-Vor diesem Hintergrund adressiert diese Arbeit exemplarisch die Entwicklung und Evaluation eines agentischen Systems für Softwareentwicklungsaufgaben (z.\,B. Refactoring, Code-Review, Generierung von Tests). Zentrale Fragen sind:
+Vor diesem Hintergrund adressiert die Arbeit exemplarisch die Entwicklung und Evaluation eines agentischen Systems für Softwareentwicklungsaufgaben (z.\,B. Refactoring, Code-Review, Generierung von Tests). Zentrale Fragen sind:
 
 \begin{itemize}
   \item Wie lassen sich Agentenstrategien (Planen, Werkzeugaufrufe, Selbstkritik) systematisch modellieren?
@@ -32,7 +32,7 @@ Vor diesem Hintergrund adressiert diese Arbeit exemplarisch die Entwicklung und 
 Die hier formulierten Probleme sind sowohl konzeptioneller als auch praktischer Natur: Es geht nicht nur um abstrakte Modellierung von Strategien, sondern ebenso um konkrete Implementierungsfragen (Schnittstellen, Serialisierung, Fehlerbehandlung) und Evaluationsdesign (Benchmarks, Messgrößen, Reproduzierbarkeit). Die Ergebnisse sollen Entwicklerteams konkrete Handlungsempfehlungen geben, wie agentische Automatisierung schrittweise, sicher und messtechnisch abgesichert eingeführt werden kann.\index{Evaluation}
 \section{Zielsetzung}
 
-Die Ziele dieser Arbeit sind auf die Spezialisierung \enquote{Software Engineering mit agentic AI} zugeschnitten:\footnote{Siehe auch \cite{wang2023survey} für verwandte Arbeiten zu Agentenarchitekturen.}
+Die Ziele der Arbeit sind auf die Spezialisierung \enquote{Software Engineering mit agentic AI} zugeschnitten:\footnote{Siehe auch \cite{wang2023survey} für verwandte Arbeiten zu Agentenarchitekturen.}
 
 \begin{enumerate}
   \item Analyse des Forschungsstands zu agentischen Architekturen und Orchestrierungsframeworks
@@ -52,7 +52,7 @@ Die Arbeit fokussiert Agenten für Softwareentwicklungsaufgaben. Nicht im Fokus 
   \item Randbereiche, die außerhalb des Fokus liegen
 \end{itemize}
  
-Die Konzentration auf pragmatische, reproduzierbare Ergebnisse erlaubt es, bewusst auf tiefe ML-Trainingsfragen zu verzichten; stattdessen wird die Interaktion mit bestehenden Foundation Models über APIs und Adapterlösungen untersucht. Diese Fokussierung erleichtert die Nachvollziehbarkeit der Ergebnisse und erhöht die direkte Anwendbarkeit in typischen Software-Engineering-Umgebungen.
+Die Konzentration auf pragmatische, reproduzierbare Ergebnisse erlaubt es, bewusst auf tiefe ML-Trainingsfragen zu verzichten; stattdessen wird die Interaktion mit bestehenden Foundation Models über APIs und Adapterlösungen untersucht. Die Fokussierung erleichtert die Nachvollziehbarkeit der Ergebnisse und erhöht die direkte Anwendbarkeit in typischen Software-Engineering-Umgebungen.
 \section{Aufbau der Arbeit}
 
 Der Aufbau der Arbeit folgt einem pragmatischen Workflow: Zunächst werden in Kapitel~\ref{ch:hintergrund} die relevanten Grundlagen und verwandte Arbeiten zusammengetragen, um die fachliche Basis zu legen. Darauf aufbauend beschreibt Kapitel~\ref{ch:konzept} die entworfene Referenzarchitektur mit Fokus auf Zustandsmodellierung, Policy-Design und Schnittstellen. Kapitel~\ref{ch:realisierung} dokumentiert die Implementierung des Prototyps, zeigt zentrale Code-Beispiele und erläutert Integrationsdetails. Abschließend fasst Kapitel~\ref{ch:abschluss} die Ergebnisse zusammen, diskutiert Limitationen und gibt einen Ausblick auf weiterführende Forschungs- und Entwicklungsfragen.

@@ -8,13 +8,13 @@
 
 \section{Grundkonzepte}
 
-Dieses Kapitel führt in Grundbegriffe agentischer Systeme ein und bildet die theoretische Basis für Konzept und Implementierung.\footnote{Die Grundbegriffe basieren auf etablierten Konzepten aus der KI-Forschung, werden aber im Kontext von Software Engineering neu interpretiert.}
+Das Kapitel führt in Grundbegriffe agentischer Systeme ein und bildet die theoretische Basis für Konzept und Implementierung.\footnote{Die Grundbegriffe basieren auf etablierten Konzepten aus der KI-Forschung, werden aber im Kontext von Software Engineering neu interpretiert.}
 
 \subsection{Large Language Models: Grundlagen}
 
 Large Language Models (LLMs)\index{Large Language Models!Grundlagen} sind neuronale Netze, die auf großen Textkorpora\index{Textkorpora!Training} trainiert wurden und menschenähnliche Textgenerierung ermöglichen \cite{OpenAI2024GPT4,touvron2023llama}. Basierend auf der Transformer-Architektur\index{Transformer!Architektur} \cite{vaswani2017attention} nutzen sie Selbstaufmerksamkeits-Mechanismen\index{Self-Attention} (Self-Attention), um kontextuelle Zusammenhänge über lange Sequenzen hinweg zu erfassen.
 
-Moderne LLMs wie GPT-4, Claude 3.5 oder Llama 3 verfügen über Milliarden von Parametern und können durch \emph{Few-Shot-Learning}\index{Few-Shot-Learning} und \emph{In-Context-Learning}\index{In-Context-Learning} Aufgaben lösen, ohne explizit darauf trainiert zu werden. Dies bildet die Grundlage für agentische Anwendungen\index{Agentische Anwendungen}.
+Moderne LLMs wie GPT-4, Claude 3.5 oder Llama 3 verfügen über Milliarden von Parametern und können durch \emph{Few-Shot-Learning}\index{Few-Shot-Learning} und \emph{In-Context-Learning}\index{In-Context-Learning} Aufgaben lösen, ohne explizit darauf trainiert zu werden. Das bildet die Grundlage für agentische Anwendungen\index{Agentische Anwendungen}.
 
 \subsection{Von LLMs zu Agenten: Der Paradigmenwechsel}
 
@@ -96,7 +96,7 @@ Die Vorteile umfassen:
 
 Grenzen sind längere Latenzen durch zusätzliche LLM-Aufrufe und potentielle Halluzinationen in Reasoning-Schritten.
 
-\textbf{Reflexion} \cite{shinn2023reflexion} erweitert ReAct um Self-Critique: Der Agent bewertet seine eigenen Outputs und lernt aus Fehlern durch verbale Bestärkung. Dies verbessert die Erfolgsrate bei komplexen Tasks um bis zu \pct{20}.
+\textbf{Reflexion} \cite{shinn2023reflexion} erweitert ReAct um Self-Critique: Der Agent bewertet seine eigenen Outputs und lernt aus Fehlern durch verbale Bestärkung. Das verbessert die Erfolgsrate bei komplexen Tasks um bis zu \pct{20}.
 
 \subsection{Software Engineering Agents}
 
@@ -111,7 +111,7 @@ Speziell für Software Engineering wurden mehrere agentische Systeme entwickelt:
   \item Iterative Verfeinerungsschleifen
 \end{itemize}
 
-\textbf{Agentless} \cite{zhang2024agentless} verfolgte einen minimalistischen Ansatz ohne persistentes Gedächtnis oder komplexe Planung und erreichte dennoch \pct{27} Erfolgsrate durch fokussierte Lokalisierung und Patching-Strategien. Dies zeigt, dass nicht immer maximale Komplexität optimal ist.
+\textbf{Agentless} \cite{zhang2024agentless} verfolgte einen minimalistischen Ansatz ohne persistentes Gedächtnis oder komplexe Planung und erreichte dennoch \pct{27} Erfolgsrate durch fokussierte Lokalisierung und Patching-Strategien. Das zeigt, dass nicht immer maximale Komplexität optimal ist.
 
 \subsection{Multi-Agent-Systeme}
 
@@ -207,9 +207,9 @@ Basierend auf der Analyse ergeben sich folgende offene Forschungsfragen und Lüc
   \item \textbf{Parallelisierung:} Können unabhängige Teilaufgaben parallel bearbeitet werden?
 \end{itemize}
 
-\subsection{Beitrag dieser Arbeit}
+\subsection{Beitrag der Arbeit}
 
-Diese Arbeit adressiert die identifizierten Lücken durch:
+Die Arbeit adressiert die identifizierten Lücken durch:
 
 \begin{enumerate}
   \item Entwicklung einer dokumentierten Referenzarchitektur für SE-Agents
@@ -220,4 +220,4 @@ Diese Arbeit adressiert die identifizierten Lücken durch:
 
 Die folgenden Kapitel beschreiben Konzept (Kapitel~\ref{ch:konzept}), Implementierung (Kapitel~\ref{ch:realisierung}) und Evaluation im Detail.
 
-Zusätzlich zu den theoretischen Grundlagen ist es wichtig, die praktische Relevanz herauszustellen: Viele der hier diskutierten Patterns lassen sich unmittelbar in bestehende CI/CD-Pipelines integrieren und bieten dort schnelle Produktivitätsgewinne. Die anschließende Arbeit prüft deshalb nicht nur theoretische Eigenschaften, sondern evaluiert konkrete Integrationspfade in typische Entwickler-Workflows und berichtet über pragmatische Umsetzungsdetails, die den Transfer in produktive Umgebungen erleichtern. Diese Kombination aus Theorie und Praxis bildet das Rückgrat der vorliegenden Untersuchung.
+Zusätzlich zu den theoretischen Grundlagen ist es wichtig, die praktische Relevanz herauszustellen: Viele der hier diskutierten Patterns lassen sich unmittelbar in bestehende CI/CD-Pipelines integrieren und bieten dort schnelle Produktivitätsgewinne. Die anschließende Arbeit prüft deshalb nicht nur theoretische Eigenschaften, sondern evaluiert konkrete Integrationspfade in typische Entwickler-Workflows und berichtet über pragmatische Umsetzungsdetails, die den Transfer in produktive Umgebungen erleichtern. Die Kombination aus Theorie und Praxis bildet das Rückgrat der vorliegenden Untersuchung.
