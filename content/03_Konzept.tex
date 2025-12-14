@@ -22,13 +22,13 @@ Die Architektur basiert auf folgenden Designprinzipien:\footnote{Diese Prinzipie
 
 \begin{sloppypar}
 \begin{description}
-  \item[Modularität:] Klare Trennung zwischen Policy-Logik, Tool-Adaptern, Gedächtnis und Safety-Layer. Komponenten kommunizieren über wohldefinierte Interfaces.\index{Modularität}
+  \item[Modularität:] Klare Trennung zwischen Policy-Logik, Werkzeugadaptern, Gedächtnis und Sicherheitsschicht. Komponenten kommunizieren über wohldefinierte Schnittstellen.\index{Modularität}
   
-  \item[Skalierbarkeit:] Architektur unterstützt parallele Tool-Ausführung\index{Parallelisierung}, asynchrone Operationen\index{Asynchrone Verarbeitung} und Streaming für große Outputs.
+  \item[Skalierbarkeit:] Architektur unterstützt parallele Werkzeugausführung\index{Parallelisierung}, asynchrone Operationen\index{Asynchrone Verarbeitung} und Streaming für große Ausgaben.
   
   \item[Wartbarkeit:] Strukturierte Logging\index{Logging}, Tracing und Debugging-Tools. Deterministische Reproduzierbarkeit\index{Reproduzierbarkeit} durch Seed-Control.
   
-  \item[Robustheit:] Fehlertoleranz durch Retry-Logik, Timeouts, Circuit-Breakers. Graceful Degradation bei Teil-Ausfällen.\index{Retry}\index{Circuit Breaker}\index{Timeout}
+  \item[Robustheit:] Fehlertoleranz durch Wiederholungslogik, Timeouts, Circuit-Breakers. Graceful Degradation bei Teil-Ausfällen.\index{Retry}\index{Circuit Breaker}\index{Timeout}
   
   \item[Sicherheit:] Defense-in-depth: Eingabevalidierung, Sandboxing, Least-Privilege, Audit-Logging.\index{Sandboxing}\index{Least Privilege}\index{Audit-Logging}
 \end{description}
@@ -42,13 +42,13 @@ Abbildung \ref{fig:agent-architektur} zeigt die Kernkomponenten der Architektur:
 \begin{description}
   \item[Agent-Controller:] Zentrale Steuerungseinheit. Implementiert die ReAct-Loop (Reasoning, Action, Observation). Nutzt LLM-API für Planung und Reflexion.\index{ReAct}\index{LLM}
   
-  \item[Tool-Registry:] Verwaltung verfügbarer Tools mit Metadaten (Name, Beschreibung, Schema, Permissions)\index{Tool-Metadaten}. Ermöglicht Tool-Erkennung\index{Tool-Discovery} und dynamisches Routing.
+  \item[Tool-Registry:] Verwaltung verfügbarer Tools mit Metadaten (Name, Beschreibung, Schema, Berechtigungen)\index{Tool-Metadaten}. Ermöglicht Werkzeugerkennung\index{Tool-Discovery} und dynamisches Routing.
   
-  \item[Tool-Adapter:] Wrapper für externe Tools (Tests, Linter, VCS)\index{Tool-Wrapper}. Standardisieren Input/Output-Formate\index{Standardisierung}. Implementieren Retry-Logik und Fehlerbehandlung\index{Error-Handling}.
+  \item[Tool-Adapter:] Wrapper für externe Tools (Tests, Linter, VCS)\index{Tool-Wrapper}. Standardisieren Ein-/Ausgabeformate\index{Standardisierung}. Implementieren Wiederholungslogik und Fehlerbehandlung\index{Error-Handling}.
   
   \item[Memory-Manager:] Verwaltet episodisches (konkrete Ereignisse) und semantisches (Wissen) Gedächtnis\index{Episodisches Gedächtnis}. Nutzt Vektor-DB\index{Vektor-Datenbank} für Retrieval-Augmented Generation (RAG)\index{RAG!Memory}.
   
-  \item[Safety-Layer:] Interceptor für alle Tool-Calls. Prüft Berechtigungen, erzwingt Rate-Limits, loggt kritische Operationen. Kann schädliche Calls blockieren.
+  \item[Sicherheitsschicht:] Interceptor für alle Werkzeugaufrufe. Prüft Berechtigungen, erzwingt Rate-Limits, loggt kritische Operationen. Kann schädliche Aufrufe blockieren.
   
   \item[Kontextmanager:] Optimiert Token-Verbrauch\index{Token-Optimierung} durch intelligentes Pruning, Zusammenfassung\index{Summarization}, Chunking\index{Chunking}. Kritisch für lange Codebases.
 \end{description}
@@ -67,12 +67,12 @@ Abbildung \ref{fig:agent-architektur} zeigt die Kernkomponenten der Architektur:
 % Nodes
 \node[io] (input) {Eingabe\\(Ziel)};
 \node[box, right=of input] (controller) {Agent Controller\\(Planung / Policy)};
-\node[box, right=of controller] (tools) {Tool-Adapter\\(Linter, Tests, VCS)};
+\node[box, right=of controller] (tools) {Werkzeugadapter\\(Linter, Tests, VCS)};
 \node[box, below=of tools] (memory) {Gedächtnis\\(episodisch / semantisch)};
 \node[io, right=of tools] (output) {Ausgabe\\(Vorschlag / Patch)};
 
 % Safety layer (fit around core components)
-\node[draw, rounded corners, fit=(controller) (tools) (memory), inner sep=6mm, label={[align=center]above:Safety Layer\\(Sandboxing, Filter, Quoten)}] (safety) {};
+\node[draw, rounded corners, fit=(controller) (tools) (memory), inner sep=6mm, label={[align=center]above:Sicherheitsschicht\\(Sandboxing, Filter, Quoten)}] (safety) {};
 
 % Edges
 \draw[->] (input) -- (controller);
@@ -95,7 +95,7 @@ Der Agent Controller implementiert folgende Schleife:
   
   \item \textbf{Action:} Auswahl und Parametrisierung eines Tools. Beispiel: \texttt{run\_tests(module="auth")}
   
-  \item \textbf{Observation:} Tool-Ausgabe wird strukturiert zurückgegeben. Beispiel: „3 tests failed in auth/test\_login.py"
+  \item \textbf{Observation:} Werkzeugausgabe wird strukturiert zurückgegeben. Beispiel: „3 tests failed in auth/test\_login.py"
   
   \item \textbf{Reflection:} Bewertung des Outputs: „Erfolgreich? Fehler? Next steps?"
   
@@ -130,7 +130,7 @@ class ToolResult:
 Diese Standardisierung ermöglicht:
 \begin{sloppypar}
 \begin{itemize}
-  \item Automatische Tool-Erkennung und -Registrierung
+  \item Automatische Werkzeugerkennung und -registrierung
   \item Validierung von Inputs durch JSON Schema
   \item Berechtigungsprüfung vor Ausführung
   \item Strukturierte Fehlerbehandlung
@@ -230,7 +230,7 @@ Beispielablauf (kompakt):
   \item \textbf{Plan:} Agent plant Extract-Function, inklusive Aufrufer-Anpassungen und Test-Aktualisierungen.
   \item \textbf{Act:} Tool-Adapter führt AST-Refactoring aus (Parameter als JSON), erstellt temporären Branch und führt Tests aus.
   \item \textbf{Observation:} Test-Runner liefert strukturierte Ergebnisse (z. B. \texttt{"failed": ["auth/test\_login.py::test\_login"]}).
-  \item \textbf{Reflection:} Agent analysiert Fehlermeldungen, generiert einen präzisen Patch-Verfeinerungsvorschlag und wiederholt ggf. den Loop.
+  \item \textbf{Reflection:} Agent analysiert Fehlermeldungen, generiert einen präzisen Patch-Verfeinerungsvorschlag und wiederholt ggf. die Schleife.
 \end{enumerate}
 
 Wichtige Praxispunkte: Diffs werden vor dem Commit automatisch formatiert und durch Linter geprüft; kritische Änderungen durchlaufen ein Human-in-the-Loop-Gate. Logs und Traces werden gespeichert, so dass das Gedächtnis zukünftige Entscheidungen informieren kann.
@@ -263,7 +263,7 @@ Code-Execution erfolgt in isolierten Umgebungen:
 
 Alle kritischen Operationen werden geloggt:
 \begin{itemize}
-  \item Tool-Calls mit Timestamp, User, Parameters
+  \item Werkzeugaufrufe mit Zeitstempel, Benutzer, Parametern
   \item Dateimodifikationen (Before/After-Diffs)
   \item Zugriffsverweigerungen und Sicherheitswarnungen
   \item LLM-API-Aufrufe mit Token-Anzahl
@@ -299,7 +299,7 @@ Dieser Ansatz unterscheidet sich von den in Kapitel \ref{ch:hintergrund} beschri
   
   \item \textbf{Praxisfokus:} Evaluation anhand realistischer SE-Workflows, nicht nur synthetische Benchmarks
   
-  \item \textbf{Tool-Interface-Standards:} Wiederverwendbare Tool-Adapter statt ad-hoc Integrationen
+  \item \textbf{Werkzeugschnittstellenstandards:} Wiederverwendbare Tool-Adapter statt ad-hoc Integrationen
 \end{itemize}
 \end{sloppypar}
 

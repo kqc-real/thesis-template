@@ -12,9 +12,9 @@ Dieses Kapitel führt in Grundbegriffe agentischer Systeme ein und bildet die th
 
 \subsection{Large Language Models: Grundlagen}
 
-Large Language Models (LLMs)\index{Large Language Models!Grundlagen} sind neuronale Netze, die auf großen Textkorpora\index{Textkorpora!Training} trainiert wurden und menschenähnliche Textgenerierung ermöglichen \cite{OpenAI2024GPT4,touvron2023llama}. Basierend auf der Transformer-Architektur\index{Transformer!Architektur} \cite{vaswani2017attention} nutzen sie Selbstaufmerksamkeits-Mechanismen\index{Self-Attention} (self-attention), um kontextuelle Zusammenhänge über lange Sequenzen hinweg zu erfassen.
+Large Language Models (LLMs)\index{Large Language Models!Grundlagen} sind neuronale Netze, die auf großen Textkorpora\index{Textkorpora!Training} trainiert wurden und menschenähnliche Textgenerierung ermöglichen \cite{OpenAI2024GPT4,touvron2023llama}. Basierend auf der Transformer-Architektur\index{Transformer!Architektur} \cite{vaswani2017attention} nutzen sie Selbstaufmerksamkeits-Mechanismen\index{Self-Attention} (Self-Attention), um kontextuelle Zusammenhänge über lange Sequenzen hinweg zu erfassen.
 
-Moderne LLMs wie GPT-4, Claude oder Llama 2 verfügen über Milliarden von Parametern und können durch \emph{Few-Shot-Learning}\index{Few-Shot-Learning} und \emph{In-Context-Learning}\index{In-Context-Learning} Aufgaben lösen, ohne explizit darauf trainiert zu werden. Dies bildet die Grundlage für agentische Anwendungen\index{Agentische Anwendungen}.
+Moderne LLMs wie GPT-4, Claude 3.5 oder Llama 3 verfügen über Milliarden von Parametern und können durch \emph{Few-Shot-Learning}\index{Few-Shot-Learning} und \emph{In-Context-Learning}\index{In-Context-Learning} Aufgaben lösen, ohne explizit darauf trainiert zu werden. Dies bildet die Grundlage für agentische Anwendungen\index{Agentische Anwendungen}.
 
 \subsection{Von LLMs zu Agenten: Der Paradigmenwechsel}
 
@@ -94,9 +94,9 @@ Die Vorteile umfassen:
   \item Möglichkeit zur Intervention und Korrektur
 \end{itemize}
 
-Grenzen sind längere Latenzen durch zusätzliche LLM-Aufrufe und potentielle Halluzinationen in Reasoning-Traces.
+Grenzen sind längere Latenzen durch zusätzliche LLM-Aufrufe und potentielle Halluzinationen in Reasoning-Schritten.
 
-\textbf{Reflexion} \cite{shinn2023reflexion} erweitert ReAct um Self-Critique: Der Agent bewertet seine eigenen Outputs und lernt aus Fehlern durch Verbal Reinforcement. Dies verbessert die Erfolgsrate bei komplexen Tasks um bis zu \pct{20}.
+\textbf{Reflexion} \cite{shinn2023reflexion} erweitert ReAct um Self-Critique: Der Agent bewertet seine eigenen Outputs und lernt aus Fehlern durch verbale Bestärkung. Dies verbessert die Erfolgsrate bei komplexen Tasks um bis zu \pct{20}.
 
 \subsection{Software Engineering Agents}
 
@@ -117,7 +117,7 @@ Speziell für Software Engineering wurden mehrere agentische Systeme entwickelt:
 
 Mehrere Ansätze nutzen rollenbasierte Kollaboration zwischen spezialisierten Agenten:
 
-\textbf{MetaGPT} \cite{hong2023metagpt} simuliert ein Software-Team mit Rollen wie Product Manager, Architekt, Entwickler und QS. Agents produzieren strukturierte Artefakte (PRDs, Design-Dokumente, Code, Tests) und folgen einem definierten Workflow.
+\textbf{MetaGPT} \cite{hong2023metagpt} simuliert ein Software-Team mit Rollen wie Produktmanager, Architekt, Entwickler und QS. Agents produzieren strukturierte Artefakte (PRDs, Designdokumente, Code, Tests) und folgen einem definierten Workflow.
 
 \textbf{Generative Agents} \cite{park2023generative} fokussierte auf realistische Simulation menschlichen Verhaltens durch episodisches Gedächtnis, Reflexion und Planung. Obwohl primär für Simulationen konzipiert, sind die Gedächtnis-Mechanismen auch für SE-Agents relevant.
 
@@ -187,7 +187,7 @@ Basierend auf der Analyse ergeben sich folgende offene Forschungsfragen und Lüc
 
 \begin{itemize}
   \item \textbf{Fehlende Referenzarchitekturen:} Während Frameworks wie LangChain Bausteine bieten, fehlen validierte End-to-End-Architekturen für SE-Workflows
-  \item \textbf{Tool-Interface-Design:} Unklar ist, wie Tools optimal gestaltet werden sollten (granular vs. high-level, synchron vs. asynchron)
+  \item \textbf{Tool-Interface-Design:} Unklar ist, wie Werkzeugschnittstellen optimal gestaltet werden sollten (granular vs. high-level, synchron vs. asynchron)
   \item \textbf{Gedächtnis-Strategien:} Welche Informationen sollten episodisch vs. semantisch gespeichert werden?
 \end{itemize}
 
@@ -213,7 +213,7 @@ Diese Arbeit adressiert die identifizierten Lücken durch:
 
 \begin{enumerate}
   \item Entwicklung einer dokumentierten Referenzarchitektur für SE-Agents
-  \item Praxisnahe Implementierung mit Tool-Interface-Richtlinien
+  \item Praxisnahe Implementierung mit Werkzeugschnittstellen-Richtlinien
   \item Evaluation anhand realistischer Metriken (Erfolgsrate, Qualität, Kosten, Safety)
   \item Ableitung von Best Practices für Kontextmanagement und Kostenoptimierung
 \end{enumerate}

@@ -14,13 +14,13 @@ Die Kernbeiträge und Ergebnisse werden im Folgenden zusammengefasst.
 
 \textbf{Forschungsfrage 1:} Wie lassen sich robuste Agenten-Policies\index{Agenten-Policies!Robustheit} für SE-Workflows systematisch modellieren\index{Policy-Modellierung}?
 
-Durch Kombination von ReAct-Pattern\index{ReAct!Anwendung} (Reasoning + Acting) mit expliziten Reflexionsmechanismen\index{Reflexionsmechanismen} konnten strukturierte Policies\index{Strukturierte Policies} entwickelt werden, die Planung\index{Planung!in Policies}, Tool-Orchestrierung und Selbstkritik integrieren. Die Evaluation zeigte, dass diese Policies Erfolgsraten von \pct{73} bei Refactoring-Aufgaben\index{Refactoring-Tasks!Erfolgsquote} erreichen \textendash{} signifikant über Baseline-Systemen (\pct{42}--\pct{58}).
+Durch Kombination von ReAct-Pattern\index{ReAct!Anwendung} (Reasoning + Acting) mit expliziten Reflexionsmechanismen\index{Reflexionsmechanismen} konnten strukturierte Strategien\index{Strukturierte Policies} entwickelt werden, die Planung\index{Planung!in Policies}, Werkzeugorchestrierung und Selbstkritik integrieren. Die Evaluation zeigte, dass diese Strategien Erfolgsraten von \pct{73} bei Refactoring-Aufgaben\index{Refactoring-Tasks!Erfolgsquote} erreichen \textendash{} signifikant über Baseline-Systemen (\pct{42}--\pct{58}).
 
-Zentrale Design-Entscheidungen umfassten die Implementierung expliziter Thought-Action-Observation-Schleifen\index{Thought-Action-Observation}, die Transparenz\index{Agent-Transparenz} durch nachvollziehbare Zwischenschritte schaffen. Strukturierte Tool-Schnittstellen\index{Tool-Interfaces!Strukturierung} mit JSON-Schema-Validierung\index{Schema-Validation} gewährleisten typsichere Kommunikation zwischen Komponenten. Das episodische Gedächtnis\index{Episodisches Gedächtnis!Design} ermöglicht Kontextpersistierung\index{Kontext-Persistierung} über Iterationen hinweg und unterstützt damit langfristige, zustandsabhängige Workflows.
+Zentrale Design-Entscheidungen umfassten die Implementierung expliziter Denk-Handlungs-Beobachtungs-Schleifen\index{Thought-Action-Observation}, die Transparenz\index{Agent-Transparenz} durch nachvollziehbare Zwischenschritte schaffen. Strukturierte Werkzeugschnittstellen\index{Tool-Interfaces!Strukturierung} mit JSON-Schema-Validierung\index{Schema-Validation} gewährleisten typsichere Kommunikation zwischen Komponenten. Das episodische Gedächtnis\index{Episodisches Gedächtnis!Design} ermöglicht Kontextpersistierung\index{Kontext-Persistierung} über Iterationen hinweg und unterstützt damit langfristige, zustandsabhängige Workflows.
 
 \textbf{Forschungsfrage 2:} Welche Architekturprinzipien ermöglichen sichere\index{Sicherheit!Architektur} und nachvollziehbare\index{Nachvollziehbarkeit} Tool-Integration\index{Tool-Integration!Sicherheit}?
 
-Die entwickelte Architektur implementiert Defense-in-Depth\index{Defense-in-Depth} durch mehrschichtige Sicherheitsmechanismen. Alle LLM-generierten Tool-Calls unterliegen einer Eingabevalidierung\index{Input-Validation!Tool-Calls}, die schädliche Aufrufe verhindert. Die Sandbox-Ausführung\index{Sandbox!Docker} in isolierten Docker-Containern stellt sicher, dass potenziell gefährlicher Code nicht das Host-System kompromittieren kann. Ein Berechtigungssystem\index{Permissions-System} setzt das Least-Privilege-Prinzip\index{Least-Privilege} durch und beschränkt Zugriffe auf das erforderliche Minimum. Kritische Operationen werden durch Audit-Logging\index{Audit-Logging!Tool-Calls} lückenlos protokolliert. Bei Deployment-kritischen Aktionen greift ein Human-in-the-Loop\index{Human-in-the-Loop}-Mechanismus, der menschliche Bestätigung erfordert.
+Die entwickelte Architektur implementiert Verteidigung in der Tiefe (Defense-in-Depth)\index{Defense-in-Depth} durch mehrschichtige Sicherheitsmechanismen. Alle LLM-generierten Werkzeugaufrufe unterliegen einer Eingabevalidierung\index{Input-Validation!Tool-Calls}, die schädliche Aufrufe verhindert. Die Sandbox-Ausführung\index{Sandbox!Docker} in isolierten Docker-Containern stellt sicher, dass potenziell gefährlicher Code nicht das Host-System kompromittieren kann. Ein Berechtigungssystem\index{Permissions-System} setzt das Prinzip der geringsten Rechte (Least-Privilege)\index{Least-Privilege} durch und beschränkt Zugriffe auf das erforderliche Minimum. Kritische Operationen werden durch Audit-Protokollierung\index{Audit-Logging!Tool-Calls} lückenlos protokolliert. Bei Deployment-kritischen Aktionen greift ein Human-in-the-Loop\index{Human-in-the-Loop}-Mechanismus, der menschliche Bestätigung erfordert.
 
 Sicherheits-Audits\index{Sicherheits-Audits} zeigten \pct{100} Erfolgsrate bei der Abwehr von Prompt-Injection-Angriffen\index{Prompt-Injection} und unautorisiertem Dateizugriff\index{File-Access-Kontrolle}.
 
@@ -29,8 +29,8 @@ Sicherheits-Audits\index{Sicherheits-Audits} zeigten \pct{100} Erfolgsrate bei d
 Ein mehrdimensionales Metriken-Framework wurde entwickelt und validiert:
 
 \begin{description}
-  \item[Funktional:] Task-Erfolgsrate, Test-Erfolgsquote, Lint-Score, Review-Akzeptanz
-  \item[Effizienz:] Token-Verbrauch, API-Kosten, Laufzeit, Anzahl Tool-Aufrufe
+  \item[Funktional:] Aufgabenerfolgsquote, Testbestehensquote, Lint-Bewertung, Review-Akzeptanz
+  \item[Effizienz:] Token-Verbrauch, API-Kosten, Laufzeit, Anzahl Werkzeugaufrufe
   \item[Robustheit:] Fehlerbehebungsrate, Graceful Degradation bei Failures
   \item[Sicherheit:] Policy-Verstöße, Sandbox-Ausbrüche, Zugriffsverweigerungen
 \end{description}
@@ -57,7 +57,7 @@ Vergleiche mit Baseline-Systemen (Naive Prompting, Standard-ReAct) zeigten +31\%
 Diese Arbeit leistet folgende Beiträge zur Spezialisierung \enquote{Software Engineering mit agentic AI}:
 
 \begin{enumerate}
-  \item \textbf{Referenzarchitektur:} Dokumentierte, wiederverwendbare Architektur für agentische SE-Workflows mit klaren Komponenten (Controller, Tool-Registry, Memory-Manager, Safety-Layer) und deren Interaktionen. Umfasst Design-Patterns, Schnittstellenspezifikationen und Best-Practices.
+  \item \textbf{Referenzarchitektur:} Dokumentierte, wiederverwendbare Architektur für agentische SE-Workflows mit klaren Komponenten (Controller, Werkzeugregister, Gedächtnismanager, Sicherheitsschicht) und deren Interaktionen. Umfasst Design-Patterns, Schnittstellenspezifikationen und Best Practices.
   
   \item \textbf{Praxisnahe Implementierung:} Open-Source-Prototyp in Python mit vollständiger Tool-Integration (Linter, Tests, VCS). Inkl. Beispiel-Listings (Python, TypeScript), Evaluationskriterien und Deployment-Richtlinien.
   
@@ -67,7 +67,7 @@ Diese Arbeit leistet folgende Beiträge zur Spezialisierung \enquote{Software En
   
   \item \textbf{Empirische Evidenz:} Validierung anhand 25 realer SE-Tasks zeigt praktische Durchführbarkeit und quantifiziert Verbesserungen (+31\% Erfolgsrate, -40\% Token-Kosten) gegenüber Baselines.
   
-  \item \textbf{Transferierbarkeit:} Architektur ist nicht auf SE beschränkt. Patterns (Sense-Plan-Act-Reflect, Tool-Interfaces, Safety-Layer) übertragbar auf andere Domänen (DevOps, Data Science, QA).
+  \item \textbf{Transferierbarkeit:} Architektur ist nicht auf SE beschränkt. Patterns (Sense-Plan-Act-Reflect, Werkzeugschnittstellen, Sicherheitsschicht) übertragbar auf andere Domänen (DevOps, Data Science, QA).
 \end{enumerate}
 
 \subsection{Wissenschaftlicher Beitrag}
@@ -106,7 +106,7 @@ Trotz der positiven Ergebnisse gibt es folgende Limitierungen, die bei der Inter
   
   \item \textbf{Kontextfenster:} Trotz Optimierung stoßen 128k-Token-Limits bei komplexen Codebasen an Grenzen. RAG/Chunking sind Workarounds, keine Lösungen.
   
-  \item \textbf{Tool-Latenz:} Testläufe dauern Sekunden bis Minuten. Bei vielen Tool-Calls akkumuliert Latenz (Median: 45s für Test-Debugging).
+  \item \textbf{Werkzeuglatenz:} Testläufe dauern Sekunden bis Minuten. Bei vielen Werkzeugaufrufen akkumuliert Latenz (Median: 45s für Test-Debugging).
   
   \item \textbf{Fehlerfortpflanzung:} Frühe Fehler (falsche Diagnose) propagieren durch iterative Loops. Ohne menschliche Aufsicht können Agents „stuck" werden.
 \end{itemize}
@@ -142,13 +142,13 @@ Auf Basis dieser Arbeit ergeben sich mehrere vielversprechende Richtungen für z
 \begin{itemize}
   \item \textbf{Erweiterte Benchmarks:} Evaluation auf SWE-bench (2000+ GitHub Issues) und HumanEval-ähnlichen Datasets für breitere Validierung
   
-  \item \textbf{Mehrsprachenunterstützung:} Aktuell Python-fokussiert. Extension auf Java, TypeScript, Go für breitere Anwendbarkeit
+  \item \textbf{Mehrsprachenunterstützung:} Aktuell Python-fokussiert. Erweiterung auf Java, TypeScript, Go für breitere Anwendbarkeit
   
   \item \textbf{Optimiertes Kontextmanagement:} Hybrid-Strategien (RAG + Summarization + Code-Graph-Navigation) für 1M+ LOC Codebasen
   
-  \item \textbf{Fine-Tuning:} Domänenspezifisches Fine-Tuning auf SE-Tasks könnte Erfolgsraten bei kleineren/günstigeren Modellen verbessern
+  \item \textbf{Fine-Tuning:} Domänenspezifisches Fein-Tuning auf SE-Tasks könnte Erfolgsraten bei kleineren/günstigeren Modellen verbessern
   
-  \item \textbf{Integration von menschlichem Feedback:} RLHF-ähnliche Ansätze für kontinuierliches Lernen aus Entwicklerkorrekturen
+  \item \textbf{Integration menschlichen Feedbacks:} RLHF-ähnliche Ansätze für kontinuierliches Lernen aus Entwicklerkorrekturen
 \end{itemize}
 
 \subsection{Mittel- bis langfristige Forschungsrichtungen}
@@ -158,13 +158,13 @@ Auf Basis dieser Arbeit ergeben sich mehrere vielversprechende Richtungen für z
   
   \item \textbf{Kontinuierliches Lernen:} Agents lernen aus Projekt-Historie, Team-Patterns, Codebasis-Konventionen. Episodisches Gedächtnis als Trainingsdaten-Quelle.
   
-  \item \textbf{Formale Verifikation:} Integration formaler Methoden (Typprüfung, SMT-Solving, Symbolische Ausführung) für sicherheitskritischen Code.
+  \item \textbf{Formale Verifikation:} Integration formaler Methoden (Typprüfung, SMT-Solving, symbolische Ausführung) für sicherheitskritischen Code.
   
-  \item \textbf{IDE-Integration:} Deep Integration in VS Code, IntelliJ als Co-Pilot++ mit direktem Workspace-Zugriff und Echtzeitvorschlägen.
+  \item \textbf{IDE-Integration:} Tiefe Integration in VS Code, IntelliJ als Co-Pilot++ mit direktem Arbeitsbereichszugriff und Echtzeitvorschlägen.
   
   \item \textbf{Hybride Mensch-Agent-Workflows:} Optimale Arbeitsteilung: Was automatisieren? Wo menschliche Expertise essential? Tooling für effiziente Delegation und Review.
   
-  \item \textbf{Kosten-Nutzen-Optimierung:} Automatische Entscheidung wann Agent, wann Mensch basierend auf Task-Komplexität, Deadline, Budgetbeschränkungen.
+  \item \textbf{Kosten-Nutzen-Optimierung:} Automatische Entscheidung wann Agent, wann Mensch basierend auf Aufgabenkomplexität, Deadline, Budgetbeschränkungen.
 \end{itemize}
 
 \subsection{Offene Forschungsfragen}
