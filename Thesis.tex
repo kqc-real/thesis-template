@@ -25,6 +25,26 @@
 \input{preambel/settings}
 \input{preambel/preambel}
 
+% Setzt das Zugriffsdatum (urldate) automatisch auf das aktuelle Kompilierdatum (ISO-Format)
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map[overwrite]{
+      \pertype{online}
+      \pertype{misc}
+      \pertype{software}
+      \step[fieldset=urldate, fieldvalue=\the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day]
+    }
+    % Entfernt redundante "Accessed:"-Einträge aus dem note-Feld automatisch
+    \map{
+      \step[fieldsource=note, match=\regexp{Accessed:}, final]
+      \step[fieldset=note, null]
+    }
+  }
+}
+
+% "Besucht am" im Literaturverzeichnis immer kleinschreiben (erzwingt Kleinschreibung auch nach Punkt)
+\DeclareFieldFormat{urldate}{\mkbibparens{besucht am\space#1}}
+
 %% Metadaten der Arbeit ====================================================
 %% Bitte alle Felder ausfüllen für korrekte Anzeige im PDF
 \author{Maria Musterfrau}
