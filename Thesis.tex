@@ -69,6 +69,12 @@
 \tableofcontents
 \cleardoublepage
 
+% Abbildungs- und Tabellenverzeichnis
+\listoffigures
+\listoftables
+\lstlistoflistings
+\cleardoublepage
+
 % Abkürzungsverzeichnis
 \input{content/00_Abkuerzungen}
 \cleardoublepage
@@ -95,12 +101,6 @@
 % Print the generated index (imakeidx handles columns)
 \printindex
 \IfDefined{printnomenclature}{\printnomenclature{}}
-% 'Symbolverzeichnis' ins Inhaltsverzeichnis
-\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
-% Abbildungs- und Tabellenverzeichnis
-\listoffigures
-\listoftables
-\lstlistoflistings
 % Anhang
 \appendix
 
