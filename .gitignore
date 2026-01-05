@@ -1,26 +1,34 @@
 # OS
 .DS_Store
+Thumbs.db
 
 # Jetbrains
 .idea
 
+# Editors
+*.swp
+*~
+*.bak
+
 # Generated LaTeX files
+*.pdf
 *.aux
 *.bbl
 *.blg
 *.bcf
 *.idx
+*.ind
+*.ilg
 *.lof
 *.log
 *.lol
 *.lot
 *.nlo
+*.nls
 *.out
+*.run.xml
 *.synctex.gz
+*.synctex
 *.toc
 *.fdb_latexmk
 *.fls
-*.ind
-*.ilg
-*.nls
-*.run.xml

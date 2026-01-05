@@ -1,642 +1,150 @@
 # LaTeX-Vorlage für wissenschaftliche Abschlussarbeiten
-# Thesis Template
 
-Professionelle LaTeX-Vorlage für Bachelor- und Masterarbeiten im deutschsprachigen Raum. Optimiert für Qualität, Lesbarkeit und Einhaltung akademischer Konventionen.
-Eine LaTeX-Vorlage für akademische Abschlussarbeiten (Bachelor/Master), optimiert für Software Engineering Themen.
+Diese Vorlage bietet ein professionelles LaTeX-Setup für Bachelor- und Masterarbeiten im deutschsprachigen Raum. Sie ist nach akademischen und typografischen Konventionen optimiert und besonders für MINT-Themen geeignet.
 
 ## Inhaltsverzeichnis
 
-1. [Für LaTeX-Anfänger:innen](#-für-latex-anfängerinnen-die-ersten-5-minuten)
-2. [Projektstruktur](#projektstruktur)
-3. [Voraussetzungen](#voraussetzungen)
-4. [Kompilierung](#kompilierung)
-5. [Anpassung](#anpassung)
-6. [WICHTIG: build.sh](#️-wichtig-buildsh--bedeutung--nutzung)
-7. [Features & Highlights](#features--highlights)
-8. [Anforderungen](#anforderungen)
-9. [Schnelleinstieg](#schnelleinstieg-für-anfänger)
-10. [Verzeichnisstruktur](#verzeichnisstruktur)
-11. [Häufige Anpassungen](#häufige-anpassungen-für-anfängerinnen)
-12. [Best Practices](#best-practices)
-13. [Git-Workflow](#git-workflow-für-ihre-thesis)
-14. [Troubleshooting](#troubleshooting-für-anfängerinnen)
-15. [Nächste Schritte](#nächste-schritte)
-16. [KI-generierte Darstellungen](#-ki-generierte-darstellungen-der-thesis)
-17. [Lizenz](#lizenz)
-18. [Beiträge](#beiträge)
-19. [Danksagung](#danksagung)
+1. Features
+2. Voraussetzungen
+3. Schnelleinstieg
+4. Kompilierung
+5. Verwendung
+6. Projektstruktur
+7. Häufige Anpassungen
+8. Troubleshooting
+9. Lizenz
 
-## 🚀 Für LaTeX-Anfänger:innen: Die ersten 5 Minuten
+## Features
 
-Noch nie LaTeX benutzt? Kein Problem! Diese Sektion erklärt alles in einfachen Worten.
+- **Vorkonfiguriertes Layout:** Optimiert für Abschlussarbeiten (Bachelor/Master) mit KOMA-Script (`scrreprt`).
+- **Typografie:** Sauberer Satzspiegel, deutsche Typografie (ngerman) oder Englisch.
+- **Struktur:** Modulare Kapitel in `content/`, saubere Trennung von Inhalt und Logik.
+- **MINT-Support:** Optimiert für Bilder, Tabellen, Code-Listings und TikZ.
+- **Automatisierung:** `build.sh` Skript für einfache Kompilierung.
+- **KI-Deklaration:** Vorbereitete Vorlagen für die Deklaration von KI-Hilfsmitteln (gemäß DFG-Empfehlungen).
 
-### Was ist LaTeX überhaupt?
-
-Stellen Sie sich vor: Sie schreiben ein Essay in Word, formatieren alles per Hand (Schriftgröße, Abstände, Seitennummern), und plötzlich ändert sich etwas — alles muss neu formatiert werden.
-
-**LaTeX ist anders:** Sie schreiben normal, und die Software kümmert sich um die schöne Formatierung. Beispiel:
-
-```tex
-\chapter{Einführung}
-Dies ist mein erstes Kapitel.
-\section{Motivation}
-Ein wichtiger Punkt ist...
-```
 ## Voraussetzungen
 
-↓ (LaTeX verarbeitet das) ↓
-*   Aktuelle LaTeX-Distribution (z. B. TeX Live, MacTeX oder MiKTeX).
-*   **Biber** Backend für die Bibliographie-Verarbeitung (wird mit `biblatex` verwendet).
+- **LaTeX-Distribution:**
+  - macOS: MacTeX (`brew install --cask mactex-no-gui`)
+  - Windows: MiKTeX oder TeX Live
+  - Linux: TeX Live (`sudo apt install texlive-full`)
+- **Editor (Empfohlen):** VS Code mit der Extension **LaTeX Workshop**.
+- **Tools:** `biber` (für Literaturverzeichnisse, meist in TeX Live enthalten).
 
-**PDF mit:**
-- Automatisch nummerierten Kapiteln
-- Schönen Abständen und Schriftgrößen
-- Automatischem Inhaltsverzeichnis
-- Professionellem Aussehen (ohne dass Sie was daran drehen!)
-## Kompilierung
+## Schnelleinstieg
 
-**Warum ist das nützlich?**
-- ✅ Fokus auf **Inhalt**, nicht auf Formatierung
-- ✅ Professionelles Aussehen **garantiert**
-- ✅ Wissenschaftliche Formeln, Tabellen, Zitate **kinderleicht**
-- ✅ Lange Arbeiten (80+ Seiten) **kein Problem**
-Um das vollständige Dokument mit Literaturverzeichnis und Verweisen zu erstellen, führen Sie folgende Befehle aus:
+### 1. Projekt herunterladen
 
-### Was brauche ich zum Starten?
-1.  `pdflatex Thesis`
-2.  `biber Thesis`
-3.  `pdflatex Thesis`
-4.  `pdflatex Thesis`
-
-Drei Dinge:
-## Anpassung
-
-1. **TeX Live** (die LaTeX-Software) — Kostenlos
-2. **VS Code** (der Editor) — Kostenlos  
-3. **LaTeX Workshop Extension** (VS Code Plugin) — Kostenlos
-
-Das war's! Danach schreiben Sie in VS Code, speichern, und das PDF wird automatisch erstellt.
-
-**Zeitaufwand für Setup:** 10 Minuten
-
-### LaTeX in VS Code einrichten
-
-**Schritt-für-Schritt-Anleitung (auch für absolute Anfänger:innen):**
-
-#### 1️⃣ TeX Live installieren (5 Min)
-
-**macOS (Terminal öffnen und kopieren):**
-
-```bash
-brew install --cask mactex-no-gui
-```
-
-**Linux (Ubuntu/Debian):**
-
-```bash
-sudo apt-get update && sudo apt-get install texlive-full
-```
-
-**Windows:**
-
-- Gehen Sie zu: [TeX Live Windows](https://www.tug.org/texlive/windows.html)
-- Laden Sie `install-tl-windows.exe` herunter
-- Starten Sie die Datei und folgen Sie der Installation
-- Bestätigen Sie alle Fragen mit "Ja"
-
-> **Was passiert hier?** TeX Live ist die LaTeX-Software. Sie wird installiert, damit VS Code PDFs aus Ihrem LaTeX-Code erstellen kann.
-
-#### 2️⃣ VS Code installieren und öffnen
-
-- Download: [Visual Studio Code](https://code.visualstudio.com)
-- Installieren und öffnen
-
-#### 3️⃣ LaTeX Extension hinzufügen
-
-1. Öffnen Sie VS Code
-2. Klicken Sie links auf das **Extensions-Icon** (4 Quadrate)
-3. Suchen Sie nach `LaTeX Workshop`
-4. Klicken Sie auf **"Install"**
-
-Das war's! Der Automat läuft jetzt.
-
-#### ✅ Test: Funktioniert alles?
-
-1. Öffnen Sie die Vorlage in VS Code: `Datei` → `Ordner öffnen` → `thesis-template`
-2. Öffnen Sie `Thesis.tex`
-3. Drücken Sie `Cmd+S` (Mac) oder `Ctrl+S` (Windows/Linux)
-4. Warten Sie 10 Sekunden...
-5. Ein PDF sollte auf der rechten Seite erscheinen
-
-Wenn ja: **Herzlichen Glückwunsch!** Sie können jetzt LaTeX nutzen. 🎉
-
-Wenn nein: Siehe Abschnitt "Troubleshooting" unten.
-
-## ⚙️ WICHTIG: `build.sh` — Bedeutung & Nutzung
-
-Die Vorlage enthält ein kleines, zuverlässiges Build-Skript namens `build.sh`, das alle notwendigen Schritte automatisch ausführt, um die PDF-Ausgabe vollständig und konsistent zu erzeugen.
-
-- **Wozu dient `build.sh`?**
-   - Es automatisiert die mehrstufige Kompilierung, die LaTeX für Kapitel-, Verzeichnis- und Literaturverweise benötigt.
-   - Konkret führt es nacheinander aus: `pdflatex`, `biber`, `pdflatex`, `pdflatex` — damit alle Referenzen, das Literaturverzeichnis und Inhaltsverzeichnisse korrekt erstellt werden.
-
-- **Vorteile**
-   - Ein Kommando statt mehrere komplexe Schritte.
-   - Vermeidet häufige Fehler (fehlende `.bcf`/`.bbl`, unvollständige Verzeichnisse).
-   - Reproduzierbarer, einfacher Workflow für Anfänger:innen und Reviewer.
-
-- **Voraussetzungen**
-   - Installiertes TeX-System (z. B. TeX Live oder MiKTeX)
-   - `biber` ist für die Literaturverarbeitung installiert (wird durch TeX Live üblicherweise mitgeliefert)
-   - `build.sh` ist ausführbar (falls nicht: `chmod +x build.sh`)
-
-- **Einfacher Gebrauch**
-   - Im Terminal im Projekt-Ordner ausführen:
-
-```bash
-./build.sh
-```
-
-   - Am Ende sehen Sie `✅ Build erfolgreich! Thesis.pdf wurde erstellt.` und die Datei `Thesis.pdf` im Projekt-Root.
-
-- **Wenn etwas schiefgeht (Troubleshooting)**
-   - Fehler: `ERROR - Cannot find 'Thesis.bcf'!` oder `Cannot find Thesis.bcf` —
-      - Ursache: Die `.bcf`-Datei, die `biber` benötigt, wurde nicht korrekt erzeugt. Lösung:
-         1. Stellen Sie sicher, dass `pdflatex Thesis.tex` zuvor ohne Abbruch gelaufen ist (erstellt `.bcf`).
-         2. Führen Sie manuell aus:
-
-```bash
-pdflatex Thesis.tex
-biber Thesis
-pdflatex Thesis.tex
-pdflatex Thesis.tex
-```
-
-      - Wenn das funktioniert, prüfen Sie, ob `build.sh` ausführbar ist und starten Sie es erneut.
-   - Andere Probleme: Prüfen Sie `Thesis.log` und die Ausgabe in Ihrem Terminal bzw. im VS Code "Problems"-Panel.
-
-- **Sauber machen (optional)**
-   - Zwischenstände und temporäre Dateien können Sie mit folgendem Befehl entfernen (vorsichtig verwenden):
-
-```bash
-rm -f *.aux *.bbl *.bcf *.blg *.toc *.lof *.lot *.idx *.ilg *.ind *.out
-```
-
-   - Danach `./build.sh` erneut ausführen.
-
-Hinweis: `build.sh` ist bewusst einfach gehalten und funktioniert in den meisten lokalen Setups; für CI/CD-Pipelines oder spezielle TeX-Umgebungen können Sie die Schritte aus dem Skript bei Bedarf anpassen.
-
-### Wie benutze ich die Vorlage jetzt?
-
-### Workflow in VS Code
-
-1. **Projekt öffnen:** `Datei` → `Ordner öffnen` → `thesis-template` wählen
-2. **Hauptdatei öffnen:** `Thesis.tex` (Doppelklick)
-3. **Ihre Metadaten eintragen:** Zeilen 31-37 ausfüllen (Ihr Name, Titel etc.)
-4. **Inhalt bearbeiten:** In den Dateien unter `content/` schreiben
-5. **Speichern:** `Cmd+S` (Mac) oder `Ctrl+S` (Windows/Linux)
-   - ✅ LaTeX Workshop kompiliert **automatisch im Hintergrund**
-   - ✅ PDF wird **rechts angezeigt** (oder klicken Sie auf PDF-Icon oben rechts)
-6. **Das war's!** Beim nächsten Speichern wird alles automatisch aktualisiert
-
-**Tipp:** Wenn ein Fehler auftritt:
-
-- Schauen Sie unten im "Problems"-Panel
-- Klicken Sie auf die Fehlermeldung → springt zur fehlerhaften Zeile
-- Lesen Sie die Fehlermeldung (meist selbsterklärend)
-
-## Features & Highlights
-
-Die Vorlage ist **produktionsreif** für Bachelor- und Masterarbeiten:
-
-✅ **Alles ist vorkonfiguriert**
-
-- Keine komplizierte LaTeX-Konfiguration nötig
-- Einfach ausfüllen und losschreiben
-- Funktioniert sofort (Out-of-the-box)
-
-✅ **Deutsche Konventionen**
-
-- Neue Rechtschreibung (ngerman)
-- Korrekte deutsche Abstände und Anführungszeichen
-- Typografische Regeln eingebaut
-
-✅ **Saubere Struktur**
-
-- Kapitel in separaten Dateien (einfach zu organisieren)
-- Bilder, Tabellen, Code-Listings professionell formatiert
-- Literaturverzeichnis automatisch erstellt
-
-✅ **Moderne Features**
-
-- Farbige Tabellenköpfe (mattes Blau)
-- Syntax-Highlighting für Code (Python, TypeScript etc.)
-- TikZ-Diagramme vorbereitet
-- Mathematische Formeln einfach einzufügen
-
-## Anforderungen
-
-Alles Wichtige ist bereits vorinstalliert, wenn Sie den Setup-Anleitung oben folgen:
-
-- **TeX Live 2024+** (oder MikTeX) — Die LaTeX-Software
-- **VS Code** — Der Editor
-- **LaTeX Workshop Extension** — Das VS Code Plugin
-
-Das war's. Keine weiteren Abhängigkeiten nötig!
-
-## Schnelleinstieg für Anfänger
-
-### Haben Sie TeX Live + VS Code bereits installiert?
-
-**Ja?** → Zu Schritt 2 springen
-
-**Nein?** → Folgen Sie der Setup-Anleitung oben (5 Minuten)
-
-### 1. Die Vorlage herunterladen
-
-Option A: **Mit Git** (empfohlen):
-
+Mit Git:
 ```bash
 git clone https://github.com/kqc-real/thesis-template.git
 cd thesis-template
 ```
 
-Option B: **Ohne Git** (manuell):
+Alternativ: Als ZIP herunterladen und entpacken.
 
-- Besuchen Sie: [GitHub Repo](https://github.com/kqc-real/thesis-template)
-- Klicken Sie auf grünen **Code** Button
-- Wählen Sie **"Download ZIP"**
-- Entpacken Sie die ZIP-Datei auf Ihrem Computer
+### 2. In VS Code öffnen
 
-### 2. Projekt in VS Code öffnen
+1. VS Code starten.
+2. `Datei` → `Ordner öffnen...` → `thesis-template` auswählen.
+3. Die Datei `Thesis.tex` öffnen.
 
-1. Öffnen Sie VS Code
-2. `Datei` → `Ordner öffnen`
-3. Wählen Sie den Ordner `thesis-template`
-4. Öffnen Sie die Datei `Thesis.tex` (Doppelklick)
+## Kompilierung
 
-### 3. Metadaten eintragen
+### Automatisch (Empfohlen)
 
-Öffnen Sie `Thesis.tex` und suchen Sie die Metadaten-Sektion:
+Das Skript `build.sh` automatisiert die notwendigen Schritte (pdflatex → biber → pdflatex), um Querverweise und das Literaturverzeichnis korrekt zu erstellen.
 
-```tex
-%% Metadaten der Arbeit
-\author{Maria Musterfrau}           % ← Ihr Name
-\studentID{1234567}                 % ← Ihre Matrikelnummer
-\studentAddress{Straße 1, 12345 Stadt} % ← Ihre Adresse
-\thesis{Bachelor-Thesis}            % ← Art der Arbeit
-\title{Ihr Thesis-Titel hier...}    % ← Ihr Titel
-\academicTitle{Bachelor of Science} % ← Ihr Abschluss
-\firstReferee{Prof. Dr. Name}       % ← 1. Betreuer
-\secondReferee{Prof. Dr. Name}      % ← 2. Betreuer
+#### Optionen
+- `./build.sh`: Standard-Kompilierung.
+- `./build.sh clean`: Entfernt temporäre Dateien (build/, *.aux, *.log usw.).
+
+*Falls das Skript nicht ausführbar ist:*
+```bash
+chmod +x build.sh
+./build.sh
 ```
 
-Ersetzen Sie die Platzhalter mit Ihren Daten.
+### Manuell
 
-### 4. Anfangen zu schreiben
+Falls das Skript nicht genutzt werden kann, führen Sie folgende Befehle nacheinander aus:
 
-Die Kapitel sind in `content/` organisiert:
+```bash
+pdflatex Thesis.tex
+biber Thesis
+pdflatex Thesis.tex
+pdflatex Thesis.tex
+```
 
-- `00_Abstract.tex` — Kurzfassung (150-250 Wörter)
-- `01_Einfuehrung.tex` — Einführung + Motivation
-- `02_Hintergrund.tex` — Theoretischer Hintergrund
-- `03_Konzept.tex` — Ihr Konzept/Ansatz
-- `04_Realisierung.tex` — Implementierung + Ergebnisse
-- `05_Abschluss.tex` — Fazit + Ausblick
+## Verwendung
 
-Öffnen Sie eine Datei, schreiben Sie Ihren Text, speichern Sie (`Cmd+S` / `Ctrl+S`), und das PDF wird **automatisch aktualisiert**.
+### Metadaten anpassen
 
-### 5. Bilder und Literatur hinzufügen
+Öffnen Sie `Thesis.tex` und passen Sie die Variablen am Anfang der Datei an:
 
-**Bilder:**
+```tex
+% Metadaten der Arbeit
+\author{Max Mustermann}
+\studentID{1234567}
+\studentAddress{Musterstraße 1, 12345 Musterstadt}
+\thesis{Bachelor-Thesis}
+\title{Titel der Arbeit}
+\academicTitle{Bachelor of Science}
+\firstReferee{Prof. Dr. A. Müller}
+\secondReferee{Prof. Dr. B. Schmidt}
+```
 
-- Legen Sie Bilder in den `images/` Ordner
-- Referenzieren Sie sie im Text:
+### Inhalt schreiben
+
+Der Inhalt liegt im Ordner `content/`. Jedes Kapitel hat eine eigene `.tex`-Datei (z. B. `01_Einfuehrung.tex`).
+Diese werden in `Thesis.tex` mittels `\input{content/...}` eingebunden.
+
+### Bilder einfügen
+
+Bilder im Ordner `images/` ablegen:
 
 ```tex
 \begin{figure}[ht]
-\centering
-\includegraphics[width=0.8\textwidth]{images/mein-diagramm.png}
-\caption{Beschreibung der Abbildung}
-\label{fig:mein-diagramm}
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/diagramm.png}
+  \caption{Beschriftung des Diagramms}
+  \label{fig:diagramm}
 \end{figure}
 ```
 
-**Literatur:**
+### Literatur zitieren
 
-- Öffnen Sie `bib/BibtexDatabase.bib`
-- Fügen Sie Quellen hinzu (siehe Beispiele in der Datei)
-- Im Text zitieren: `\cite{musterautor2025}`
+1. Literaturquellen in `bib/BibtexDatabase.bib` im BibTeX-Format eintragen.
+2. Im Text zitieren: `\cite{key}` oder `\textcite{key}`.
 
-Das war's!
-
-## Verzeichnisstruktur
+## Projektstruktur
 
 ```text
 thesis-template/
-├── Thesis.tex                   # Hauptdatei
-├── build.sh                     # Build-Skript
-├── preambel/
-│   ├── settings.tex             # KOMA-Script Konfiguration
-│   ├── preambel.tex             # Paket-Definitionen
-│   ├── preambel-commands.tex    # LaTeX-Befehle
-│   ├── Fonts.tex                # Schriftarten-Auswahl
-│   ├── Hyphenation.tex          # Deutsche Silbentrennung
-│   └── (Fonts.tex)              # Schriftarten-Alternativen
-│   └── Hyphenation.tex          # Deutsche Silbentrennung
-├── content/
-│   ├── 00_Titel.tex             # Titelseite
-│   ├── 00_Abstract.tex          # Abstract/Kurzfassung
-│   ├── 00_Abkuerzungen.tex      # Abkürzungsverzeichnis
-│   ├── 00_KIErklaerung.tex      # KI-Erklärung
-│   ├── 01_Einfuehrung.tex       # Kapitel: Einführung
-│   ├── 02_Hintergrund.tex       # Kapitel: Theoretischer Hintergrund
-│   ├── 03_Konzept.tex           # Kapitel: Konzept/Methode
-│   ├── 04_Realisierung.tex      # Kapitel: Implementierung/Ergebnisse
-│   ├── 05_Abschluss.tex         # Kapitel: Fazit/Ausblick
-│   └── Z-Anhang.tex             # Anhang: KI-Nutzung
-├── docs/                        # KI-generierte Artefakte
-│   ├── Audio-Podcast.m4a        # Podcast
-│   ├── Video-Podcast.mp4        # Podcast
-│   ├── Folien-Präsentation.pdf  # Präsentationsfolien
-│   ├── Mind-Map.png             # Strukturübersicht
-│   └── Poster.png               # Visuelle Zusammenfassung
-├── bib/
-│   ├── BibtexDatabase.bib       # Literaturquellen
-│   └── bst/
-│       └── alphadin.bst         # BibTeX-Stil (optional)
-├── images/                      # Abbildungen eingebunden
-├── macros/
-│   ├── newcommands.tex          # Neue Befehle
-│   └── TableCommands.tex        # Tabellen-Befehle
-├── tabellen/
-│   └── LongtableBeispiel.tex    # Beispiel für mehrseitige Tabellen
-├── .gitignore                   # Git-Ignorliste
-├── LICENSE                      # MIT-Lizenz
-└── README.md                    # Diese Datei
+├── Thesis.tex          # Hauptdatei (Einstiegspunkt)
+├── Thesis.pdf          # Beispiel-Ausgabe
+├── build.sh            # Kompilierungs- und Clean-Skript
+├── content/            # Inhalt (Kapitel)
+├── preambel/           # LaTeX-Einstellungen & Pakete
+├── bib/                # Literaturdatenbank (.bib)
+├── images/             # Abbildungen
+├── macros/             # Eigene Makros/Befehle
+└── docs_KI_GENERIERT/  # Optional: generierte Zusatzdokumentation
 ```
 
-## Häufige Anpassungen (für Anfänger:innen)
+## Häufige Anpassungen
 
-### Ich will in Englisch die Arbeit schreiben
+- **Sprache ändern:** In `Thesis.tex` die Zeile `\def\lang{ngerman}` zu `\def\lang{english}` ändern.
+- **Schriftart:** In `preambel/Fonts.tex` können alternative Schriftarten (z. B. Palatino, Times) aktiviert werden.
 
-Öffnen Sie `Thesis.tex`, Spracheinstellung:
+## Troubleshooting
 
-```tex
-\def\lang{english}
-```
-
-Speichern → PDF wird automatisch auf Englisch neu erstellt (Abstände, Wörter etc.)
-
-### Andere Schriftart verwenden
-
-Öffnen Sie `preambel/Fonts.tex` und kommentieren Sie andere Optionen aus/ein.
-
-Beispiele sind bereits vorhanden (Palatino, Times, etc.)
-
-### Das Layout anpassen
-
-Wenn Sie größere/kleinere Abstände brauchen, fragen Sie einen erfahrenen LaTeX-Nutzer oder suchen Sie "KOMA-Script Dokumentation" online.
-
-## Best Practices
-
-### Dateiorganisation
-
-- Eine `.tex`-Datei pro Kapitel
-- Bilder in `images/` mit sprechenden Namen
-- Tabellen in `tabellen/` auslagern
-- Eine `BibtexDatabase.bib` für alle Quellen
-
-### Typografische Regeln
-
-- Keine manuellen Zeilenumbrüche (`\\`)
-- `~` für geschützte Leerzeichen (z.B. `Abb.~\ref{fig:example}`)
-- `\textit{}` für Hervorhebung (nicht `\_`)
-- `\cite{}` für Zitate (nicht inline)
-
-### Quellenangaben
-
-Nutzen Sie etablierte Formate:
-
-- Bücher: `@book`
-- Zeitschriften: `@article`
-- Konferenzen: `@inproceedings`
-- Websites: `@misc` mit `howpublished = {\url{...}}`
-
-### Git-Workflow
-
-```bash
-# Regelmäßig committen
-git add content/
-git commit -m "Kapitel 1: Einführung überarbeitet"
-
-# Generierte Dateien ignorieren
-# (.gitignore ist bereits konfiguriert)
-```
-
-## Git-Workflow für Ihre Thesis
-
-### 1. Repository forken
-
-- Gehen Sie zu [thesis-template](https://github.com/kqc-real/thesis-template)
-- Klicken Sie auf den Button **"Fork"** oben rechts, um das Repository in Ihr GitHub-Konto zu kopieren.
-
-### 2. Eigenes Repository klonen
-
-- Öffnen Sie Ihr Terminal und führen Sie den folgenden Befehl aus:
-
-```bash
-# Ersetzen Sie <Ihr-GitHub-Username> durch Ihren GitHub-Benutzernamen
-# und <Ihr-Repo-Name> durch den Namen Ihres geforkten Repositories
-
-git clone https://github.com/<Ihr-GitHub-Username>/thesis-template.git
-cd thesis-template
-```
-
-### 3. In VS Code importieren
-
-- Öffnen Sie VS Code.
-- Wählen Sie `Datei` → `Ordner öffnen` und wählen Sie den Ordner `thesis-template` aus.
-
-### 4. Schreiben Sie Ihre Thesis
-
-- Bearbeiten Sie die Dateien in `content/` und fügen Sie Ihre Inhalte hinzu.
-- Speichern Sie Ihre Änderungen (`Cmd+S` / `Ctrl+S`), und das PDF wird automatisch aktualisiert.
-
-## Kompilierung: So füllen Sie alle Verzeichnisse korrekt
-
-LaTeX benötigt **mehrere Durchläufe**, um alle Verzeichnisse (Inhaltsverzeichnis, Tabellen, Abbildungen, Literatur) korrekt zu füllen. 
-
-### In VS Code (Automatisch - Empfohlen)
-
-LaTeX Workshop kompiliert automatisch beim Speichern, aber nicht immer oft genug. Wenn Verzeichnisse leer sind:
-
-1. Speichern Sie die Datei **3-4 Mal hintereinander** (`Cmd+S` / `Ctrl+S`)
-2. Warten Sie jeweils ~10 Sekunden zwischen den Speichervorgängen
-3. Alle Verzeichnisse sollten jetzt gefüllt sein
-
-### Im Terminal (Manuell - Volle Kontrolle)
-
-Für **garantiert vollständige** Verzeichnisse und Literatur:
-
-```bash
-cd /pfad/zu/thesis-template
-
-# Schritt 1: Erste Kompilierung (erstellt .aux, .toc, .lot, .lof Dateien)
-pdflatex Thesis.tex
-
-# Schritt 2: Literatur verarbeiten (nur wenn Sie Zitate haben)
-biber Thesis
-
-# Schritt 3: Zweite Kompilierung (integriert Literaturverzeichnis)
-pdflatex Thesis.tex
-
-# Schritt 4: Dritte Kompilierung (aktualisiert alle Verzeichnisse und Referenzen)
-pdflatex Thesis.tex
-```
-
-**Ergebnis:** Thesis.pdf mit vollständig gefüllten Verzeichnissen (Inhalt, Tabellen, Abbildungen, Literatur).
-
-### Warum mehrere Durchläufe?
-
-- **1. Durchlauf:** LaTeX sammelt alle Kapitel, Tabellen, Abbildungen und schreibt sie in Hilfsdateien (.toc, .lot, .lof)
-- **2. Durchlauf:** LaTeX liest diese Hilfsdateien und baut die Verzeichnisse
-- **3. Durchlauf:** LaTeX aktualisiert alle Seitenzahlen und Querverweise
-
-**Faustregel:** Nach größeren Änderungen (neue Kapitel, Tabellen, Abbildungen) → 3× kompilieren
-
-## Troubleshooting (für Anfänger:innen)
-
-### Problem: "Ich sehe kein PDF nach Speichern"
-
-**Mögliche Ursachen:**
-
-1. **TeX Live ist nicht installiert** → Siehe Setup-Anleitung oben
-2. **LaTeX Workshop ist nicht installiert** → Installieren Sie es (Abschnitt "LaTeX in VS Code einrichten")
-3. **Sie haben eine Fehler-Syntax in der `.tex`-Datei** → Schauen Sie in die "Problems" Panel unten
-
-**Lösung:**
-
-- Schauen Sie unten im "Problems"-Panel (rot/gelb Warnungen)
-- Klicken Sie auf eine Warnung → VS Code springt zur fehlerhaften Zeile
-- Beheben Sie das Problem (Tippfehler, `\` vergessen etc.)
-- Speichern Sie nochmal
-
-### Problem: "Inhaltsverzeichnis / Tabellenverzeichnis ist leer"
-
-**Ursache:** LaTeX braucht mehrere Durchläufe, um Verzeichnisse zu füllen.
-
-**Lösung:**
-
-1. Speichern Sie die Datei **3× hintereinander** (`Cmd+S`)
-2. Warten Sie jeweils ~10 Sekunden
-3. Verzeichnisse sollten jetzt gefüllt sein
-
-**Alternative (Terminal):**
-
-```bash
-pdflatex Thesis.tex && pdflatex Thesis.tex && pdflatex Thesis.tex
-```
-
-### Problem: "Fehler: Undefined control sequence"
-
-Das bedeutet: Sie haben einen Befehl geschrieben, den LaTeX nicht kennt.
-
-**Häufige Fehler:**
-
-- `\textbf{fett}` statt `\textbf fett` (Klammern vergessen)
-- `\chapter{Titel}` aber nicht in Hauptdatei (muss in `Thesis.tex` sein)
-
-Schauen Sie im Problems-Panel, welche Zeile der Fehler ist, und überprüfen Sie die Syntax.
-
-### Problem: "Literatur wird nicht angezeigt"
-
-Das ist normal! LaTeX benötigt Zeit für die Verarbeitung.
-
-**Lösung:**
-
-- Warten Sie 30 Sekunden
-- Speichern Sie die Datei nochmal (`Cmd+S`)
-- Wenn immer noch nicht: Schauen Sie, ob `bib/BibtexDatabase.bib` Einträge hat
-
-### Problem: "TeX Live hat sich nicht installiert"
-
-**Für macOS:**
-
-Öffnen Sie Terminal und versuchen Sie:
-
-```bash
-brew --version
-```
-
-Wenn das nicht funktioniert: [Homebrew installieren](https://brew.sh)
-
-Dann nochmal:
-
-```bash
-brew install --cask mactex-no-gui
-```
-
-**Für Windows:**
-
-- Laden Sie TeX Live direkt herunter (nicht über Homebrew)
-- Gehen Sie zu: [TeX Live Download](https://www.tug.org/texlive/windows.html)
-
-## Nächste Schritte
-
-### Sie haben Ihre Thesis fertig geschrieben?
-
-1. **PDF exportieren:** Das PDF ist bereits erstellt (im Root-Verzeichnis sichtbar)
-2. **Speichern:** `Cmd+S` ein letztes Mal
-3. **PDF speichern:** Machen Sie einen Rechtsklick auf das PDF → "Speichern unter" → auf Ihren Computer
-
-### Sie brauchen Hilfe?
-
-**Fragen zur Vorlage:**
-
-- Schauen Sie in [GitHub Issues](https://github.com/thm-mni-ii/thesis-template/issues)
-- Oder erstellen Sie eine neue Issue
-
-**LaTeX-Fragen allgemein:**
-
-- [TeXStackExchange](https://tex.stackexchange.com) (englisch)
-- Google: "LaTeX [Ihr Problem]"
-
-**Deutsche Hochschul-Richtlinien:**
-
-- Fragen Sie Ihre Hochschule nach Thesis-Richtlinien (Formatierung, Seitenzahlen etc.)
-- Die Vorlage ist allgemein gehalten und sollte passen
-
-## 🤖 KI-generierte Darstellungen der Thesis
-
-Ergänzend zur schriftlichen Fassung stehen verschiedene KI-generierte Aufbereitungen der Inhalte zur Verfügung. **Alle diese Artefakte wurden mit NotebookLM generiert** und basieren vollständig auf den Quellen dieser Thesis.
-
-Im Ordner `docs/` finden Sie folgende 5 Artefakte:
-
-1. Audio Overview.wav – Audio-Podcast: Deep-Dive-Gespräch.
-2. Video Overview.mp4 – Video-Podcast: Kompakte Video-Präsentation der Kerninhalte.
-3. Slides.pdf – Folien-Präsentation: Kompakte Folien-Präsentation fürs Kolloquium.
-4. Mind-Map.png – Mind-Map: Grafische Darstellung der Themenzusammenhänge.
-5. Poster.png – Poster: Die wichtigsten Punkte auf einem Blick.
+- **Kein PDF erstellt?** Prüfen Sie die Log-Datei (`Thesis.log`) auf Fehlermeldungen.
+- **Fragezeichen statt Referenzen (??)?** Führen Sie die Kompilierung mehrfach aus oder nutzen Sie `./build.sh`.
+- **Literatur fehlt?** Stellen Sie sicher, dass `biber` ausgeführt wurde.
+- **Fehler `Undefined control sequence`:** Meist ein Tippfehler in einem Befehl oder ein fehlendes Paket.
 
 ## Lizenz
 
-MIT License - siehe [LICENSE](LICENSE) Datei.
-
-## Beiträge
-
-Verbesserungen sind willkommen! Bitte:
-
-1. Forken Sie das Repository
-2. Erstellen Sie einen Feature-Branch (`git checkout -b feature/amazing`)
-3. Committen Sie Ihre Änderungen (`git commit -m 'Add amazing feature'`)
-4. Pushen Sie in den Branch (`git push origin feature/amazing`)
-5. Öffnen Sie einen Pull Request
-
-## Danksagung
-
-- **KOMA-Script Team** - Exzellente Dokumentenklasse
-- **Markus Kohm** - KOMA-Script Dokumentation
-1.  Öffnen Sie `Thesis.tex`.
-2.  Tragen Sie Ihre Daten (Titel, Autor, Matrikelnummer) im Abschnitt `%% Metadaten der Arbeit` ein.
-3.  Erstellen oder bearbeiten Sie die Kapitel im Ordner `content/`.
+MIT License — siehe LICENSE.
