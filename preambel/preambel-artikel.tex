@@ -1,0 +1,231 @@
+%%% ----------------------------------------------------------------------
+%%% LaTeX-Präambel für Artikel (zweispaltig, populärwissenschaftlich)
+%%% Vereinfachte Version basierend auf der Thesis-Präambel
+%%% ----------------------------------------------------------------------
+
+%%% 1. Basiskonfiguration
+%%% ----------------------------------------------------------------------
+\input{preambel/preambel-commands}
+
+%%% Spracheinstellungen (Babel)
+\ifthenelse{\equal{\lang}{ngerman}}
+  {\usepackage[ngerman]{babel}}
+  {\usepackage[english]{babel}}
+
+%%% Farben
+\usepackage[table]{xcolor}
+
+%%% Bilder einbinden
+\usepackage{graphicx}
+
+%%% Rechnen mit LaTeX
+\usepackage{calc}
+
+
+%%% 2. Text & Typografie
+%%% ----------------------------------------------------------------------
+
+%%% Schrift-Encoding
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+
+%%% Schriftarten laden
+\input{preambel/Fonts}
+
+%%% Zeilenabstand (einzeilig für Zeitschriftenartikel)
+\usepackage{setspace}
+\singlespacing
+
+%%% Hurenkinder und Schusterjungen vermeiden
+\widowpenalty=10000
+\clubpenalty=10000
+
+%%% Layout-Anpassung: Kompakte Überschriften für Artikel
+\RedeclareSectionCommand[
+  beforeskip=-1\baselineskip,
+  afterskip=0.25\baselineskip
+]{section}
+\RedeclareSectionCommand[
+  beforeskip=-0.75\baselineskip,
+  afterskip=0.15\baselineskip
+]{subsection}
+\RedeclareSectionCommand[
+  beforeskip=-0.5\baselineskip,
+  afterskip=0.1\baselineskip
+]{subsubsection}
+
+%%% Mikrotypografie
+\usepackage[protrusion=true]{microtype}
+\emergencystretch=2em
+
+%%% Besserer Flattersatz
+\usepackage{ragged2e}
+
+%%% Intelligente Auslassungspunkte
+\usepackage{ellipsis}
+
+%%% Textauszeichnungen
+\usepackage[normalem]{ulem}
+\usepackage{soul}
+
+%%% URLs umbrechen
+\usepackage{xurl}
+
+%%% Anführungszeichen
+\usepackage[babel, german=quotes]{csquotes}
+\SetBlockThreshold{2}
+
+
+%%% 3. Layout & Seitenränder
+%%% ----------------------------------------------------------------------
+
+%%% Seitenränder für zweispaltigen Artikel (etwas großzügiger)
+\usepackage[
+  a4paper,
+  left=20mm,
+  right=20mm,
+  top=25mm,
+  bottom=25mm,
+  columnsep=8mm
+]{geometry}
+
+%%% Kopf- und Fußzeilen (KOMA-Script) - vereinfacht
+\usepackage[automark]{scrlayer-scrpage}
+\clearpairofpagestyles
+\ohead{\pagemark}
+\cfoot{}
+\KOMAoptions{headsepline=.4pt}
+\setkomafont{pageheadfoot}{\normalfont\small\sffamily}
+\setkomafont{pagenumber}{\sffamily}
+
+%%% Fußnoten
+\usepackage[bottom, stable, multiple]{footmisc}
+\deffootnote{1.5em}{1em}{\makebox[1.5em][l]{\thefootnotemark}}
+
+%%% Hurenkinder und Schusterjungen vermeiden
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+
+%%% 4. Tabellen & Abbildungen
+%%% ----------------------------------------------------------------------
+
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{wrapfig}            % Text um Abbildungen fließen lassen
+
+\definecolor{rowcolorgray}{gray}{0.90}
+\definecolor{headercolor}{RGB}{120,150,180}
+
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{6pt}
+
+%%% Abbildungen & Floats
+\usepackage{float}
+\usepackage{flafter}
+\usepackage[section]{placeins}
+
+%%% Beschriftungen
+\usepackage{caption}
+\captionsetup{
+   margin = 5pt,
+   font = {small,rm},
+   labelfont = {small,bf},
+   format = plain,
+   labelsep = colon,
+   justification = RaggedRight,
+   singlelinecheck = true,
+   position = bottom
+}
+\DeclareCaptionOption{parskip}[]{}
+\DeclareCaptionOption{parindent}[]{}
+
+%%% Farbige Boxen
+\usepackage[most]{tcolorbox}
+
+
+%%% 5. Literatur
+%%% ----------------------------------------------------------------------
+
+\usepackage[style=numeric, backend=biber, sorting=none]{biblatex}
+\addbibresource{bib/BibtexDatabase.bib}
+
+
+%%% 6. Links
+%%% ----------------------------------------------------------------------
+
+\usepackage[
+   hidelinks,
+   bookmarks=true,
+   pdftitle={Wenn KI zum Programmierer wird},
+   pdfauthor={Maria Musterfrau},
+]{hyperref}
+
+
+%%% 7. Sonstiges
+%%% ----------------------------------------------------------------------
+
+%%% Listen kompakt
+\usepackage{enumitem}
+\setlist{nosep, leftmargin=*}
+
+%%% Abstract-Umgebung für Artikel
+\renewenvironment{abstract}{%
+  \begin{tcolorbox}[
+    colback=gray!5,
+    colframe=gray!50,
+    title={\textbf{Zusammenfassung}},
+    fonttitle=\sffamily\small,
+    boxrule=0.5pt,
+    arc=2mm,
+    left=3mm, right=3mm, top=2mm, bottom=2mm
+  ]
+  \small
+}{%
+  \end{tcolorbox}
+  \vspace{1em}
+}
+
+%%% Infobox-Umgebung für Kästen
+\newtcolorbox{infobox}[1][]{
+  colback=blue!5,
+  colframe=blue!40,
+  title={#1},
+  fonttitle=\sffamily\bfseries\small,
+  boxrule=0.5pt,
+  arc=2mm,
+  left=3mm, right=3mm, top=2mm, bottom=2mm
+}
+
+%%% Schriftart für Überschriften
+\newcommand\SectionFontStyle{\sffamily}
+\setkomafont{sectioning}{\SectionFontStyle}
+\addtokomafont{sectioning}{\color{black}}
+
+%%% Titel-Anpassung für Artikel
+\setkomafont{title}{\LARGE\sffamily\bfseries}
+\setkomafont{subtitle}{\large\sffamily}
+\setkomafont{author}{\large\sffamily}
+\setkomafont{date}{\normalsize\sffamily}
+
+%%% Titel zentriert über beide Spalten
+\makeatletter
+\renewcommand{\maketitle}{%
+  \twocolumn[%
+    \begin{@twocolumnfalse}
+      \begin{center}
+        {\usekomafont{title}\@title\par}
+        \vspace{0.5em}
+        {\usekomafont{subtitle}\@subtitle\par}
+        \vspace{1em}
+        {\usekomafont{author}\@author\par}
+        \vspace{0.5em}
+        {\usekomafont{date}\@date\par}
+      \end{center}
+      \vspace{1.5em}
+    \end{@twocolumnfalse}
+  ]%
+}
+\makeatother

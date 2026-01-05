@@ -2,7 +2,7 @@
 set -e
 
 # Name der Hauptdatei (ohne .tex Endung)
-MAIN="Thesis"
+MAIN="Artikel"
 
 # Clean-Option prüfen
 if [ "$1" == "clean" ]; then
