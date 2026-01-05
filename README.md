@@ -18,7 +18,7 @@ Diese Vorlage bietet ein professionelles LaTeX-Setup für Bachelor- und Masterar
 
 - **Vorkonfiguriertes Layout:** Optimiert für Abschlussarbeiten (Bachelor/Master) mit KOMA-Script (`scrreprt`).
 - **Typografie:** Sauberer Satzspiegel, deutsche Typografie (ngerman) oder Englisch.
-- **Struktur:** Modulare Kapitel in `content/`, saubere Trennung von Inhalt und Logik.
+- **Struktur:** Modulare Kapitel in `content/`, saubere Trennung von Inhalt und Layout.
 - **MINT-Support:** Optimiert für Bilder, Tabellen, Code-Listings und TikZ.
 - **Automatisierung:** `build.sh` Skript für einfache Kompilierung.
 - **KI-Deklaration:** Vorbereitete Vorlagen für die Deklaration von KI-Hilfsmitteln (gemäß DFG-Empfehlungen).
@@ -152,8 +152,19 @@ thesis-template/
 ├── bib/                # Literaturdatenbank (.bib)
 ├── images/             # Abbildungen
 ├── macros/             # Eigene Makros/Befehle
-└── docs_KI_GENERIERT/  # Optional: generierte Zusatzdokumentation
+└── docs_KI_GENERIERT/  # KI-generierte Zusatzmaterialien (siehe unten)
 ```
+
+## KI-generierte Zusatzmaterialien
+
+Im Ordner `docs_KI_GENERIERT/` finden Sie mit KI-Tools (Gamma, NotebookLM) erstellte Beispielmaterialien:
+
+- **LaTeX-Präsentation:** Einführung in LaTeX für Anfänger
+- **Thesis-Präsentation:** Beispiel für Verteidigung/Kolloquium
+- **Poster & Mind-Map:** Visualisierungen für Konferenzen
+- **Audio-/Video-Podcast:** Zusammenfassungen der Thesis
+
+Diese Materialien dienen als Inspiration für die Vorbereitung Ihrer eigenen Präsentation. Details finden Sie in der [README des Ordners](docs_KI_GENERIERT/README.md).
 
 ## Häufige Anpassungen
 
