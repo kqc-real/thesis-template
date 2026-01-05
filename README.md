@@ -2,6 +2,19 @@
 
 Diese Vorlage bietet ein professionelles LaTeX-Setup für Seminararbeiten und populärwissenschaftliche Artikel im zweispaltigen Zeitschriftenlayout.
 
+> **📄 Thesis-Template verfügbar!**  
+> Für umfangreiche Abschlussarbeiten (Bachelor/Master) gibt es den Branch [`main`](../../tree/main) mit dem klassischen Thesis-Layout.
+>
+> ```bash
+> # Zur Thesis-Vorlage wechseln:
+> git checkout main
+>
+> # Zurück zum Artikel-Template:
+> git checkout referat-template
+> ```
+>
+> ⚠️ **Nicht mergen!** Die Branches sind eigenständige Templates und sollten nicht zusammengeführt werden.
+
 ## Features
 
 - **Zweispaltiges Layout:** Professionelles Zeitschriften-Design mit `scrartcl`
