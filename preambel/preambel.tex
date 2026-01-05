@@ -54,9 +54,6 @@
   afterskip=0.15\baselineskip
 ]{subsection}
 
-% Absatzabstand manuell verringern (überschreibt KOMA-Script parskip=half Berechnung)
-\setlength{\parskip}{0.5em plus 1pt minus 1pt}
-
 %%% Mikrotypografie (Optischer Randausgleich etc.)
 \usepackage[
    protrusion=true
@@ -88,19 +85,8 @@
 %%% 3. Layout & Seitenränder
 %%% ----------------------------------------------------------------------
 
-%%% Seitenränder einstellen (Geometry)
-\usepackage{geometry}
-\geometry{
-   a4paper,
-   portrait,
-   ignoreall,      % Kopf-/Fußzeilen zählen nicht zum Rand
-   heightrounded,  % Textblockhöhe an Zeilenraster anpassen
-   hmargin={3.5cm, 2.5cm}, % Links / Rechts
-   vmargin={3cm, 3cm},     % Oben / Unten
-   bindingoffset=5mm,      % Bindekorrektur
-   marginparwidth=0pt,
-   twoside,
-}
+%%% Geometry nur für \newgeometry/\restoregeometry (Layout ansonsten via KOMA)
+\usepackage[pass]{geometry}
 
 %%% Kopf- und Fußzeilen (KOMA-Script)
 \usepackage[
