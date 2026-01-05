@@ -11,7 +11,6 @@ Thumbs.db
 *.bak
 
 # Generated LaTeX files
-*.pdf
 *.aux
 *.bbl
 *.blg
