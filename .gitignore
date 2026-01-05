@@ -31,3 +31,7 @@ Thumbs.db
 *.toc
 *.fdb_latexmk
 *.fls
+
+# Temporäre Build-Logs
+build.txt
+build_output.txt
