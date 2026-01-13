@@ -15,6 +15,20 @@ Diese Vorlage bietet ein professionelles LaTeX-Setup für Seminararbeiten und po
 >
 > ⚠️ **Nicht mergen!** Die Branches sind eigenständige Templates und sollten nicht zusammengeführt werden.
 
+<!-- Platzhalter für einen Screenshot des fertigen PDFs -->
+<!-- ![Vorschau des Layouts](images/preview.png) -->
+![Vorschau des Layouts](screenshot.jpg)
+
+## Inhaltsverzeichnis
+
+- [Features](#features)
+- [Voraussetzungen](#voraussetzungen)
+- [Anleitung für Einsteiger (Windows)](#schritt-für-schritt-für-windows-einsteiger-ohne-konsole)
+- [Schnelleinstieg (für Entwickler)](#schnelleinstieg)
+- [Verwendung](#verwendung)
+- [Projektstruktur](#projektstruktur)
+- [Unterschiede zur Thesis-Vorlage](#unterschiede-zur-thesis-vorlage)
+
 ## Features
 
 - **Zweispaltiges Layout:** Professionelles Zeitschriften-Design mit `scrartcl`
