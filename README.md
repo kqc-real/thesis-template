@@ -69,9 +69,9 @@ Diese Anleitung richtet sich an Personen ohne jede Erfahrung mit Installation, K
    - „Install“ klicken, warten, „Finish“. VS Code darf gleich starten.
 
 ### Schritt 3: Vorlage ohne Konsole herunterladen
-1. In Edge oben `https://github.com/thm-mni-ii/thesis-template` eingeben, Enter.
+1. In Edge oben `https://github.com/kqc-real/thesis-template/tree/referat-template` eingeben, Enter.
 2. Grüne Schaltfläche „Code“ anklicken, dann „Download ZIP“.
-   - Direkter ZIP-Link (fertig gepackt): [https://github.com/kqc-real/thesis-template/archive/refs/heads/referat-template.zip](https://github.com/thm-mni-ii/thesis-template/archive/refs/heads/referat-template.zip). Wenn angeklickt, startet der Download automatisch.
+   - Direkter ZIP-Link (fertig gepackt): [https://github.com/kqc-real/thesis-template/archive/refs/heads/referat-template.zip](https://github.com/kqc-real/thesis-template/archive/refs/heads/referat-template.zip). Wenn angeklickt, startet der Download automatisch.
 3. Wenn der Download fertig ist: `Strg`+`J`, neben der ZIP-Datei auf den kleinen Ordner klicken, damit der Explorer den Speicherort zeigt.
 4. ZIP entpacken:
    - Datei mit rechter Maustaste anklicken → „Alle extrahieren…“ → „Extrahieren“.
