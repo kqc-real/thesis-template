@@ -2,7 +2,10 @@
 
 Diese Vorlage bietet ein professionelles LaTeX-Setup für Seminararbeiten und populärwissenschaftliche Artikel im zweispaltigen Zeitschriftenlayout.
 
+## 📄 [Vollständigen Beispiel-Artikel ansehen (PDF)](Artikel.pdf)
+
 > **📄 Thesis-Template verfügbar!**  
+> 
 > Für umfangreiche Abschlussarbeiten (Bachelor/Master) gibt es den Branch [`main`](../../tree/main) mit dem klassischen Thesis-Layout.
 >
 > ```bash
@@ -15,8 +18,6 @@ Diese Vorlage bietet ein professionelles LaTeX-Setup für Seminararbeiten und po
 >
 > ⚠️ **Nicht mergen!** Die Branches sind eigenständige Templates und sollten nicht zusammengeführt werden.
 
-<!-- Platzhalter für einen Screenshot des fertigen PDFs -->
-<!-- ![Vorschau des Layouts](images/preview.png) -->
 ![Vorschau des Layouts](screenshot.jpg)
 
 ## Inhaltsverzeichnis
