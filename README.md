@@ -233,4 +233,4 @@ Im Ordner `docs_KI_GENERIERT/` finden Sie Beispielmaterialien zur Inspiration f�
 
 ## Lizenz
 
-MIT License — siehe LICENSE.
+MIT License – siehe LICENSE.

@@ -55,8 +55,14 @@
 ]{subsubsection}
 
 %%% Mikrotypografie
-\usepackage[protrusion=true]{microtype}
-\emergencystretch=2em
+\usepackage[protrusion=true, expansion=true]{microtype}
+\frenchspacing
+% Allow additional stretch to reduce underfull boxes in narrow columns
+\emergencystretch=1.5em
+% Permit breaks at explicit hyphens/slashes more easily
+\exhyphenpenalty=50
+% Hyphenation exceptions for problematic compound/loan words
+\hyphenation{Tele-me-trie ein-pla-nen Publish Subscribe}
 
 %%% Besserer Flattersatz
 \usepackage{ragged2e}
@@ -70,6 +76,7 @@
 
 %%% URLs umbrechen
 \usepackage{xurl}
+\urlstyle{same}
 
 %%% Anführungszeichen
 \usepackage[babel, german=quotes]{csquotes}
@@ -113,6 +120,7 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{array}
+\usepackage{tabularx}
 \usepackage{colortbl}
 \usepackage{wrapfig}            % Text um Abbildungen fließen lassen
 
@@ -125,6 +133,8 @@
 %%% Abbildungen & Floats
 \usepackage{float}
 \usepackage{flafter}
+% Improve placement of double-column floats (table* / figure*)
+\usepackage{stfloats}
 \usepackage[section]{placeins}
 
 %%% Beschriftungen
@@ -159,9 +169,12 @@
 \usepackage[
    hidelinks,
    bookmarks=true,
-   pdftitle={Wenn KI zum Programmierer wird},
-   pdfauthor={Maria Musterfrau},
 ]{hyperref}
+
+\AtBeginDocument{%
+  \IfDefined{theTitle}{\hypersetup{pdftitle={\theTitle}}}%
+  \IfDefined{theAuthor}{\hypersetup{pdfauthor={\theAuthor}}}%
+}
 
 
 %%% 7. Sonstiges
@@ -212,7 +225,11 @@
 
 %%% Titel zentriert über beide Spalten
 \makeatletter
+% Suppress the headsepline on the title page only:
+% Temporarily disable the headsepline before typesetting the title
+% and re-enable it immediately afterwards so subsequent pages keep the rule.
 \renewcommand{\maketitle}{%
+  \KOMAoptions{headsepline=false}% disable for the title page
   \twocolumn[%
     \begin{@twocolumnfalse}
       \begin{center}
@@ -227,5 +244,7 @@
       \vspace{1.5em}
     \end{@twocolumnfalse}
   ]%
+  \thispagestyle{empty}% suppress header/foot on this page
+  \KOMAoptions{headsepline=.4pt}% re-enable for remaining pages
 }
 \makeatother

@@ -1,540 +1,151 @@
-% Populärwissenschaftlicher Artikel über Agentic AI in der Softwareentwicklung
-% Zielgruppe: Leser einer Computerzeitschrift (interessierte Laien mit IT-Affinität)
+% Populärwissenschaftlicher Artikel über IoT-Protokolle und Konnektivität
+% Zielgruppe: Technikinteressierte Leser (ohne Spezialwissen)
 
-\section{Die nächste Stufe der KI-Revolution}
+\section{Warum IoT-Kommunikation komplizierter ist als \enquote{WLAN an, fertig}}
 
-ChatGPT kann Gedichte schreiben, Copilot hilft beim Programmieren – doch die neueste KI-Generation geht einen entscheidenden Schritt weiter. Statt nur auf Anfragen zu reagieren, können sogenannte \emph{Agenten} eigenständig komplexe Aufgaben lösen~\cite{wang2023survey}. Sie analysieren Probleme, erstellen Pläne, nutzen Werkzeuge und korrigieren sich selbst – fast wie ein menschlicher Softwareentwickler. Wie Andrej Karpathy es formulierte: Das LLM wird zum Betriebssystem-Kernel, das Kontextfenster zum Arbeitsspeicher~\cite{karpathy2023intro}.
+Im Alltag wirkt Vernetzung simpel: Smartphone ins WLAN, App öffnen, fertig. Im \emph{Internet der Dinge} (IoT) sieht die Realität anders aus. Weltweit sind bereits über 20~Milliarden IoT-Geräte im Einsatz~\cite{iotanalytics2025devices}~-- und sie könnten unterschiedlicher kaum sein: Ein Bodenfeuchtesensor soll zehn Jahre mit einer Batterie auskommen und nur alle paar Stunden einen Messwert senden. Ein fahrerloses Transportsystem in einer Fabrik braucht dagegen millisekundenschnelle Reaktionen und mitunter genug Bandbreite für Kameradaten.
 
-Was steckt hinter diesem Hype? Und wie funktionieren diese digitalen Assistenten wirklich?
+Diese Spannweite führt zu einer unbequemen Wahrheit: Es gibt nicht \emph{das} IoT-Protokoll und nicht \emph{die} perfekte Funktechnik. Stattdessen muss man sich wie bei Werkzeugen entscheiden: Hammer, Schraubendreher, Zange~-- jedes ist gut, aber eben für etwas anderes.
 
-\subsection{Vom Chatbot zum Agenten}
+\begin{infobox}[Das IoT-Trilemma]
+Hohe Reichweite, hohe Datenrate und lange Batterielaufzeit lassen sich nicht gleichzeitig maximieren. Jede Konnektivitätstechnologie macht Kompromisse~-- und genau das ist im IoT normal.
+\end{infobox}
 
-Der Unterschied zwischen einem klassischen Chatbot und einem Agenten lässt sich am besten an einem Beispiel verdeutlichen:
+\section{Ein Stack statt eines Standards}
 
-\textbf{Chatbot:} Sie fragen nach einem Python-Skript zum Sortieren einer Liste. Der Bot liefert Code – ob dieser funktioniert, müssen Sie selbst prüfen.
+Wenn Geräte \enquote{miteinander sprechen}, passiert das in Schichten: Oben wird festgelegt, \emph{wie} Daten beschrieben und ausgetauscht werden (z.\,B. Messwerte, Befehle, Zustandsänderungen). Unten entscheidet die Konnektivität, \emph{wie} diese Bits überhaupt von A nach B kommen (WLAN, Mesh-Funk, Mobilfunk, LPWAN).
 
-\textbf{Agent:} Sie beschreiben das Problem. Der Agent schreibt den Code, führt ihn aus, erkennt einen Fehler, analysiert die Ursache, korrigiert den Code und testet erneut – alles automatisch.
-
-Der Kern dieser Fähigkeit: Agenten können \emph{denken}, \emph{handeln} und \emph{reflektieren}. In Fachkreisen nennt man das \enquote{ReAct} – Reasoning and Acting~\cite{yao2023react}.
-
-
-\subsection{Die Evolution der KI-Assistenten}
-
-Um zu verstehen, wohin die Reise geht, lohnt ein Blick zurück. Tabelle~\ref{tab:evolution} zeigt die Entwicklung von einfachen Autovervollständigungen bis hin zu autonomen Agenten.
-
-\begin{table}[ht]
-\centering
-\footnotesize
-\begin{tabular}{@{}l l l@{}}
-\toprule
-\textbf{Generation} & \textbf{Beispiel} & \textbf{Fähigkeit} \\
-\midrule
-1 – Autovervollst. & IntelliSense & Wort vorhersagen \\
-2 – Generierung & Copilot & Code aus Kommentaren \\
-3 – Konversation & ChatGPT & Fragen beantworten \\
-4 – Agenten & Devin, Claude & Autonom lösen \\
-\bottomrule
-\end{tabular}
-\caption{Evolution der KI-Assistenten in der Softwareentwicklung}
-\label{tab:evolution}
-\end{table}
-
-Der Sprung von Generation~3 zu~4 ist fundamental: Erstmals übernimmt die KI nicht nur Teilaufgaben, sondern orchestriert komplette Arbeitsabläufe.
-
-
-\section{Wie ein KI-Agent denkt}
-
-Der Kern der Agenten-Technologie lässt sich in vier Schritten zusammenfassen: \textbf{Reasoning} (der Agent überlegt, welche Information fehlt), \textbf{Acting} (er führt eine Aktion aus), \textbf{Observing} (er analysiert das Ergebnis) und \textbf{Reflecting} (er bewertet seinen Fortschritt). In Fachkreisen nennt man dieses Muster \enquote{ReAct} – eine Abkürzung für \enquote{Reasoning and Acting}.
-
-Dieser Zyklus wiederholt sich, bis die Aufgabe erledigt ist oder der Agent erkennt, dass er Hilfe braucht. Das klingt simpel, ist aber ein fundamentaler Unterschied zu bisherigen KI-Systemen, die nur auf einzelne Anfragen reagieren.
-
-\begin{figure}[!t]
-\centering
-\includegraphics[width=0.7\columnwidth]{images/agent-workflow.png}
-\caption{Workflow eines KI-Agenten: Vom Ziel über Iteration zum Ergebnis}
-\label{fig:agent-workflow}
-\end{figure}
-
-\subsection{Ein Blick unter die Haube}
-
-Abbildung~\ref{fig:agent-workflow} zeigt den typischen Ablauf eines Agenten bei der Bearbeitung einer Programmieraufgabe. Der Prozess beginnt mit einer Zielbeschreibung und durchläuft dann mehrere Zyklen aus Planung, Werkzeugnutzung und Reflexion.
-
-Besonders bemerkenswert ist die Fähigkeit zur Selbstkorrektur~\cite{shinn2023reflexion}: Wenn ein Werkzeugaufruf fehlschlägt oder das Ergebnis nicht den Erwartungen entspricht, passt der Agent seine Strategie an – ganz ohne menschliches Eingreifen. Diese Autonomie unterscheidet moderne Agenten grundlegend von früheren Ansätzen, bei denen jeder Schritt manuell bestätigt werden musste. Der Agent entwickelt gewissermaßen ein eigenes Verständnis des Problems und kann alternative Lösungswege erkunden, wenn der erste Ansatz scheitert.
-
-\subsection{Das Gedächtnis des Agenten}
-
-Im Gegensatz zu einfachen Chatbots verfügen moderne Agenten über zwei Arten von Gedächtnis:
-
-\textbf{Episodisches Gedächtnis:} Speichert konkrete Ereignisse der aktuellen Sitzung. \enquote{Ich habe gerade den Test gestartet und er ist fehlgeschlagen.} Diese Informationen helfen dem Agenten, Zusammenhänge zu erkennen und aus Fehlern zu lernen.
-
-\textbf{Semantisches Gedächtnis:} Enthält abstraktes Wissen über die Codebasis. \enquote{Die Datenbankverbindung wird in der Datei config.py konfiguriert.} Dieses Wissen wird oft durch sogenannte Vektor-Datenbanken realisiert, die ähnliche Konzepte schnell auffinden können.
-
-\subsection{Chain-of-Thought: Schritt für Schritt denken}
-
-Eine Schlüsseltechnik moderner Agenten ist das \emph{Chain-of-Thought Prompting}~\cite{wei2022chain}: Statt direkt eine Antwort zu geben, wird das Sprachmodell angewiesen, seinen Denkprozess explizit zu formulieren.
-
-Der Unterschied ist frappierend. Auf die Frage \enquote{Ist 17 eine Primzahl?} antwortet ein Modell ohne Chain-of-Thought möglicherweise falsch. Mit der Anweisung \enquote{Denke Schritt für Schritt} durchläuft es systematisch die Teilbarkeit durch 2, 3, 5 usw. und kommt zuverlässiger zum korrekten Ergebnis.
-
-Für Programmieraufgaben bedeutet das: Der Agent analysiert erst das Problem, identifiziert relevante Dateien, plant seine Vorgehensweise – und führt dann erst Code aus. Diese Strukturierung reduziert Fehler erheblich und macht den Denkprozess nachvollziehbar. Entwickler können jeden Schritt nachverfolgen und bei Bedarf korrigierend eingreifen. Die Transparenz des Reasoning-Prozesses ist auch für das Debugging von Agenten-Fehlern unerlässlich.
-
-
-\section{Die Werkzeugkiste des Agenten}
-
-Ein Agent ist nur so gut wie seine Werkzeuge. Moderne Systeme können auf eine Vielzahl von Tools zugreifen:
-
+In der Praxis hilft eine grobe Einteilung:
 \begin{itemize}
-  \item \textbf{Code-Ausführung:} Python, JavaScript oder andere Sprachen direkt ausführen
-  \item \textbf{Dateioperationen:} Dateien lesen, schreiben, durchsuchen
-  \item \textbf{Webrecherche:} Aktuelle Informationen aus dem Internet abrufen
-  \item \textbf{Versionskontrolle:} Git-Befehle ausführen, Änderungen committen
-  \item \textbf{Test-Frameworks:} Automatische Tests starten und Ergebnisse analysieren
-  \item \textbf{APIs:} Mit externen Diensten kommunizieren
+  \item \textbf{Anwendungsebene:} Protokolle wie MQTT oder CoAP regeln Nachrichten, Topics, Ressourcen und Zustelllogik.
+  \item \textbf{Lokale Netze:} Thread, Zigbee, Bluetooth~LE oder Wi-Fi verbinden Geräte im Haus, Büro oder in der Halle.
+  \item \textbf{Weitbereich:} LoRaWAN, NB-IoT, LTE-M oder 5G verbinden Sensoren über Kilometer und Städte hinweg.
 \end{itemize}
 
-Das Besondere: Der Agent entscheidet selbst, welches Werkzeug er wann einsetzt. Er muss nicht explizit programmiert werden – er lernt aus dem Kontext und der Beschreibung der verfügbaren Werkzeuge. Diese Fähigkeit zur dynamischen Werkzeugauswahl basiert auf dem sogenannten \emph{Function Calling}~\cite{schick2023toolformer}, einer Technik, bei der das Sprachmodell strukturierte Ausgaben erzeugt, die als Funktionsaufrufe interpretiert werden können.
+\section{Oben im Stack: MQTT und CoAP}
 
-\subsection{Werkzeug-Schnittstellen im Detail}
+\subsection{MQTT: Wenn viele zuhören sollen}
 
-Damit ein Agent ein Werkzeug nutzen kann, muss dieses nach einem standardisierten Schema beschrieben werden. Tabelle~\ref{tab:tools} zeigt beispielhaft, wie typische Entwicklerwerkzeuge für Agenten aufbereitet werden.
+MQTT ist im IoT so etwas wie der \enquote{Postverteiler}. Geräte senden nicht an konkrete Empfänger, sondern an \emph{Topics} (Themenpfade). Eine zentrale Instanz, der \emph{Broker}, verteilt diese Nachrichten an alle Abonnenten. Das ist besonders praktisch, wenn viele Systeme dieselben Daten benötigen: Dashboard, Alarmierung, Datenbank und Analyse können parallel abonnieren, ohne dass der Sensor sie alle kennen muss.
 
-\begin{table}[ht]
-\centering
-\footnotesize
-\begin{tabular}{@{}lp{1.5cm}p{2cm}@{}}
-\toprule
-\textbf{Tool} & \textbf{Input} & \textbf{Output} \\
-\midrule
-run\_tests & Modul & Testergebnis \\
-read\_file & Pfad & Dateiinhalt \\
-search & Begriff & Codestellen \\
-exec\_cmd & Befehl & Ausgabe \\
-create\_file & Pfad+Inhalt & OK/Fehler \\
-\bottomrule
-\end{tabular}
-\caption{Typische Agenten-Werkzeuge}
-\label{tab:tools}
-\end{table}
+Die Analyse der Bandbreitennutzung zeigt, dass MQTT zwar auf TCP aufsetzt -- was einen gewissen Overhead für den Verbindungsaufbau (Drei-Wege-Handshake) mit sich bringt --, aber in Szenarien mit stabilen, langlebigen Verbindungen extrem effizient ist. Sobald die TCP-Verbindung steht, ist der Overhead pro Nachricht minimal. Studien bestätigen, dass MQTT in Umgebungen mit geringer Paketverlustrate eine geringere Latenz aufweist als konkurrierende UDP-basierte Protokolle, da der TCP-Stack auf Kernel-Ebene die Flusskontrolle effizienter handhabt als Application-Layer-Implementierungen~\cite{seoane2021performance}.
 
-Die Standardisierung ermöglicht es, neue Werkzeuge einfach hinzuzufügen – der Agent lernt automatisch, sie zu nutzen, basierend auf der Beschreibung.
-
-\subsection{Wie entscheidet der Agent?}
-
-Die Werkzeugauswahl ist eine der Kernfähigkeiten eines Agenten. Der Prozess läuft vereinfacht so ab:
-
-\begin{enumerate}
-  \item Der Agent analysiert die aktuelle Aufgabe
-  \item Er generiert eine Liste möglicher Werkzeuge
-  \item Für jedes Werkzeug bewertet er die Erfolgswahrscheinlichkeit
-  \item Das vielversprechendste Werkzeug wird aufgerufen
-  \item Das Ergebnis fließt in die nächste Entscheidung ein
-\end{enumerate}
-
-Dabei kann der Agent auch \emph{Ketten} von Werkzeugen planen: \enquote{Erst suche ich die relevante Datei, dann lese ich sie, dann analysiere ich den Fehler, dann schreibe ich den Fix.}
-
-Diese Fähigkeit zur vorausschauenden Planung unterscheidet leistungsfähige Agenten von einfachen Systemen, die nur reaktiv auf einzelne Anfragen reagieren.
-
-
-\section{Praxisbeispiel: Fehlersuche im Code}
-
-Stellen Sie sich vor, ein Entwickler bemerkt, dass drei von hundert automatischen Tests fehlschlagen. Klassisch würde er nun:
-
-\begin{enumerate}
-  \item Die Fehlermeldungen analysieren
-  \item Den betroffenen Code finden
-  \item Die Ursache verstehen
-  \item Eine Lösung entwickeln
-  \item Testen, ob die Lösung funktioniert
-\end{enumerate}
-
-Ein KI-Agent durchläuft exakt diese Schritte – nur automatisch:
-
-\begin{quote}
-\textit{\enquote{Ich sehe 3 fehlgeschlagene Tests in der Datei test\_login.py. Lass mich die Fehlermeldung genauer anschauen... Es scheint ein Problem mit der Datenbankverbindung zu sein. Ich überprüfe die Konfiguration... Hier fehlt ein Timeout-Parameter. Ich füge ihn hinzu und starte die Tests erneut... Alle Tests bestanden!}}
-\end{quote}
-
-\subsection{Erfolgsraten in der Praxis}
-
-Wie gut funktionieren diese Systeme wirklich? Die Wissenschaft hat dafür standardisierte Benchmarks entwickelt. Der bekannteste ist \emph{SWE-bench}~\cite{jimenez2023swe}, der über 2.000 echte Programmierprobleme aus GitHub-Projekten enthält. Spezialisierte Systeme wie SWE-agent~\cite{yang2024sweagent} und Agentless~\cite{zhang2024agentless} haben gezeigt, dass optimierte Agent-Computer-Interfaces die Erfolgsraten deutlich steigern können.
-
-\begin{table}[ht]
-\centering
-\small
-\begin{tabular}{@{}lcc@{}}
-\toprule
-\textbf{System} & \textbf{Erfolgsrate} & \textbf{Jahr} \\
-\midrule
-Naive Prompting & 3--5\,\% & 2023 \\
-SWE-agent & 12,5\,\% & 2024 \\
-Agentless & 27\,\% & 2024 \\
-OpenAI o1 + Tools & 48\,\% & 2025 \\
-Claude 3.5 Sonnet & 49\,\% & 2025 \\
-Devin 2.0 & 55\,\% & 2025 \\
-\bottomrule
-\end{tabular}
-\caption{Erfolgsraten auf dem SWE-bench Benchmark (Stand: Ende 2025)}
-\label{tab:benchmark}
-\end{table}
-
-Die Zahlen in Tabelle~\ref{tab:benchmark} zeigen den rasanten Fortschritt: Innerhalb von zwei Jahren hat sich die Erfolgsrate verzehnfacht. Dennoch bleibt die Hälfte aller Aufgaben ungelöst – ein Hinweis darauf, dass die Technologie noch am Anfang steht. Besonders bei komplexen, mehrschichtigen Problemen mit vielen Abhängigkeiten zwischen Komponenten stoßen aktuelle Systeme an ihre Grenzen. Die Benchmark-Ergebnisse sollten daher als Momentaufnahme verstanden werden, die sich mit jeder neuen Modellgeneration verbessert.
-
-\subsection{Welche Aufgaben eignen sich?}
-
-Nicht jede Programmieraufgabe ist gleich gut für Agenten geeignet. Tabelle~\ref{tab:eignung} gibt eine Orientierung:
-
-\begin{table}[ht]
-\centering
-\small
-\begin{tabular}{@{}lcc@{}}
-\toprule
-\textbf{Aufgabentyp} & \textbf{Eignung} & \textbf{Erfolgsrate} \\
-\midrule
-Lint-Fehler beheben & Sehr gut & 80--90\,\% \\
-Unit-Tests schreiben & Gut & 70--80\,\% \\
-Einfache Bug-Fixes & Gut & 60--75\,\% \\
-Refactoring & Mittel & 50--70\,\% \\
-Feature-Implementierung & Mittel & 40--60\,\% \\
-Architektur-Design & Gering & 20--30\,\% \\
-\bottomrule
-\end{tabular}
-\caption{Eignung verschiedener Aufgaben für KI-Agenten}
-\label{tab:eignung}
-\end{table}
-
-Faustregel: Je klarer definiert und begrenzter eine Aufgabe, desto besser die Erfolgsaussichten. Offene, kreative Probleme bleiben vorerst Menschensache.
-
-\subsection{Ein konkretes Beispiel aus der Praxis}
-
-Um die Arbeitsweise eines Agenten greifbarer zu machen, hier ein protokollierter Durchlauf bei einer typischen Bug-Fix-Aufgabe:
-
-\begin{quote}
-\footnotesize
-\textbf{Aufgabe:} \enquote{Fix failing test in user\_auth}
-
-\textbf{1. Denken:} \enquote{Welcher Test schlägt fehl?}\\
-\textbf{2. Aktion:} \texttt{run\_tests("user\_auth")}\\
-\textbf{3. Beobachtung:} \enquote{test\_login\_timeout: Timeout}\\
-\textbf{4. Denken:} \enquote{Timeout-Problem. Konfiguration?}\\
-\textbf{5. Aktion:} \texttt{read\_file("config/db.py")}\\
-\textbf{6. Beobachtung:} \texttt{timeout = 5}\\
-\textbf{7. Denken:} \enquote{Zu niedrig für Tests.}\\
-\textbf{8. Aktion:} \texttt{edit\_file(..., timeout=30)}\\
-\textbf{9. Aktion:} \texttt{run\_tests("user\_auth")}\\
-\textbf{10. Beobachtung:} \enquote{15 Tests bestanden}\\
-\textbf{Fazit:} Timeout war zu niedrig konfiguriert.
-\end{quote}
-
-Dieser protokollierte Ablauf zeigt die charakteristische Abfolge aus Denken, Handeln und Beobachten. Bemerkenswert ist die Fähigkeit, aus Fehlermeldungen auf mögliche Ursachen zu schließen und gezielt nach Lösungen zu suchen.
-
-
-\section{Architektur moderner Agenten}
-
-Hinter jedem leistungsfähigen Agenten steckt eine durchdachte Architektur. Die wichtigsten Komponenten sind:
-
-\begin{description}
-  \item[Agent-Controller:] Das \enquote{Gehirn} des Systems. Hier laufen Planung und Entscheidungsfindung zusammen. Der Controller ruft das Sprachmodell auf und interpretiert dessen Antworten.
-  
-  \item[Werkzeug-Registry:] Eine Datenbank aller verfügbaren Tools mit ihren Beschreibungen und Parametern. Der Agent wählt daraus das passende Werkzeug für jede Situation.
-  
-  \item[Gedächtnis-Manager:] Verwaltet Kurz- und Langzeitgedächtnis. Entscheidet, welche Informationen gespeichert und welche vergessen werden.
-  
-  \item[Sicherheitsschicht:] Prüft jeden Werkzeugaufruf auf Zulässigkeit. Verhindert gefährliche Operationen und protokolliert alle Aktionen.
-\end{description}
-
-Diese modulare Struktur~\cite{wu2023autogen} ermöglicht es, einzelne Komponenten auszutauschen oder zu verbessern, ohne das gesamte System neu entwickeln zu müssen. In der Praxis bedeutet das: Ein Unternehmen kann mit einem einfachen Agenten starten und diesen schrittweise um weitere Werkzeuge und Fähigkeiten erweitern. Die offene Architektur fördert auch die Entwicklung spezialisierter Agenten für bestimmte Domänen wie Frontend-Entwicklung, Datenbankoptimierung oder Security-Audits.
-
-\subsection{Vergleich: Cloud vs. Lokal}
-
-Agenten können entweder in der Cloud oder lokal auf dem eigenen Rechner laufen. Beide Ansätze haben Vor- und Nachteile:
-
-\begin{table}[ht]
-\centering
-\footnotesize
-\begin{tabular}{@{}lcc@{}}
-\toprule
-\textbf{Aspekt} & \textbf{Cloud} & \textbf{Lokal} \\
-\midrule
-Leistung & Hoch & Begrenzt \\
-Kosten & Pay-per-Use & Hardware \\
-Datenschutz & Transfer & Lokal \\
-Latenz & Netzwerk & Schnell \\
-Offline & Nein & Ja \\
-Wartung & Anbieter & Selbst \\
-\bottomrule
-\end{tabular}
-\caption{Cloud vs. lokale Agenten}
-\label{tab:cloudlokal}
-\end{table}
-
-Für sensible Projekte oder Unternehmen mit strengen Compliance-Anforderungen werden lokale Lösungen immer attraktiver. Modelle wie Llama~\cite{touvron2023llama}, Mistral oder DeepSeek ermöglichen bereits heute leistungsfähige lokale Agenten – wenn auch noch nicht auf dem Niveau der Cloud-Giganten. Die Entwicklung schreitet jedoch schnell voran: Was heute noch einen High-End-Server erfordert, könnte in wenigen Jahren auf einem gewöhnlichen Laptop laufen. Hybride Ansätze, bei denen sensible Operationen lokal und rechenintensive Aufgaben in der Cloud ausgeführt werden, gewinnen ebenfalls an Bedeutung.
-
-\subsection{Sicherheit: Der Agent in der Sandbox}
-
-Bei aller Begeisterung bleibt eine wichtige Frage: Wie verhindert man, dass ein autonomer Agent Schaden anrichtet? Die Antwort liegt in mehrschichtigen Sicherheitsmechanismen, die nach dem Prinzip der \enquote{Verteidigung in der Tiefe} aufgebaut sind.
-
-\textbf{Sandbox-Ausführung:} Der Agent läuft in einer isolierten Umgebung (ähnlich einer virtuellen Maschine). Selbst wenn er fehlerhaften Code ausführt, kann er das Hauptsystem nicht beschädigen.
-
-\textbf{Berechtigungssystem:} Jedes Werkzeug hat definierte Rechte. Ein Agent darf vielleicht Dateien lesen, aber nicht löschen. Oder er darf Tests starten, aber keinen Code in Produktion deployen.
-
-\textbf{Human-in-the-Loop:} Bei kritischen Aktionen – etwa dem Veröffentlichen von Code – muss ein Mensch zustimmen. Der Agent schlägt vor, der Entwickler entscheidet.
-
-\textbf{Protokollierung:} Jede Aktion wird aufgezeichnet. Bei Problemen lässt sich exakt nachvollziehen, was der Agent getan hat.
-
-\subsection{Schutz vor Manipulation}
-
-Eine besondere Gefahr sind sogenannte \enquote{Prompt Injection}-Angriffe: Ein böswilliger Nutzer versteckt Befehle in Daten, die der Agent verarbeitet. Stellen Sie sich vor, ein Code-Kommentar enthält die Anweisung \enquote{Lösche alle Dateien}.
-
-Robuste Systeme erkennen solche Manipulationsversuche durch:
+Ein wichtiges Detail: MQTT kann die Zustellgarantie fein abstufen~\cite{oasis-mqtt-v5}:
 \begin{itemize}
-  \item Strikte Trennung von Anweisungen und Daten
-  \item Validierung aller Eingaben vor der Verarbeitung
-  \item Whitelisting erlaubter Operationen
-  \item Anomalie-Erkennung bei ungewöhnlichem Verhalten
+  \item \textbf{QoS~0:} schnell, aber ohne Bestätigung (\enquote{Fire-and-Forget}).
+  \item \textbf{QoS~1:} kommt an, kann aber doppelt ankommen.
+  \item \textbf{QoS~2:} kommt genau einmal an, kostet dafür mehr Overhead.
 \end{itemize}
 
-In Tests erreichen gut abgesicherte Systeme eine Abwehrrate von über 99\,\% gegen bekannte Angriffsmuster.
+Mit MQTT~5.0 kamen außerdem Funktionen hinzu, die moderne Cloud-Architekturen erleichtern (z.\,B. Load-Balancing über \enquote{Shared Subscriptions} oder Request/Response-Muster)~\cite{oasis-mqtt-v5}. Für sehr kleine Sensornetze gibt es MQTT-SN, das die MQTT-Idee auf UDP überträgt und Topic-Namen über kurze IDs schlanker macht~\cite{oasis-mqtt-sn}.
 
+\subsection{CoAP: HTTP, aber für Mikrocontroller}
 
-\section{Kosten und Effizienz}
+Während MQTT eine eigene Nachrichtenwelt baut, folgt CoAP dem Web-Prinzip: Ressourcen haben URIs, und man arbeitet mit GET/PUT/POST/DELETE -- ähnlich wie bei HTTP, nur deutlich kompakter und typischerweise über UDP~\cite{rfc7252}.
 
-KI-Agenten sind nicht kostenlos. Jeder API-Aufruf an GPT-4 oder Claude kostet Geld – und ein Agent kann für eine einzige Aufgabe Dutzende solcher Aufrufe benötigen.
-
-\subsection{Was kostet ein Agent?}
-
-Tabelle~\ref{tab:kosten} zeigt typische Kosten für verschiedene Aufgabentypen. Die Werte basieren auf aktuellen API-Preisen und können je nach Anbieter variieren.
+CoAP kann trotzdem zuverlässig sein: Nachrichten können als \emph{confirmable} markiert werden, dann bestätigt der Empfänger den Erhalt. Und weil permanentes Polling Batterie frisst, gibt es \emph{Observe}: Statt immer wieder nachzufragen, \enquote{abonniert} man eine Ressource und bekommt Updates bei Änderungen~\cite{rfc7641}. Für größere Daten (z.\,B. Firmware-Updates) unterstützt CoAP \emph{Block-wise Transfer}, um große Pakete in handliche Stücke zu teilen. Sicherheit läuft meist über DTLS (das TLS-Pendant für UDP).
 
 \begin{table}[ht]
 \centering
-\small
-\begin{tabular}{@{}lcc@{}}
+\footnotesize
+\begin{tabularx}{\columnwidth}{@{}p{0.22\columnwidth}>{\RaggedRight}X>{\RaggedRight\arraybackslash}X@{}}
 \toprule
-\textbf{Aufgabe} & \textbf{API-Aufrufe} & \textbf{ca. Kosten} \\
+ & \textbf{MQTT} & \textbf{CoAP} \\
 \midrule
-Einfache Code-Korrektur & 3--5 & 0,02--0,05\,€ \\
-Test-Debugging & 8--15 & 0,08--0,15\,€ \\
-Feature-Implementierung & 20--50 & 0,20--0,50\,€ \\
-Komplexes Refactoring & 50--100 & 0,50--1,00\,€ \\
+Grundidee & Pub\-lish/\allowbreak Sub\-scribe über Broker & REST über UDP \\
+Stärken & Tele\-metrie an vie\-le Emp\-fän\-ger,\allowbreak gutes Ecosystem & kurze \enquote{Wake-up-and-send}-Kommunikation, Web-nah \\
+Typische Rolle & Datenstrom ins Backend/Cloud & Geräte-API im lokalen Netz \\
+Sicherheit & meist TLS & meist DTLS \\
 \bottomrule
-\end{tabular}
-\caption{Typische Kosten für KI-Agenten-Aufgaben (Stand: 2025)}
-\label{tab:kosten}
+\end{tabularx}
+\caption{MQTT und CoAP im vereinfachten Vergleich}
+\label{tab:mqtt-coap}
 \end{table}
 
-Verglichen mit Entwicklerstunden sind diese Kosten gering – ein Entwickler mit 80\,€ Stundensatz, der 30 Minuten für eine einfache Korrektur braucht, kostet 40\,€. Der Agent erledigt dieselbe Aufgabe für wenige Cent.
+Eine gute Erinnerung daran, dass diese Entscheidung nicht nur \enquote{Geschmackssache} ist, liefern Messstudien, die Latenz, Durchsatz und Energieverbrauch auch unter aktivierter Transportverschlüsselung vergleichen~\cite{seoane2021performance}.
 
-\subsection{Token-Optimierung}
+\begin{infobox}[Faustregel: Welches Protokoll wann?]
+Viele Datenpunkte, viele Abnehmer, zentrale Verarbeitung: eher MQTT. Sehr seltene Nachrichten, viel Schlafmodus, \enquote{Ressource abfragen/setzen}: eher CoAP. In der Praxis werden beide oft kombiniert.
+\end{infobox}
 
-Der größte Kostenfaktor ist der \enquote{Kontext} – also alle Informationen, die der Agent für seine Arbeit benötigt. Eine große Codebasis mit 100.000 Zeilen kann nicht komplett an das Sprachmodell übergeben werden.
+\section{Nahbereich: Zigbee, Thread, BLE und Wi-Fi}
 
-Clevere Agenten nutzen daher Techniken wie:
+\subsection{Zigbee vs. Thread: Zwei Mesh-Welten auf ähnlichem Funk}
+
+Zigbee und Thread funken häufig auf derselben physikalischen Basis (IEEE~802.15.4), unterscheiden sich aber in der Philosophie: Zigbee ist historisch ein \enquote{eigener Stack} ohne natives IP. Deshalb braucht es fast immer einen Hub, der zwischen Zigbee-Welt und IP-Welt übersetzt. Dazu kam lange eine gewisse Fragmentierung zwischen Profilen und Hersteller-Ökosystemen~\cite{uniconverge-protocols}.
+
+Thread setzt dagegen auf IPv6 über 6LoWPAN: Jedes Gerät ist direkt im IP-Adressraum, und der \emph{Border Router} routet IP-Pakete statt Anwendungsdaten zu übersetzen. Seit Thread~1.4 können Border Router verschiedener Hersteller leichter in einem gemeinsamen Mesh zusammenarbeiten (Credential Sharing)~\cite{thread14whitepaper}. Genau diese IP-Nähe macht Thread zu einem wichtigen Fundament für moderne Smart-Home-Standards wie Matter.
+
+\subsection{Bluetooth~LE Mesh: Stark beim \enquote{Handshake}, schwächer bei großen Netzen}
+
+Bluetooth~LE ist überall, weil jedes Smartphone es kann. Für IoT-Netze ist BLE Mesh interessant, das Nachrichten per \emph{Managed Flooding} im Netz weiterreicht. Das funktioniert gut für kleine bis mittlere Installationen und einfache Befehle (Licht an/aus). Bei sehr vielen Geräten und viel Telemetrie skaliert Flooding jedoch schlechter als klassisches Routing, weil redundante Weiterleitungen Bandbreite kosten~\cite{silabs-mesh-performance}.
+
+\subsection{Wi-Fi 6/7: Weniger \enquote{Stromfresser} als früher}
+
+WLAN galt lange als zu energiehungrig für Batteriegeräte. Mit Wi-Fi~6 wurde aber u.\,a. \emph{Target Wake Time} (TWT) populär: Access Point und Gerät handeln Schlaf-/Aufwachzeiten aus, das Funkmodul kann dazwischen länger aus sein. Das macht WLAN für mehr IoT-Geräteklassen attraktiv -- besonders dort, wo ohnehin schon ein gutes Wi-Fi-Netz existiert~\cite{iotanalytics2025devices}.
+
+\section{Weitbereich: LoRaWAN, NB-IoT und 5G~RedCap}
+
+\subsection{LoRaWAN: Kilometerreichweite im freien Spektrum}
+
+LoRaWAN nutzt unlizenziertes Sub-GHz-Spektrum und erreicht mit robuster Modulation große Reichweiten bei kleinen Datenraten. Typisch ist eine Stern-Architektur: Endgeräte senden an Gateways, die weiter ins IP-Netz routen. Ein praktischer Vorteil: Man kann private Netze aufbauen, ohne Mobilfunkverträge pro Gerät~\cite{lansitec-lorawan-nbiot}. Für abgelegene Regionen wird zudem Satelliten-IoT relevanter, etwa durch neue LoRa-Varianten.
+
+\subsection{NB-IoT und LTE-M: Mobilfunk für kleine Daten}
+
+NB-IoT ist ein 3GPP-Standard im lizenzierten Mobilfunkspektrum. Er spielt seine Stärke dort aus, wo Gebäudedurchdringung, planbare Abdeckung und Provider-Infrastruktur zählen. Stromsparmodi wie PSM und eDRX erlauben lange Schlafphasen. LTE-M ist die mobilere, oft latenzärmere Schwester mit höheren Datenraten~-- nützlich z.\,B. für Asset Tracking und Wearables.
+
+\subsection{5G~RedCap: Zwischen LPWAN und \enquote{vollem 5G}}
+
+Nicht jedes IoT-Gerät braucht Gigabit, aber manche brauchen mehr als LPWAN. 5G~RedCap (Release~17) zielt genau auf diese Mitte: weniger Bandbreite und Hardware-Komplexität als klassisches 5G, aber deutlich mehr Leistung als NB-IoT. Typisch sind etwa 85--150\,Mbps und 10--20\,ms Latenz~\cite{flolive-redcap2025}. Mit eRedCap (Release~18) wird die Klasse weiter nach unten erweitert (z.\,B. 5\,MHz Bandbreite, \textasciitilde10\,Mbps)~\cite{joerke2025redcap}.
+
+\begin{table*}[!tbp]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}l l l >{\RaggedRight\arraybackslash}X@{}}
+\toprule
+\textbf{Technologie} & \textbf{Reichweite} & \textbf{Tempo} & \textbf{Typische Einsätze} \\
+\midrule
+Thread (Mesh) & Haus/Etage & 250\,kbps, <100\,ms & Sensoren/Aktoren im Smart Home, Matter-Geräte \\
+Wi-Fi~6 (TWT) & Gebäude & >100\,Mbps, <10\,ms & Kameras, Türsprechanlagen, \enquote{direkt in die Cloud} \\
+LoRaWAN & 10--15\,km & kbps, s--min & Smart City Metering, Agrar-Sensorik, lange Batterielaufzeit \\
+NB-IoT & Mobilfunkzelle & <250\,kbps, 1{,}5--10\,s & Smart Me\-ter,\allowbreak Deep In\-door,\allowbreak Pro\-vider-gestütz\-te Ab\-deckung \\
+LTE-M & Mobilfunkzelle & \textasciitilde1\,Mbps, 50--100\,ms & Mobile Sensorik, Asset Tracking, Wearables \\
+5G~RedCap & Mobilfunkzelle & 85--150\,Mbps, 10--20\,ms & Video, industrielle Telematik, mid-tier IoT \\
+\bottomrule
+\end{tabularx}
+\caption{Spickzettel: Konnektivität im IoT (Stand 2026, stark gerundet), in Anlehnung an~\cite{uniconverge-protocols}}
+\label{tab:connectivity}
+\end{table*}
+
+\section{Interoperabilität: Raus aus dem Fragmentierungs-Dschungel}
+
+\subsection{Matter: Ein gemeinsames Smart-Home-Vokabular}
+
+Im Smart Home waren Geräte lange in \enquote{Walled Gardens} gefangen: Lampen, Sensoren und Lautsprecher funktionierten nur in bestimmten Apps oder über bestimmte Hubs. Matter soll das aufbrechen, indem es ein gemeinsames Datenmodell und Interaktionsregeln auf IP-Basis definiert -- unabhängig davon, ob ein Gerät per Wi-Fi, Thread oder Ethernet verbunden ist. Ein wichtiger Punkt: Matter setzt stark auf lokale Steuerung, Cloud ist optional. Das reduziert Latenz und verbessert Privatsphäre. Neuere Versionen (z.\,B. 1.4) erweitern das Modell u.\,a. um Energiemanagement im Haushalt~\cite{csa-matter14}.
+
+\subsection{Industrie: OPC~UA FX vs. MQTT~Sparkplug}
+
+In der Industrie treffen IT-Welt und Maschinenwelt aufeinander. Zwei Ansätze stehen exemplarisch:
 \begin{itemize}
-  \item \textbf{Chunking:} Code wird in kleinere Abschnitte unterteilt
-  \item \textbf{Retrieval:} Nur relevante Dateien werden geladen
-  \item \textbf{Zusammenfassung:} Lange Ausgaben werden komprimiert
+  \item \textbf{OPC~UA~FX} erweitert OPC~UA um deterministische Kommunikation bis in die Feldebene (u.\,a. über TSN) und bietet ein reiches semantisches Modell.
+  \item \textbf{MQTT~Sparkplug~B} standardisiert Payload und Topic-Struktur für MQTT und passt gut zur Idee eines \emph{Unified Namespace}: Alle Maschinenzustände fließen in einen zentralen Broker, den verschiedene Systeme nutzen können~\cite{balluff-opcua-mqtt}.
 \end{itemize}
+Welche Strategie besser ist, hängt stark davon ab, ob man primär Echtzeit/Determinismus (Automatisierung) oder Skalierung/Integration (IT) priorisiert.
 
-Diese Optimierungen können die Kosten um 40--60\,\% reduzieren, ohne die Qualität wesentlich zu beeinträchtigen.
+\section{Sicherheit: Klein, aber nicht schutzlos}
 
+IoT ist sicherheitskritisch, weil Angriffe nicht nur Daten stehlen, sondern physische Prozesse beeinflussen können. Lange waren viele Geräte zu schwach für etablierte Kryptographie. Genau hier setzen neue Standards an: Das NIST hat 2025 mit Ascon einen Lightweight-Crypto-Standard finalisiert, der für kleine Mikrocontroller optimiert ist~\cite{nist-lwc-ascon}.
 
-\section{Grenzen der Technologie}
-
-So beeindruckend die Fortschritte sind – KI-Agenten sind keine Wunderlösung:
-
-\textbf{Große Projekte:} Bei Millionen Zeilen Code (wie dem Linux-Kernel) stoßen aktuelle Agenten an ihre Grenzen. Der Kontext ist schlicht zu groß, um ihn vollständig zu erfassen.
-
-\textbf{Kreative Aufgaben:} Neue Algorithmen erfinden oder revolutionäre Architekturen entwerfen – das bleibt vorerst menschliche Domäne. Agenten sind gut im Anwenden bekannter Muster, weniger im Erfinden neuer.
-
-\textbf{Zwischenmenschliches:} Anforderungen verstehen, mit Stakeholdern kommunizieren, Prioritäten setzen – hier ist menschliche Intelligenz unersetzlich. Ein Agent kann technisch perfekten Code liefern, der am eigentlichen Bedarf vorbeigeht.
-
-\textbf{Halluzinationen:} Sprachmodelle können \enquote{halluzinieren} – also plausibel klingende, aber falsche Informationen generieren. Bei Agenten kann das zu subtilen Bugs führen, die schwer zu finden sind.
-
-\begin{infobox}[Wann Agenten scheitern]
-Typische Fälle, in denen aktuelle Agenten an ihre Grenzen stoßen:
+\begin{infobox}[Mini-Checkliste für sichere IoT-Systeme]
 \begin{itemize}
-  \item Legacy-Code ohne Dokumentation
-  \item Domänenspezifisches Fachwissen (Medizin, Recht)
-  \item Aufgaben mit mehrdeutigen Anforderungen
-  \item Systeme mit komplexen Abhängigkeiten
+  \item Geräteidentität statt \enquote{Default-Passwort}: Zertifikate (z.\,B. X.509) und sichere Schlüsselspeicher (Secure Element).
+  \item Zero-Trust-Denken: jedes Gerät authentifiziert sich, jedes Netzwerksegment wird als potenziell unsicher behandelt.
+  \item Updates einplanen: sichere OTA-Mechanismen sind kein \enquote{Nice-to-have}.
 \end{itemize}
 \end{infobox}
 
+\section{Fazit: Die richtige Verbindung ist eine Designentscheidung}
 
-\section{Die Zukunft: Mensch und Maschine}
+Die IoT-Landschaft konsolidiert sich, aber nicht auf einen Standard, sondern auf ein Zusammenspiel: IP wird zum gemeinsamen Nenner, und darüber entscheiden Anwendungsschicht-Standards wie Matter oder industrielle Profile, \emph{wie} Geräte Daten austauschen. Gleichzeitig bleibt die Physik der Gegenpol: Reichweite, Bandbreite und Energieverbrauch erzwingen Kompromisse.
 
-Die spannendste Frage ist nicht \enquote{Ersetzt KI den Programmierer?}, sondern \enquote{Wie arbeiten beide zusammen?}
-
-\subsection{Hybride Workflows}
-
-Die Praxis zeigt: Am effektivsten sind hybride Workflows. Der Agent übernimmt repetitive Aufgaben – Bugs fixen, Code formatieren, Tests schreiben. Der Mensch konzentriert sich auf das Wesentliche: Architekturentscheidungen, Nutzererlebnis, kreative Problemlösung.
-
-Ein typischer Workflow könnte so aussehen:
-\begin{enumerate}
-  \item Entwickler definiert Feature-Anforderung
-  \item Agent erstellt ersten Entwurf mit Tests
-  \item Entwickler reviewt und gibt Feedback
-  \item Agent überarbeitet basierend auf Feedback
-  \item Entwickler nimmt finale Anpassungen vor
-  \item Agent führt Qualitätsprüfungen durch
-\end{enumerate}
-
-\subsection{Neue Berufsbilder}
-
-Mit der Technologie entstehen auch neue Rollen:
-
-\textbf{Agent-Trainer:} Spezialisieren Agenten auf bestimmte Domänen durch Feintuning und Prompt-Engineering.
-
-\textbf{Agent-Orchestrator:} Entwerfen komplexe Workflows, in denen mehrere Agenten zusammenarbeiten.
-
-\textbf{AI-Auditor:} Prüfen die Sicherheit und Zuverlässigkeit von Agenten-Systemen.
-
-Erste Unternehmen setzen solche Systeme bereits produktiv ein. GitHub Copilot X, Amazon CodeWhisperer, Google Gemini Code Assist – die großen Tech-Konzerne investieren massiv.
-
-
-\section{Praktische Tipps: So starten Sie}
-
-Möchten Sie selbst mit KI-Agenten experimentieren? Hier einige Empfehlungen für den Einstieg:
-
-\subsection{Einfache Werkzeuge zum Ausprobieren}
-
-Für erste Experimente brauchen Sie keine komplexe Infrastruktur:
-
-\textbf{GitHub Copilot:} Der bekannteste KI-Assistent für Entwickler. Integriert sich nahtlos in VS Code und andere IDEs. Die Agentic-Features (Copilot Chat, Copilot Workspace) ermöglichen bereits einfache automatisierte Workflows.
-
-\textbf{Cursor:} Ein Fork von VS Code mit nativer KI-Integration. Besonders gut für Experimente mit kontextbezogener Code-Generierung und automatischen Refactorings.
-
-\textbf{Claude/ChatGPT mit Code Interpreter:} Die Weboberflächen der großen Sprachmodelle bieten bereits rudimentäre Agenten-Fähigkeiten. Code wird ausgeführt, Dateien können hochgeladen und analysiert werden.
-
-\subsection{Für Fortgeschrittene: Open-Source-Frameworks}
-
-Wer tiefer einsteigen möchte, findet in der Open-Source-Community leistungsstarke Werkzeuge:
-
-\begin{table}[ht]
-\centering
-\small
-\begin{tabular}{@{}lp{5cm}@{}}
-\toprule
-\textbf{Framework} & \textbf{Stärken} \\
-\midrule
-LangChain & Größtes Ökosystem, viele Integrationen \\
-AutoGPT & Autonome Aufgabenbearbeitung \\
-CrewAI & Multi-Agenten-Kollaboration \\
-LangGraph & Zustandsbasierte Workflows \\
-\bottomrule
-\end{tabular}
-\caption{Populäre Open-Source-Frameworks für Agenten-Entwicklung}
-\label{tab:frameworks}
-\end{table}
-
-\subsection{Best Practices}
-
-Aus der Praxis haben sich einige Empfehlungen herauskristallisiert:
-
-\begin{enumerate}
-  \item \textbf{Klein anfangen:} Starten Sie mit klar definierten, begrenzten Aufgaben. Komplexe Projekte überfordern aktuelle Agenten schnell.
-  
-  \item \textbf{Immer prüfen:} Vertrauen Sie KI-generiertem Code nie blind. Code-Reviews bleiben unverzichtbar – erst recht bei automatisch erzeugten Änderungen.
-  
-  \item \textbf{Tests sind Pflicht:} Automatische Tests sind die beste Absicherung gegen fehlerhafte Agenten-Outputs. Je höher die Testabdeckung, desto sicherer der Einsatz.
-  
-  \item \textbf{Kosten überwachen:} API-Aufrufe können sich schnell summieren. Setzen Sie Budgetgrenzen und überwachen Sie den Verbrauch.
-  
-  \item \textbf{Dokumentieren:} Halten Sie fest, welche Teile Ihres Codes von Agenten generiert wurden. Das erleichtert spätere Wartung.
-\end{enumerate}
-
-
-\section{Ethische Fragen und Verantwortung}
-
-Mit der Verbreitung von KI-Agenten entstehen auch neue ethische Herausforderungen, die Entwickler und Unternehmen adressieren müssen.
-
-\subsection{Urheberrecht und Lizenzfragen}
-
-Sprachmodelle wurden auf Milliarden von Codezeilen trainiert – darunter auch urheberrechtlich geschützter Code. Wenn ein Agent Code generiert, der einem existierenden Projekt stark ähnelt, stellt sich die Frage: Ist das eine Urheberrechtsverletzung?
-
-Erste Gerichtsverfahren laufen bereits. Bis Rechtssicherheit besteht, empfiehlt sich:
-\begin{itemize}
-  \item Generierten Code auf Ähnlichkeiten prüfen
-  \item Lizenzkompatibilität sicherstellen
-  \item Im Zweifel manuell umschreiben
-\end{itemize}
-
-\subsection{Verantwortung für Fehler}
-
-Wer haftet, wenn KI-generierter Code einen Bug enthält, der Schaden verursacht? Der Entwickler, der den Agenten eingesetzt hat? Das Unternehmen, das den Agenten entwickelt hat? Oder die Firma, deren Produkt betroffen ist?
-
-Aktuell liegt die Verantwortung beim Anwender – wer KI-generierten Code in Produktion bringt, muss ihn auch verantworten. Das unterstreicht die Notwendigkeit gründlicher Reviews und Tests.
-
-\subsection{Arbeitsplätze und Qualifikation}
-
-Die Sorge, KI könnte Entwickler ersetzen, ist weit verbreitet. Die Realität ist differenzierter:
-
-\textbf{Routineaufgaben} werden zunehmend automatisiert. Einfache Bug-Fixes, Boilerplate-Code, Standard-Tests – hier übernehmen Agenten bereits Arbeit.
-
-\textbf{Komplexe Aufgaben} bleiben menschlich. Architekturentscheidungen, Nutzerforschung, Teamführung, kreative Problemlösung – diese Fähigkeiten werden eher wichtiger.
-
-\textbf{Neue Rollen} entstehen. Wer Agenten effektiv einsetzen, trainieren und überwachen kann, wird gefragt sein.
-
-Die Empfehlung: Verstehen Sie KI-Tools als Multiplikatoren Ihrer eigenen Fähigkeiten, nicht als Ersatz.
-
-
-\section{Ein Blick in die Kristallkugel}
-
-Wohin entwickelt sich die Technologie in den nächsten Jahren? Einige Trends zeichnen sich ab:
-
-\subsection{Multi-Agenten-Systeme}
-
-Statt eines einzelnen Agenten arbeiten mehrere spezialisierte Agenten zusammen: Ein \enquote{Architekt} entwirft die Struktur, ein \enquote{Entwickler} implementiert Code, ein \enquote{Tester} prüft die Qualität, ein \enquote{Reviewer} gibt Feedback. Das Framework \emph{MetaGPT}~\cite{hong2023metagpt} implementiert genau diesen Ansatz und simuliert ein komplettes Software-Team mit definierten Rollen und strukturierten Übergaben. Diese Arbeitsteilung verspricht bessere Ergebnisse bei komplexen Aufgaben.
-
-\subsection{Längerer Kontext}
-
-Aktuelle Modelle können etwa 100.000 Tokens verarbeiten – grob 75.000 Wörter oder ein mittelgroßes Buch. Zukünftige Modelle werden Millionen von Tokens erfassen können. Das ermöglicht Agenten, die ganze Codebasen \enquote{verstehen}, ohne auf Zusammenfassungen angewiesen zu sein.
-
-\subsection{Spezialisierte Modelle}
-
-Statt Allzweck-Modelle werden für Softwareentwicklung optimierte Modelle dominant. Diese verstehen Programmierkonzepte tiefer und machen weniger Fehler bei technischen Aufgaben.
-
-\subsection{Integration in Entwicklungsumgebungen}
-
-Die Grenzen zwischen IDE und Agent verschwimmen. Zukünftige Entwicklungsumgebungen werden Agenten-Fähigkeiten nahtlos integrieren – automatische Refactorings, kontinuierliche Code-Analyse, proaktive Verbesserungsvorschläge.
-
-
-\section{Fazit: Revolution in Zeitlupe}
-
-KI-Agenten in der Softwareentwicklung sind keine Science-Fiction mehr – sie sind Realität. Noch nicht perfekt, noch nicht allwissend, aber bereits nützlich.
-
-Die Technologie entwickelt sich rasant weiter. Was heute 50\,\% der Aufgaben löst, könnte morgen 80\,\% schaffen. Gleichzeitig entstehen neue Fragen: Wer ist verantwortlich für Fehler im KI-generierten Code? Wie schützen wir uns vor bösartigen Agenten? Wie verändern sich Berufsbilder?
-
-Für Entwickler bedeutet das: Wer diese Werkzeuge versteht und effektiv nutzt, wird produktiver. Wer sie ignoriert, riskiert den Anschluss zu verlieren.
-
-Eines ist sicher: Die Art, wie wir Software entwickeln, steht vor einem grundlegenden Wandel. Wer heute die Grundlagen versteht, ist für morgen gerüstet.
-
-\begin{infobox}[Zum Weiterlesen]
-\begin{itemize}
-  \item \textbf{ReAct-Paper:} Das wissenschaftliche Fundament der Agenten-Technologie~\cite{yao2023react}
-  \item \textbf{SWE-bench:} Der Standard-Benchmark für Code-Agenten~\cite{jimenez2023swe}
-  \item \textbf{LangChain:} Populäres Open-Source-Framework für Agentenentwicklung~\cite{chase2023langchain}
-\end{itemize}
-\end{infobox}
-
-
-\section*{Glossar}
-
-\begin{description}
-  \item[Agent:] Ein KI-System, das eigenständig Ziele verfolgt, Pläne erstellt und Werkzeuge nutzt – im Gegensatz zu passiven Chatbots.
-  
-  \item[Chain-of-Thought:] Technik, bei der ein Sprachmodell angewiesen wird, seinen Denkprozess explizit zu formulieren, was zu besseren Ergebnissen führt.
-  
-  \item[Halluzination:] Das Phänomen, dass Sprachmodelle plausibel klingende, aber faktisch falsche Informationen generieren.
-  
-  \item[LLM (Large Language Model):] Großes Sprachmodell wie GPT-4 oder Claude, das auf riesigen Textmengen trainiert wurde.
-  
-  \item[Prompt Injection:] Angriffstechnik, bei der schädliche Anweisungen in Eingabedaten versteckt werden, um ein KI-System zu manipulieren.
-  
-  \item[RAG (Retrieval-Augmented Generation):] Methode, bei der ein Sprachmodell vor der Antwortgenerierung relevante Informationen aus einer Datenbank abruft.
-  
-  \item[ReAct:] \enquote{Reasoning and Acting} – Methodik, bei der Agenten explizit zwischen Denken und Handeln alternieren.
-  
-  \item[Sandbox:] Isolierte Ausführungsumgebung, die verhindert, dass Code das umgebende System beeinflusst.
-  
-  \item[Token:] Grundeinheit der Textverarbeitung in Sprachmodellen – grob entspricht ein Token 0,75 Wörtern.
-  
-  \item[Vektor-Datenbank:] Spezielle Datenbank zur Speicherung und schnellen Suche von semantisch ähnlichen Texten oder Code.
-\end{description}
+Der Blick nach vorn geht in zwei Richtungen: mehr \emph{Intelligenz am Rand} (TinyML), um Daten gar nicht erst senden zu müssen~-- und mehr \emph{globale Konnektivität} durch die Verbindung von terrestrischen Netzen und Satelliten-IoT. Wer heute IoT-Systeme plant, plant deshalb nicht nur \enquote{Funk}, sondern eine Architektur.
