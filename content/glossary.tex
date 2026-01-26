@@ -1,0 +1,48 @@
+% Glossar: Protokolle, Konnektivitäts-Technologien und Fachbegriffe
+% Use the glossaries package: define entries and print sorted glossary (A–Z)
+% Use the 'list' glossary style (compatible with two-column) and tighten item spacing
+\setglossarystyle{list}
+% Define glossary entries (keys must start with a letter)
+\newglossaryentry{g5gredcap}{name={5G RedCap},description={Reduced Capability 5G – 5G‑Unterprofil für IoT‑Geräte mit reduzierten Anforderungen (Energie/Kosten)}}
+\newglossaryentry{amqp}{name={AMQP},description={Advanced Message Queuing Protocol – ein zuverlässiges, broker‑basiertes Messaging‑Protokoll}}
+\newglossaryentry{blemesh}{name={BLE Mesh},description={Erweiterung von Bluetooth LE für Mesh‑Netzwerke}}
+\newglossaryentry{btle}{name={Bluetooth LE},description={Bluetooth Low Energy – energiesparsamer Bluetooth‑Modus}}
+\newglossaryentry{broker}{name={Broker},description={In Publish/Subscribe‑Architekturen (z. B. MQTT) die zentrale Komponente, die Nachrichten verteilt}}
+\newglossaryentry{coap}{name={CoAP},description={Constrained Application Protocol – leichtgewichtiges HTTP‑ähnliches Protokoll für ressourcenbeschränkte Geräte (UDP)}}
+\newglossaryentry{dtls}{name={DTLS/TLS},description={Datagram/TLS – Sicherheitsprotokolle für verschlüsselte Verbindungen (DTLS für UDP, TLS für TCP)}}
+\newglossaryentry{gateway}{name={Gateway},description={Vermittler zwischen verschiedenen Netzwerken oder Protokollen (z. B. LoRaWAN → IP)}}
+\newglossaryentry{interop}{name={Interoperabilität},description={Fähigkeit verschiedener Systeme/Protokolle, zusammenzuarbeiten und Daten semantisch zu verstehen}}
+\newglossaryentry{latency}{name={Latency},description={Verzögerung zwischen Sende‑ und Empfangszeitpunkt; kritisch für Echtzeitanforderungen}}
+\newglossaryentry{lorawan}{name={LoRaWAN},description={Low Power Wide Area Network – LPWAN für große Reichweiten bei geringem Energieverbrauch}}
+\newglossaryentry{ltem}{name={LTE‑M},description={LTE‑Machine (eMTC) – mobilfunkbasierte Option für IoT}}
+\newglossaryentry{lwm2m}{name={LwM2M},description={Lightweight M2M – OMA‑Protokoll für Geräte‑Management und Telemetrie}}
+\newglossaryentry{matter}{name={Matter},description={Interoperabilitätsstandard für Smart‑Home‑Geräte; baut auf Thread, Wi‑Fi und IP auf}}
+\newglossaryentry{topologies}{name={Mesh/Star/Tree},description={Netzwerktopologien: Mesh, Star, Tree}}
+\newglossaryentry{mqtt}{name={MQTT},description={Message Queuing Telemetry Transport – Publish/Subscribe‑Protokoll mit geringem Overhead}}
+\newglossaryentry{mqttsn}{name={MQTT‑SN},description={MQTT for Sensor Networks – Variante für Netzwerktypen ohne TCP/IP}}
+\newglossaryentry{nbiot}{name={NB‑IoT},description={NarrowBand‑IoT – Mobilfunkbasiertes LPWAN}}
+\newglossaryentry{opcua}{name={OPC UA},description={Open Platform Communications Unified Architecture – Industriekommunikation mit Semantik}}
+\newglossaryentry{ota}{name={OTA},description={Over‑The‑Air Updates – Aktualisierung von Firmware/Software per Funkverbindung}}
+\newglossaryentry{pubsub}{name={Publish/Subscribe},description={Kommunikationsmuster: Publisher senden an Topics, Subscriber empfangen relevante Topics über einen Broker}}
+\newglossaryentry{qos}{name={QoS},description={Quality of Service – Mechanismen zur Sicherstellung von Zustellgarantien}}
+\newglossaryentry{restful}{name={RESTful},description={Beschreibung von Web‑APIs, die HTTP‑Methoden konsistent nutzen}}
+\newglossaryentry{http}{name={HTTP/REST},description={Hypertext Transfer Protocol / Representational State Transfer}}
+\newglossaryentry{throughput}{name={Throughput},description={Datendurchsatz einer Verbindung oder eines Systems}}
+\newglossaryentry{thread}{name={Thread},description={IPv6‑basiertes Mesh‑Protokoll für drahtlose Heimnetzwerke}}
+\newglossaryentry{wifi}{name={Wi‑Fi},description={Drahtlosnetzwerkstandard für hohe Datenraten}}
+\newglossaryentry{zigbee}{name={Zigbee},description={Drahtloses Mesh‑Protokoll für Hausautomation}}
+\newglossaryentry{zwave}{name={Z‑Wave},description={Proprietäres Funksystem für Hausautomation}}
+\newglossaryentry{provisioning}{name={Provisioning},description={Prozess, Geräte sicher in ein Netzwerk aufzunehmen}}
+
+% Ensure all defined entries are printed even if not referenced in text
+\glsaddall
+
+% Print the glossary (requires running makeglossaries)
+% Scope small, uniform spacing for the description list used by the 'list' style
+\begingroup
+	\setlist[description]{itemsep=0.35\baselineskip,parsep=0pt,topsep=0.25\baselineskip,leftmargin=!,labelwidth=2.8cm}
+	\begin{RaggedRight}
+		\printglossary[title=Glossar]
+	\end{RaggedRight}
+\endgroup
+

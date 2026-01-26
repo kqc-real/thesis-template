@@ -22,6 +22,13 @@ pdflatex "$MAIN.tex"
 # 2. Literaturverzeichnis verarbeiten
 biber "$MAIN"
 
+# 2b. Glossary index erstellen (falls Glossar verwendet wird)
+# Run makeglossaries only if the .glo file exists to avoid errors
+if [ -f "${MAIN}.glo" ]; then
+  echo "🗂️ Generiere Glossar mit makeglossaries..."
+  makeglossaries "$MAIN"
+fi
+
 # 3. Verzeichnisse und Referenzen aktualisieren
 pdflatex "$MAIN.tex"
 
