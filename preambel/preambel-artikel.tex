@@ -158,10 +158,8 @@
 
 %%% 5. Literatur
 %%% ----------------------------------------------------------------------
-
-\usepackage[style=numeric, backend=biber, sorting=none]{biblatex}
-\addbibresource{bib/BibtexDatabase.bib}
-
+%%% 5. Literatur
+%%% ----------------------------------------------------------------------
 
 %%% 6. Links
 %%% ----------------------------------------------------------------------
@@ -175,6 +173,9 @@
   \IfDefined{theTitle}{\hypersetup{pdftitle={\theTitle}}}%
   \IfDefined{theAuthor}{\hypersetup{pdfauthor={\theAuthor}}}%
 }
+
+\usepackage[style=numeric, backend=biber, sorting=none]{biblatex}
+\addbibresource{bib/BibtexDatabase.bib}
 
 
 %%% 7. Sonstiges
