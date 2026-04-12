@@ -79,7 +79,8 @@
 %%% 3. Layout & Seitenränder
 %%% ----------------------------------------------------------------------
 
-%%% Seitenränder für zweispaltigen Artikel (etwas großzügiger)
+%%% Seitenränder für zweispaltigen Artikel.
+%%% Das Seitenlayout wird hier bewusst zentral über geometry gepflegt.
 \usepackage[
   a4paper,
   left=20mm,
@@ -101,11 +102,6 @@
 %%% Fußnoten
 \usepackage[bottom, stable, multiple]{footmisc}
 \deffootnote{1.5em}{1em}{\makebox[1.5em][l]{\thefootnotemark}}
-
-%%% Hurenkinder und Schusterjungen vermeiden
-\clubpenalty = 10000
-\widowpenalty = 10000
-
 
 %%% 4. Tabellen & Abbildungen
 %%% ----------------------------------------------------------------------
@@ -161,7 +157,7 @@
 \usepackage[
    hidelinks,
    bookmarks=true,
-   pdftitle={Wenn KI zum Programmierer wird},
+   pdftitle={Wenn KI selbst programmiert: Wie Agenten die Softwareentwicklung verändern},
    pdfauthor={Maria Musterfrau},
 ]{hyperref}
 

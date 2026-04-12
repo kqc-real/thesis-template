@@ -3,6 +3,7 @@ set -e
 
 # Name der Hauptdatei (ohne .tex Endung)
 MAIN="Artikel"
+LATEX_FLAGS=(-interaction=nonstopmode -file-line-error)
 
 # Clean-Option prüfen
 if [ "$1" == "clean" ]; then
@@ -18,15 +19,15 @@ fi
 echo "🚀 Starte Build-Prozess für $MAIN..."
 
 # 1. Initialer LaTeX-Lauf (erstellt .aux, .toc, etc.)
-pdflatex "$MAIN.tex"
+pdflatex "${LATEX_FLAGS[@]}" "$MAIN.tex"
 
 # 2. Literaturverzeichnis verarbeiten
 biber "$MAIN"
 
 # 3. Verzeichnisse und Referenzen aktualisieren
-pdflatex "$MAIN.tex"
+pdflatex "${LATEX_FLAGS[@]}" "$MAIN.tex"
 
 # 4. Finaler Lauf für korrekte Seitenzahlen und Verweise
-pdflatex "$MAIN.tex"
+pdflatex "${LATEX_FLAGS[@]}" "$MAIN.tex"
 
 echo "✅ Build erfolgreich! $MAIN.pdf wurde erstellt."

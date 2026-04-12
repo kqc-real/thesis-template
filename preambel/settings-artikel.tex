@@ -1,9 +1,3 @@
-%%% === Textbody ==============================================================
-\KOMAoptions{%
-   DIV=12,%        % Größe des Satzspiegels (höher = größer, 12 für zweispaltig)
-   BCOR=0mm%       % Keine Bindekorrektur für Artikel
-}%
-
 %%% === Überschriften ==========================================================
 \KOMAoptions{%
    headings=normal,%          % Normale Überschriften (nicht zu groß)
@@ -12,12 +6,9 @@
 \setcounter{secnumdepth}{3}
 
 %%% === Seitenlayout ===========================================================
-\KOMAoptions{%
-   twoside=false,%     % Einseitige Darstellung (typisch für Artikel)
-   headinclude=false,%
-   footinclude=false,%
-   headsepline=true%   % Linie unter Kopfzeile
-}%
+%%% Das konkrete Seitenlayout wird in der Artikel-Präambel über geometry und
+%%% scrlayer-scrpage gesetzt, um Doppelkonfigurationen zu vermeiden.
+\KOMAoptions{twoside=false}%
 
 %%% === Table of Contents =====================================================
 \setcounter{tocdepth}{2}

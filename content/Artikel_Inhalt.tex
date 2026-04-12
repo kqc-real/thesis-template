@@ -1,9 +1,9 @@
 % Populärwissenschaftlicher Artikel über Agentic AI in der Softwareentwicklung
-% Zielgruppe: Leser einer Computerzeitschrift (interessierte Laien mit IT-Affinität)
+% Zielgruppe: Leserschaft einer Computerzeitschrift (interessierte Menschen mit IT-Affinität)
 
 \section{Die nächste Stufe der KI-Revolution}
 
-ChatGPT formuliert Texte, Copilot ergänzt Code. Doch die nächste Stufe der KI greift tiefer in die Arbeit von Entwicklern ein: sogenannte \emph{Agenten}~\cite{wang2023survey}. Sie antworten nicht nur, sie handeln. Sie lesen Dateien, starten Tests, suchen im Netz, entwerfen einen Plan und bessern nach, wenn etwas schiefläuft. Aus dem Gesprächspartner wird damit ein digitaler Mitarbeiter auf Probe.
+ChatGPT formuliert Texte, Copilot ergänzt Code. Doch die nächste Stufe der KI greift tiefer in die Arbeit von Entwicklerinnen und Entwicklern ein: sogenannte \emph{Agenten}~\cite{wang2023survey}. Sie antworten nicht nur, sie handeln. Sie lesen Dateien, starten Tests, suchen im Netz, entwerfen einen Plan und bessern nach, wenn etwas schiefläuft. Aus dem Gesprächspartner wird damit eine digitale Unterstützung auf Probe.
 
 Genau darin liegt die Faszination dieses Trends und sein Konfliktpotenzial zugleich. Was davon ist schon produktive Gegenwart? Und was klingt nur deshalb überzeugend, weil die Erzählung von der autonomen Maschine so verführerisch ist?
 
@@ -95,7 +95,7 @@ Das Besondere: Der Agent entscheidet selbst, welches Werkzeug wann sinnvoll ist.
 
 \subsection{Werkzeug-Schnittstellen im Detail}
 
-Damit ein Agent ein Werkzeug nutzen kann, muss dieses nach einem standardisierten Schema beschrieben werden. Tabelle~\ref{tab:tools} zeigt beispielhaft, wie typische Entwicklerwerkzeuge für Agenten aufbereitet werden.
+Damit ein Agent ein Werkzeug nutzen kann, muss dieses nach einem standardisierten Schema beschrieben werden. Tabelle~\ref{tab:tools} zeigt beispielhaft, wie typische Werkzeuge aus der Softwareentwicklung für Agenten aufbereitet werden.
 
 \begin{table}[ht]
 \centering
@@ -136,7 +136,7 @@ Diese Fähigkeit zur vorausschauenden Planung unterscheidet leistungsfähige Age
 
 \section{Praxisbeispiel: Fehlersuche im Code}
 
-Stellen Sie sich einen typischen Nachmittag in einem Entwicklerteam vor: Drei von hundert automatischen Tests schlagen plötzlich fehl. Klassisch würde nun jemand:
+Stellen Sie sich einen typischen Nachmittag in einem Entwicklungsteam vor: Drei von hundert automatischen Tests schlagen plötzlich fehl. Klassisch würde nun jemand:
 
 \begin{enumerate}
   \item Die Fehlermeldungen analysieren
@@ -176,7 +176,7 @@ Neue Pro-Benchmarks & kein fixer Einzelwert & 2026 \\
 \label{tab:benchmark}
 \end{table}
 
-Die Zahlen in Tabelle~\ref{tab:benchmark} zeigen, wie schnell sich das Feld bewegt: Innerhalb von zwei Jahren wurden aus experimentellen Vorführungen ernstzunehmende Werkzeuge für Entwickler. Gleichzeitig gilt 2026 mehr denn je: Einzelne Prozentwerte sind nur dann aussagekräftig, wenn man auch Testaufbau, Werkzeuge und Ausführungsumgebung kennt. Gerade bei komplexen Problemen mit vielen Abhängigkeiten stoßen aktuelle Systeme weiterhin an Grenzen. Der Fortschritt ist real, aber er kommt nicht als geradlinige Erfolgsgeschichte daher.
+Die Zahlen in Tabelle~\ref{tab:benchmark} zeigen, wie schnell sich das Feld bewegt: Innerhalb von zwei Jahren wurden aus experimentellen Vorführungen ernstzunehmende Werkzeuge für Entwicklerinnen und Entwickler. Gleichzeitig gilt 2026 mehr denn je: Einzelne Prozentwerte sind nur dann aussagekräftig, wenn man auch Testaufbau, Werkzeuge und Ausführungsumgebung kennt. Gerade bei komplexen Problemen mit vielen Abhängigkeiten stoßen aktuelle Systeme weiterhin an Grenzen. Der Fortschritt ist real, aber er kommt nicht als geradlinige Erfolgsgeschichte daher.
 
 \subsection{Welche Aufgaben eignen sich?}
 
@@ -201,7 +201,7 @@ Software-Architektur entwerfen & Gering & 20--30\,\% \\
 \label{tab:eignung}
 \end{table}
 
-Faustregel: Je klarer definiert und begrenzter eine Aufgabe, desto besser die Erfolgsaussichten. Offene, kreative oder politisch heikle Probleme bleiben vorerst Menschensache.
+Faustregel: Je klarer definiert und begrenzter eine Aufgabe, desto besser die Erfolgsaussichten. Offene, kreative oder politisch heikle Probleme bleiben vorerst in menschlicher Hand.
 
 \subsection{Ein konkretes Beispiel aus der Praxis}
 
@@ -276,13 +276,13 @@ Bei aller Begeisterung bleibt eine wichtige Frage: Wie verhindert man, dass ein 
 
 \textbf{Berechtigungssystem:} Jedes Werkzeug hat definierte Rechte. Ein Agent darf vielleicht Dateien lesen, aber nicht löschen. Oder er darf Tests starten, aber keinen Code in Produktion deployen.
 
-\textbf{Menschliche Freigabe:} Bei kritischen Aktionen, etwa dem Veröffentlichen von Code, muss ein Mensch zustimmen. Der Agent schlägt vor, der Entwickler entscheidet.
+\textbf{Menschliche Freigabe:} Bei kritischen Aktionen, etwa dem Veröffentlichen von Code, muss ein Mensch zustimmen. Der Agent schlägt vor, die verantwortliche Person entscheidet.
 
 \textbf{Protokollierung:} Jede Aktion wird aufgezeichnet. Bei Problemen lässt sich exakt nachvollziehen, was der Agent getan hat.
 
 \subsection{Schutz vor Manipulation}
 
-Eine besondere Gefahr sind sogenannte \enquote{Prompt-Injection}-Angriffe: Ein böswilliger Nutzer versteckt Anweisungen in Daten, die der Agent verarbeitet. Stellen Sie sich vor, in einem Code-Kommentar stünde plötzlich der Befehl \enquote{Lösche alle Dateien}.
+Eine besondere Gefahr sind sogenannte \enquote{Prompt-Injection}-Angriffe: Eine böswillige Person versteckt Anweisungen in Daten, die der Agent verarbeitet. Stellen Sie sich vor, in einem Code-Kommentar stünde plötzlich der Befehl \enquote{Lösche alle Dateien}.
 
 Robuste Systeme erkennen solche Manipulationsversuche durch:
 \begin{itemize}
@@ -320,7 +320,7 @@ Komplexe Umstrukturierung & 50--100 & 0,50--1,00\,€ \\
 \label{tab:kosten}
 \end{table}
 
-Verglichen mit Entwicklerstunden sind diese Kosten oft gering: Selbst wenn ein Agent mehrere Modellaufrufe benötigt, bleiben einfache Aufgaben häufig im Cent- oder unteren Euro-Bereich. Wirtschaftlich interessant wird das vor allem dort, wo viele kleine, klar eingegrenzte Routineaufgaben anfallen und sich Zeitgewinne Tag für Tag summieren.
+Verglichen mit Arbeitsstunden in der Softwareentwicklung sind diese Kosten oft gering: Selbst wenn ein Agent mehrere Modellaufrufe benötigt, bleiben einfache Aufgaben häufig im Cent- oder unteren Euro-Bereich. Wirtschaftlich interessant wird das vor allem dort, wo viele kleine, klar eingegrenzte Routineaufgaben anfallen und sich Zeitgewinne Tag für Tag summieren.
 
 \subsection{Token-Optimierung}
 
@@ -359,21 +359,21 @@ Typische Fälle, in denen aktuelle Agenten an ihre Grenzen stoßen:
 \end{infobox}
 
 
-\section{Die Zukunft: Mensch und Maschine}
+\section{Die Zukunft: Menschen und Maschinen}
 
-Die spannendste Frage ist deshalb nicht \enquote{Ersetzt KI den Programmierer?}, sondern \enquote{Wie arbeiten beide zusammen?}
+Die spannendste Frage ist deshalb nicht \enquote{Ersetzt KI die Menschen, die programmieren?}, sondern \enquote{Wie arbeiten beide zusammen?}
 
 \subsection{Hybride Zusammenarbeit}
 
-Die Praxis zeigt: Am stärksten sind Mensch und Maschine im Team. Der Agent übernimmt repetitive Aufgaben, etwa Fehler korrigieren, Code formatieren oder Tests schreiben. Der Mensch konzentriert sich auf das Wesentliche: Architekturentscheidungen, Nutzererlebnis und kreative Problemlösung.
+Die Praxis zeigt: Am stärksten sind Menschen und Maschinen im Team. Der Agent übernimmt repetitive Aufgaben, etwa Fehler korrigieren, Code formatieren oder Tests schreiben. Menschen konzentrieren sich auf das Wesentliche: Architekturentscheidungen, Nutzererlebnis und kreative Problemlösung.
 
 Ein typischer Ablauf könnte so aussehen:
 \begin{enumerate}
-  \item Entwickler beschreibt die neue Funktion
+  \item Eine Person aus dem Team beschreibt die neue Funktion
   \item Agent erstellt einen ersten Entwurf samt Tests
-  \item Entwickler prüft den Entwurf und gibt Rückmeldung
+  \item Eine Person aus dem Team prüft den Entwurf und gibt Rückmeldung
   \item Agent überarbeitet die Lösung anhand dieser Rückmeldung
-  \item Entwickler nimmt finale Anpassungen vor
+  \item Eine Person aus dem Team nimmt finale Anpassungen vor
   \item Agent führt abschließende Qualitätsprüfungen durch
 \end{enumerate}
 
@@ -381,11 +381,11 @@ Ein typischer Ablauf könnte so aussehen:
 
 Rund um diese Werkzeuge entstehen bereits neue Rollen:
 
-\textbf{Agenten-Trainer:} Spezialisieren Agenten auf bestimmte Fachgebiete durch Feintuning und geschickte Aufgabenformulierung.
+\textbf{Agenten-Training:} Spezialisierung von Agenten auf bestimmte Fachgebiete durch Feintuning und geschickte Aufgabenformulierung.
 
-\textbf{Agenten-Koordinatoren:} Entwerfen Abläufe, in denen mehrere Agenten zusammenarbeiten.
+\textbf{Agenten-Koordination:} Entwurf von Abläufen, in denen mehrere Agenten zusammenarbeiten.
 
-\textbf{KI-Prüfer:} Kontrollieren die Sicherheit und Zuverlässigkeit von Agentensystemen.
+\textbf{KI-Prüfung:} Kontrolle der Sicherheit und Zuverlässigkeit von Agentensystemen.
 
 Erste Unternehmen setzen solche Systeme bereits produktiv ein. GitHub Copilot, Amazon Q Developer und Gemini Code Assist zeigen, wie stark große Technologiekonzerne inzwischen auf solche Entwicklungswerkzeuge setzen.~\cite{github2026copilot,aws2026qdeveloper,google2026geminicodeassist}
 
@@ -398,7 +398,7 @@ Möchten Sie selbst mit KI-Agenten experimentieren? Hier einige Empfehlungen fü
 
 Für erste Experimente brauchen Sie keine komplexe Infrastruktur:
 
-\textbf{GitHub Copilot:} Der bekannteste KI-Assistent für Entwickler. Integriert sich nahtlos in VS Code und andere IDEs. Chat-, Edit- und Agentenfunktionen machen ihn 2026 deutlich mehr als nur ein Autovervollständigungswerkzeug.~\cite{github2026copilot}
+\textbf{GitHub Copilot:} Der bekannteste KI-Assistent für Entwicklerinnen und Entwickler. Integriert sich nahtlos in VS Code und andere IDEs. Chat-, Edit- und Agentenfunktionen machen ihn 2026 deutlich mehr als nur ein Autovervollständigungswerkzeug.~\cite{github2026copilot}
 
 \textbf{Cursor:} Ein spezialisierter Editor auf Basis von VS Code mit enger KI-Integration. Besonders geeignet für Experimente mit kontextbezogener Code-Erzeugung und automatischen Umstrukturierungen.
 
@@ -406,7 +406,7 @@ Für erste Experimente brauchen Sie keine komplexe Infrastruktur:
 
 \subsection{Für Fortgeschrittene: Frei verfügbare Werkzeuge}
 
-Wer tiefer einsteigen möchte, findet in der frei zugänglichen Entwicklergemeinschaft leistungsfähige Werkzeuge:
+Wer tiefer einsteigen möchte, findet in der frei zugänglichen Community rund um Softwareentwicklung leistungsfähige Werkzeuge:
 
 \begin{table}[ht]
 \centering
@@ -444,7 +444,7 @@ Aus der Praxis haben sich einige Empfehlungen herauskristallisiert:
 
 \section{Ethische Fragen und Verantwortung}
 
-Mit der Verbreitung von KI-Agenten entstehen auch neue ethische Herausforderungen, die Entwickler und Unternehmen adressieren müssen.
+Mit der Verbreitung von KI-Agenten entstehen auch neue ethische Herausforderungen, die Entwicklerinnen und Entwickler ebenso wie Unternehmen adressieren müssen.
 
 \subsection{Urheberrecht und Lizenzfragen}
 
@@ -459,13 +459,13 @@ Erste Gerichtsverfahren laufen bereits. Bis Rechtssicherheit besteht, empfiehlt 
 
 \subsection{Verantwortung für Fehler}
 
-Wer haftet, wenn KI-generierter Code einen Fehler enthält, der Schaden verursacht? Der Entwickler, der den Agenten eingesetzt hat? Das Unternehmen, das den Agenten entwickelt hat? Oder die Firma, deren Produkt betroffen ist?
+Wer haftet, wenn KI-generierter Code einen Fehler enthält, der Schaden verursacht? Die Person, die den Agenten eingesetzt hat? Das Unternehmen, das den Agenten entwickelt hat? Oder die Firma, deren Produkt betroffen ist?
 
-Aktuell liegt die Verantwortung beim Anwender: Wer KI-generierten Code in Produktion bringt, muss ihn auch verantworten. Das unterstreicht die Notwendigkeit gründlicher Prüfungen und Tests.
+Aktuell liegt die Verantwortung bei denjenigen, die KI-generierten Code in Produktion bringen: Wer solche Systeme einsetzt, muss ihre Ergebnisse auch verantworten. Das unterstreicht die Notwendigkeit gründlicher Prüfungen und Tests.
 
 \subsection{Arbeitsplätze und Qualifikation}
 
-Die Sorge, KI könnte Entwickler ersetzen, ist weit verbreitet. Die Realität ist differenzierter:
+Die Sorge, KI könnte Entwicklerinnen und Entwickler ersetzen, ist weit verbreitet. Die Realität ist differenzierter:
 
 \textbf{Routineaufgaben} werden zunehmend automatisiert. Einfache Fehlerkorrekturen, Standardbausteine und wiederkehrende Tests übernehmen Agenten schon heute.
 
@@ -482,7 +482,7 @@ Wohin entwickelt sich die Technologie in den nächsten Jahren? Einige Trends zei
 
 \subsection{Multi-Agenten-Systeme}
 
-Statt eines einzelnen Agenten arbeiten mehrere spezialisierte Agenten zusammen: Ein \enquote{Architekt} entwirft die Struktur, ein \enquote{Entwickler} schreibt Code, ein \enquote{Tester} prüft die Qualität, ein \enquote{Prüfer} gibt Rückmeldung. Das Projekt \emph{MetaGPT}~\cite{hong2023metagpt} verfolgt genau diesen Ansatz und simuliert ein komplettes Software-Team mit klar verteilten Rollen. Diese Arbeitsteilung verspricht bessere Ergebnisse bei komplexen Aufgaben.
+Statt eines einzelnen Agenten arbeiten mehrere spezialisierte Agenten zusammen: Einer entwirft die Struktur, ein anderer schreibt Code, ein dritter prüft die Qualität, ein weiterer gibt Rückmeldung. Das Projekt \emph{MetaGPT}~\cite{hong2023metagpt} verfolgt genau diesen Ansatz und simuliert ein komplettes Software-Team mit klar verteilten Rollen. Diese Arbeitsteilung verspricht bessere Ergebnisse bei komplexen Aufgaben.
 
 \subsection{Längerer Kontext}
 
@@ -501,11 +501,11 @@ Die Grenzen zwischen Entwicklungsumgebung und Agent verschwimmen. Künftige Werk
 
 KI-Agenten in der Softwareentwicklung sind keine Science-Fiction mehr. Sie sind da. Nicht perfekt, nicht allwissend, aber schon heute nützlich.
 
-Gerade darin liegt ihre eigentliche Sprengkraft. Nicht weil sie Entwickler morgen überflüssig machen würden, sondern weil sie den Takt der Arbeit verändern: Was gestern mühsame Kleinarbeit war, wird morgen vielleicht zur automatisierten Zwischenstufe.
+Gerade darin liegt ihre eigentliche Sprengkraft. Nicht weil sie Entwicklerinnen und Entwickler morgen überflüssig machen würden, sondern weil sie den Takt der Arbeit verändern: Was gestern mühsame Kleinarbeit war, wird morgen vielleicht zur automatisierten Zwischenstufe.
 
-Die Technologie entwickelt sich rasant. Was heute bei klar abgegrenzten, gut testbaren Aufgaben bereits erstaunlich gut funktioniert, scheitert in offenen, schlecht dokumentierten Projekten oft noch überraschend schnell. Gleichzeitig entstehen neue Fragen: Wer trägt die Verantwortung für Fehler im KI-generierten Code? Wie schützen wir uns vor bösartigen Agenten? Und wie verändert sich die Arbeit von Entwicklern?
+Die Technologie entwickelt sich rasant. Was heute bei klar abgegrenzten, gut testbaren Aufgaben bereits erstaunlich gut funktioniert, scheitert in offenen, schlecht dokumentierten Projekten oft noch überraschend schnell. Gleichzeitig entstehen neue Fragen: Wer trägt die Verantwortung für Fehler im KI-generierten Code? Wie schützen wir uns vor bösartigen Agenten? Und wie verändert sich die Arbeit von Entwicklerinnen und Entwicklern?
 
-Für Entwickler bedeutet das: Wer diese Werkzeuge versteht und klug einsetzt, gewinnt Tempo, Reichweite und Spielraum. Wer sie ignoriert, läuft Gefahr, den Anschluss zu verlieren.
+Für Entwicklerinnen und Entwickler bedeutet das: Wer diese Werkzeuge versteht und klug einsetzt, gewinnt Tempo, Reichweite und Spielraum. Wer sie ignoriert, läuft Gefahr, den Anschluss zu verlieren.
 
 Die eigentliche Revolution besteht also nicht darin, dass Maschinen plötzlich allein programmieren. Sie besteht darin, dass Softwareentwicklung zu einer Zusammenarbeit wird, in der Menschen die Richtung vorgeben und Maschinen immer mehr Zwischenschritte übernehmen. Wer das früh versteht, ist für die nächste Phase des digitalen Wandels besser gerüstet.
 
