@@ -113,11 +113,13 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{array}
+\usepackage{tabularx}
 \usepackage{colortbl}
 \usepackage{wrapfig}            % Text um Abbildungen fließen lassen
 
 \definecolor{rowcolorgray}{gray}{0.90}
 \definecolor{headercolor}{RGB}{120,150,180}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
 
 \renewcommand{\arraystretch}{1.3}
 \setlength{\tabcolsep}{6pt}
@@ -169,7 +171,8 @@
 
 %%% Listen kompakt
 \usepackage{enumitem}
-\setlist{nosep, leftmargin=*}
+\setlist[itemize,enumerate]{nosep, leftmargin=*}
+\setlist[description]{nosep, style=unboxed, leftmargin=0pt, labelsep=0.5em, font=\normalfont\bfseries}
 
 %%% Abstract-Umgebung für Artikel
 \renewenvironment{abstract}{%
